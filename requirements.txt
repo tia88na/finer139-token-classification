@@ -1,0 +1,7 @@
+datasets<3
+transformers
+torch
+seqeval
+numpy
+pandas
+scikit-learn
