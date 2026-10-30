@@ -1,0 +1,41 @@
+# Data license and attribution
+
+The data in this folder (data/raw, data/cleaned, data/processed) is derived from
+the FiNER-139 dataset. It is NOT covered by the repository's MIT code license.
+
+## Source
+
+FiNER-139 — Financial Numeric Entity Recognition for XBRL Tagging
+- Authors: Lefteris Loukas, Manos Fergadiotis, Ilias Chalkidis, Eirini Spyropoulou,
+  Prodromos Malakasiotis, Ion Androutsopoulos, Georgios Paliouras (ACL 2022)
+- Dataset: https://huggingface.co/datasets/nlpaueb/finer-139
+- Paper: https://arxiv.org/abs/2203.06482
+- Underlying filings: US SEC EDGAR (public domain)
+
+## License
+
+FiNER-139 is released under the Creative Commons Attribution-ShareAlike 4.0
+International License (CC BY-SA 4.0): https://creativecommons.org/licenses/by-sa/4.0/
+
+Because this dataset is CC BY-SA 4.0, our redistribution keeps the same license:
+anyone using data/ must give attribution to the original authors and share any
+derivatives under CC BY-SA 4.0 as well.
+
+## What we changed
+
+- data/raw/: the original FiNER-139 data, unchanged.
+- data/cleaned/: deduplicated, train/validation-test leakage removed, and a share
+  of no-entity (O-only) train sentences dropped.
+- data/processed/: the cleaned data tokenized (bert-base-cased) and label-aligned.
+
+## Citation
+
+    @inproceedings{loukas-etal-2022-finer,
+        title = {FiNER: Financial Numeric Entity Recognition for XBRL Tagging},
+        author = {Loukas, Lefteris and Fergadiotis, Manos and Chalkidis, Ilias and
+                  Spyropoulou, Eirini and Malakasiotis, Prodromos and
+                  Androutsopoulos, Ion and Paliouras, Georgios},
+        booktitle = {Proceedings of the 60th Annual Meeting of the Association for
+                     Computational Linguistics (ACL 2022)},
+        year = {2022}
+    }
