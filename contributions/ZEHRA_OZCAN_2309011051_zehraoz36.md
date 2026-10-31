@@ -82,3 +82,9 @@ Both models picked epoch 2. Scores were still rising, so more epochs may help.
     !python train_transformer22.py --model bert-base-cased --limit 2000   # quick check
     !python train_transformer22.py --model bert-base-cased
     !python train_transformer22.py --model nlpaueb/sec-bert-shape
+   
+ ## Commit evidence
+
+Commits are in the repository ([tia88na/finer139-token-classification](https://github.com/tia88na/finer139-token-classification), branch `main`):
+
+- [`4a2e833`](https://github.com/tia88na/finer139-token-classification/commit/4a2e833) (2026-10-31) - added `train_transformer22.py`, all files in `results/` and this contribution file (9 files)
