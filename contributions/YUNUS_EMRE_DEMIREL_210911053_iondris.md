@@ -196,3 +196,9 @@ Checkpoints are not in git: `models/bilstm_crf.pt` (15 MB, `models/` is gitignor
 - this file
 
 I did not change other members' code (`src/finer.py`, `src/baseline_hmm.py`, `src/evaluate_predictions.py`, `train_transformer22.py`, `tests/test_finer.py`), the data, or their results. My code imports their shared functions (`load_splits`, `evaluate`, `save_results`, `norm_token`, `is_number`, `save_predictions`, the HMM's unknown-word classes).
+
+## Commit evidence
+
+Commits are in the repository ([tia88na/finer139-token-classification](https://github.com/tia88na/finer139-token-classification), branch `feature/crf-bilstm-crf`):
+
+- [`a4d9e04`](https://github.com/tia88na/finer139-token-classification/commit/a4d9e04) (2026-10-31) - added the CRF layer, the feature CRF and the BiLSTM-CRF (`src/`), their tests, results (`results/crf_*`, `results/bilstm_crf_*`), the rebuilt results tables, README sections and this contribution file (22 files)
