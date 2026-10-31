@@ -1,0 +1,42 @@
+{
+  "seed": 42,
+  "model": "nlpaueb/sec-bert-shape",
+  "shapes": true,
+  "epochs": 2,
+  "max_length": 128,
+  "eval_max_length": 512,
+  "batch_size": 32,
+  "learning_rate": 3e-05,
+  "val_limit": 20000,
+  "mixed_precision": true,
+  "test_sentences_truncated": 1142,
+  "device": "Tesla T4",
+  "python": "3.13.16",
+  "torch": "2.11.0+cu130",
+  "transformers": "5.21.0",
+  "selected_epoch": 2,
+  "history": [
+    {
+      "epoch": 1,
+      "loss": 0.08893656204541742,
+      "micro_f1": 0.7249075916974694,
+      "macro_f1": 0.652656791307252,
+      "precision": 0.6624658958035599,
+      "recall": 0.8003453147072673
+    },
+    {
+      "epoch": 2,
+      "loss": 0.014175986426449818,
+      "micro_f1": 0.750727311431207,
+      "macro_f1": 0.702559412528715,
+      "precision": 0.685055685055685,
+      "recall": 0.8303249097472925
+    }
+  ],
+  "test": {
+    "micro_f1": 0.7279703125982766,
+    "macro_f1": 0.6917876548465977,
+    "precision": 0.6595623432869843,
+    "recall": 0.8122105263157895
+  }
+}
