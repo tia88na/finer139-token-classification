@@ -1,0 +1,17 @@
+{
+  "model": "CRF",
+  "main": {
+    "sentences": 92608,
+    "micro_P": 0.5754,
+    "micro_R": 0.6059,
+    "micro_F1": 0.5903,
+    "macro_F1": 0.5286
+  },
+  "reference": {
+    "sentences": 95030,
+    "micro_P": 0.5746,
+    "micro_R": 0.6058,
+    "micro_F1": 0.5898,
+    "macro_F1": 0.5311
+  }
+}
