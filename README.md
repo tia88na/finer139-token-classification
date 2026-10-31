@@ -166,6 +166,52 @@ hand-made context features), 71.5 (BiLSTM-CRF) and 70-73 micro-F1 (the transform
 On the main view the HMM predicts `O` for 91.8% of the gold entity words, the CRF
 for 23.7%, and the BiLSTM-CRF for 12.5%.
 
+## Error analysis
+
+Run `python src/analyze_errors.py` to compare the saved BiLSTM-CRF, BERT-base-cased
+and SEC-BERT-SHAPE predictions without training or model weights. Outputs are in
+`results/analysis/`: `ANALYSIS.md`, overall and per-class scores, sentence-length
+and training-frequency breakdowns, word-level type confusions, and illustrative
+examples with original test row IDs. Analysis uses only the main test view and
+checks its precision/recall/F1 against the saved shared-evaluator results.
+
+False negatives and false positives have separate error partitions. Word-level
+confusions are diagnostic counts, not entity-level errors. Length is measured in
+original words, so length buckets do not establish tokenizer truncation effects.
+
+The final comparison table is `results/RESULTS.md` (strict IOB2, main test view).
+`transformer_benchmark.csv` and transformer `*_metrics.json` preserve the original
+full-test, default-seqeval scores; those numbers use a different protocol and must
+not be mixed with the final table.
+
+SEC-BERT-SHAPE is an existing pretrained model from Loukas et al. (ACL 2022),
+not a new architecture introduced by this project. Comparing it to BERT-base
+changes both domain pretraining and number representation; the improvement
+cannot be attributed to shape replacement alone.
+
+Removing duplicates/leakage and downsampling O-only training sentences are
+different operations. Downsampling changes the training distribution; its
+effect on precision/recall has not been established by a controlled experiment.
+All training runs use one seed. Latency is not measured because trained model
+weights are not included. Slides and speech notes are maintained outside the repo.
+
+## Bootstrap and sample assessment
+
+`python src/assess_results.py --replicates 10000 --sample-size 50 --seed 42`
+computes paired sentence-bootstrap confidence intervals from existing predictions
+and samples 50 of SEC-BERT-SHAPE's non-overlapping false-positive spans. Results,
+per-sentence counts, replicates and source-file hashes are in `results/assessment/`.
+`BOOTSTRAP.md` explains marginal and family-wise intervals and their limits:
+sentence sampling conditional on these models, not training-seed or annotation uncertainty.
+
+`DEGERLENDIRME.md` documents the contextual assessment of all 50 sampled spans.
+It distinguishes possible annotation gaps/scope differences, apparent model errors,
+and insufficient context. These are provisional interpretations, not verified gold
+corrections. Exact raw sentence duplicates are checked separately for conflicting
+target tags. A single assessment was performed; no independent second review is claimed.
+`python src/render_assessment.py` regenerates the report from the saved sample-specific
+`review_notes.json`. Changing the sample requires new assessments.
+
 ## Repository structure
 
     finer139-token-classification/
