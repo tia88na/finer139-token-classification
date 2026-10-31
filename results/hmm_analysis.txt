@@ -1,0 +1,27 @@
+Most frequent number shapes in train: share tagged O and number of distinct entity types
+  XXXX         364,071 occurrences   O =  99.8%   entity types = 3
+  XX           306,226 occurrences   O =  91.8%   entity types = 134
+  X             86,511 occurrences   O =  89.5%   entity types = 131
+  X.X           75,694 occurrences   O =  30.1%   entity types = 127
+  XX.X          51,940 occurrences   O =  31.4%   entity types = 125
+  XXX           47,423 occurrences   O =  58.8%   entity types = 124
+  XXX.X         24,470 occurrences   O =  30.8%   entity types = 105
+  X.XX          24,238 occurrences   O =  24.4%   entity types = 112
+
+Gold entity words in test: 29,568; HMM predicts O for 27,144 (91.8%).
+P(O -> O) = 0.9813; probability of leaving O at any word = 0.0187.
+The only evidence for an entity is the number's shape, and the same shape is O most of the time,
+so the most likely path stays in O. The words that decide the tag ('interest rate of', 'matures in')
+are not visible to an HMM emission b(tag, word).
+
+Top confusions on gold entity words (gold type -> predicted), whole test set:
+    1229  LineOfCreditFacilityMaximumBorrowingCapacity                 -> O
+    1141  DebtInstrumentBasisSpreadOnVariableRate1                     -> O
+    1008  DebtInstrumentFaceAmount                                     -> O
+     880  DebtInstrumentInterestRateStatedPercentage                   -> O
+     678  AllocatedShareBasedCompensationExpense                       -> O
+     639  AntidilutiveSecuritiesExcludedFromComputationOfEarningsPerSh -> O
+     620  ConcentrationRiskPercentage1                                 -> O
+     567  DerivativeNotionalAmount                                     -> O
+     525  EffectiveIncomeTaxRateContinuingOperations                   -> O
+     464  AmortizationOfIntangibleAssets                               -> O

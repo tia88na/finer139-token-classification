@@ -1,0 +1,17 @@
+{
+  "model": "BERT-base-cased",
+  "main": {
+    "sentences": 92608,
+    "micro_P": 0.6305,
+    "micro_R": 0.798,
+    "micro_F1": 0.7044,
+    "macro_F1": 0.6601
+  },
+  "reference": {
+    "sentences": 95030,
+    "micro_P": 0.6298,
+    "micro_R": 0.7982,
+    "micro_F1": 0.704,
+    "macro_F1": 0.6615
+  }
+}

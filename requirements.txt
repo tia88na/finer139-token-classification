@@ -4,4 +4,6 @@ torch
 seqeval
 numpy
 pandas
+pyarrow
 scikit-learn
+pytest

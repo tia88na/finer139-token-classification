@@ -45,8 +45,62 @@ sentences + 300,958 O-only sentences. No-entity sentences in train fell from
 
 ## Evaluation
 
-Metric: entity-level F1 (seqeval). Token accuracy is misleading here because of
-the 99% `O` majority.
+Metric: entity-level precision, recall and F1 (seqeval, strict IOB2), micro and
+macro. Token accuracy is misleading here because of the 99% `O` majority.
+
+Every model is scored with the same code, `src/finer.py` (`evaluate()`), so the
+numbers in the results table are comparable:
+
+- **Word level, full-length sentences.** Scores are computed on the original words,
+  never on sub-word pieces. If a model could not label a word (for example because
+  the sentence was cut at 128 or 512 pieces), that word counts as `O`, so a missed
+  entity is a false negative and is never removed from the gold set. Cutting at 128
+  pieces would otherwise drop 3.8% of the labelled test words.
+- **Main test view without validation duplicates.** 2,422 cleaned test sentences
+  also occur, word for word, in validation, which is used to pick the epoch. Such
+  duplicates inflate test scores (lecture W6, slide 19), so the main view leaves
+  them out (**92,608** sentences). The full cleaned test (95,030) is reported next
+  to it for reference.
+- **Saved predictions.** Each model saves word-level predicted tag ids as
+  `results/<model>_test_predictions.parquet` (row i = row i of
+  `data/cleaned/test.parquet`). `python src/evaluate_predictions.py` scores all of
+  them and writes `results/RESULTS.md` and the LaTeX table
+  `results/results_table.tex`. No model has to be re-trained to be re-scored.
+- **Tests.** `python -m pytest tests -q` checks the evaluator against the lecture
+  examples (W6 slides 17, 20-21: F1 = 0.50 for the Ada / New York example) and the
+  HMM's Viterbi against the "can fish" example (slides 26-29: best path V N).
+
+## Models
+
+| Model | What it sees | Code |
+|---|---|---|
+| Most-frequent tag | the token only | `src/baseline_hmm.py` (CPU) |
+| HMM + Viterbi | the token + the previous tag | `src/baseline_hmm.py` (CPU, about 7 min) |
+| BERT-base-cased | whole sentence, numbers split into sub-word pieces | `train_transformer22.py` (GPU) |
+| SEC-BERT-SHAPE | whole sentence, numbers replaced by their shape (`645.1` -> `[XXX.X]`) | `train_transformer22.py` (GPU) |
+
+The baseline and the HMM normalise tokens the same way: numbers -> digit shape
+(`645.1` -> `XXX.X`), words -> lowercase.
+
+## Results
+
+Entity-level, strict IOB2 (seqeval), word level, full-length sentences.
+**Main** = cleaned test without the sentences that also occur in validation (92,608 sentences). **Full test** = all 95,030 cleaned test sentences.
+
+| Model | P | R | micro-F1 | macro-F1 | micro-F1 (full test) |
+|---|---:|---:|---:|---:|---:|
+| Most-frequent tag | 37.1 | 1.6 | **3.1** | 0.6 | 3.1 |
+| HMM + Viterbi | 5.8 | 2.5 | **3.5** | 1.0 | 3.5 |
+| BERT-base-cased | 63.0 | 79.8 | **70.4** | 66.0 | 70.4 |
+| SEC-BERT-SHAPE | 66.2 | 81.2 | **73.0** | 69.2 | 72.9 |
+
+Why the token-only models fail (`results/hmm_analysis.txt`): a number's shape does
+not decide its tag. In train, the shape `XX` occurs 306,226 times, is `O` 91.8% of
+the time and belongs to 134 different entity types. `P(O -> O) = 0.981`, so the
+Viterbi path almost never leaves `O`: the HMM predicts `O` for 91.8% of the gold
+entity words. The words that decide the tag ("interest rate of", "matures in") are
+not visible to an HMM emission. Models that read the context (the transformers)
+reach 70-73 micro-F1.
 
 ## Repository structure
 
@@ -57,6 +111,13 @@ the 99% `O` majority.
     |- requirements.txt
     |- .gitignore
     |- 01_data_preprocessing.ipynb  # EDA + cleaning + tokenization
+    |- train_transformer22.py       # BERT / SEC-BERT-SHAPE training + evaluation
+    |- src/
+    |  |- finer.py                  # shared data loading + evaluation (all models)
+    |  |- baseline_hmm.py           # most-frequent-tag baseline + HMM/Viterbi
+    |  |- evaluate_predictions.py   # scores every saved prediction file, builds tables
+    |- tests/                       # checks for the evaluator and the HMM
+    |- results/                     # metrics, per-class scores, test predictions
     |- data/
     |  |- LICENSE                   # CC BY-SA 4.0 (dataset) + attribution
     |  |- raw/                      # original parquet files

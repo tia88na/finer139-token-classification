@@ -1,0 +1,17 @@
+{
+  "model": "HMM + Viterbi",
+  "main": {
+    "sentences": 92608,
+    "micro_P": 0.0581,
+    "micro_R": 0.0252,
+    "micro_F1": 0.0351,
+    "macro_F1": 0.0098
+  },
+  "reference": {
+    "sentences": 95030,
+    "micro_P": 0.0577,
+    "micro_R": 0.0252,
+    "micro_F1": 0.0351,
+    "macro_F1": 0.0099
+  }
+}
