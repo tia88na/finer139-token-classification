@@ -71,7 +71,8 @@ numbers in the results table are comparable:
   HMM's Viterbi against the "can fish" example (slides 26-29: best path V N). It also
   checks the CRF layer (log Z, every gradient and Viterbi against brute-force
   enumeration), the CRF features, and that the CRF and the BiLSTM-CRF learn from
-  context and save predictions in the shared format (26 tests in total).
+  context and save predictions in the shared format. Further tests cover the error
+  analysis, the bootstrap, the label families and the ensemble (54 tests in total).
 
 ## Models
 
@@ -212,6 +213,38 @@ target tags. A single assessment was performed; no independent second review is 
 `python src/render_assessment.py` regenerates the report from the saved sample-specific
 `review_notes.json`. Changing the sample requires new assessments.
 
+## Label families
+
+`python src/label_families.py` groups the 139 entity types into 11 financial
+families (debt & interest, credit facilities, equity & share capital, share-based
+compensation, revenue & customer contracts, income tax, leases, acquisitions &
+investments, long-lived assets, contingencies & guarantees, other) and compares
+BiLSTM-CRF, BERT-base-cased and SEC-BERT-SHAPE per family. It reuses
+`results/analysis/per_class.csv`; no model is re-run. Every type is in exactly one
+family, assigned from its XBRL name before any family score was computed, and the
+close calls are documented. Pooled family F1 (from summed TP, gold and predicted
+counts) is reported separately from the unweighted mean of per-label F1. Summed
+over all families, the counts reproduce each model's saved micro- and macro-F1.
+Mapping, tables and observations are in `results/label_families/LABEL_FAMILIES.md`.
+
+## Majority-vote ensemble (exploratory)
+
+`python src/ensemble.py --replicates 10000 --seed 42` combines the saved BiLSTM-CRF,
+BERT-base-cased and SEC-BERT-SHAPE test predictions without retraining. Each word
+gets the BIO tag chosen by at least two models, and SEC-BERT-SHAPE breaks three-way
+ties. Orphan `I-` tags are set to `O` before the vote (this leaves every strict score
+unchanged, which the script checks) and repaired after it, so every output sentence
+is valid IOB2. The ensemble is scored with the shared evaluator and compared with
+SEC-BERT-SHAPE using the paired bootstrap above.
+
+On the main view the ensemble reaches 73.5 micro-F1 against 73.0 for SEC-BERT-SHAPE
+(+0.56 points, 95% interval [0.34, 0.79]), mainly through fewer false positives.
+Only test predictions exist, so this is exploratory: the rule was fixed and committed
+before the test run and was not tuned, but the test set had already been inspected,
+so the gain is not unbiased confirmation. Method, checks and vote statistics are in
+`results/ensemble/ENSEMBLE.md`. The files are kept in `results/ensemble/`, not
+`results/`, so `src/evaluate_predictions.py` and `results/RESULTS.md` are unchanged.
+
 ## Repository structure
 
     finer139-token-classification/
@@ -231,6 +264,8 @@ target tags. A single assessment was performed; no independent second review is 
     |  |- bilstm_crf.py             # BiLSTM-CRF: training, selection, test predictions
     |  |- seq_utils.py              # batching, early stopping, saving (CRF + BiLSTM-CRF)
     |  |- evaluate_predictions.py   # scores every saved prediction file, builds tables
+    |  |- label_families.py         # 139 types -> 11 families, family-level scores
+    |  |- ensemble.py               # exploratory majority-vote ensemble of saved predictions
     |- tests/                       # checks for the evaluator, HMM, CRF layer, CRF, BiLSTM-CRF
     |- results/                     # metrics, per-class scores, test predictions
     |- data/

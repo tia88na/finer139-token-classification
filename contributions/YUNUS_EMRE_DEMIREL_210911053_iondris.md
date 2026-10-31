@@ -15,6 +15,8 @@ Both share one CRF layer, which I wrote and tested against brute-force enumerati
 
 On the main test view, the CRF reaches **59.0 micro-F1** and the BiLSTM-CRF **71.5**, against **3.5** for the HMM and 70.4 / 73.0 for BERT-base / SEC-BERT-SHAPE. Reading the surrounding words is what turns a number into the right XBRL tag.
 
+In a second round I added a label family analysis and an exploratory majority-vote ensemble of the saved predictions, without retraining any model (section 10).
+
 ## Overview of my contributions
 
 | # | Contribution | Evidence |
@@ -27,6 +29,8 @@ On the main test view, the CRF reaches **59.0 micro-F1** and the BiLSTM-CRF **71
 | 6 | Tests: CRF layer vs brute force, features, both models end to end (18 new tests) | `tests/test_crf_layer.py`, `tests/test_crf_features.py`, `tests/test_seq_models.py` |
 | 7 | Results table rebuilt with both models (existing scores unchanged) | `results/RESULTS.md`, `results/results_table.tex` |
 | 8 | README sections for the two models, setup for the GPU | `README.md` |
+| 9 | Label family analysis: 139 types in 11 financial families, family-level scores for three models | `src/label_families.py`, `results/label_families/` |
+| 10 | Exploratory majority-vote ensemble of saved predictions, with BIO checks and a paired bootstrap | `src/ensemble.py`, `results/ensemble/` |
 
 ## 1. Shared CRF layer (`src/crf_layer.py`)
 
@@ -151,7 +155,7 @@ Rebuilding the table with `src/evaluate_predictions.py` left every existing mode
 
 ## 8. Tests
 
-`python -m pytest tests -q` runs 26 tests: Begüm's 8 plus my 18.
+`python -m pytest tests -q` ran 26 tests after the first round: Begüm's 8 plus my 18. After the second round (section 10) the suite has 54 tests, 20 of them new: 8 for the label families and 12 for the ensemble.
 
 - **CRF layer:**
   - forward-algorithm log Z, the negative log-likelihood and **every gradient** (emissions, transitions, start, end) equal brute-force enumeration, with and without IOB2 constraints, on mixed-length padded batches
@@ -175,16 +179,47 @@ Rebuilding the table with `src/evaluate_predictions.py` left every existing mode
 
     pip install torch --index-url https://download.pytorch.org/whl/cu128   # CUDA build first (GPU)
     pip install -r requirements.txt                                         # no extra packages needed
-    python -m pytest tests -q                                               # 26 tests
+    python -m pytest tests -q                                               # 54 tests
     python src/baseline_crf.py --limit 2000   # quick check: nothing saved, test not scored
     python src/baseline_crf.py --grid         # 6 settings on validation, then test (~75 min, RTX 4070)
     python src/bilstm_crf.py --limit 2000
     python src/bilstm_crf.py --grid           # 4 settings on validation, then test (~2 h)
     python src/evaluate_predictions.py        # rebuild results/RESULTS.md and the LaTeX table
+    python src/label_families.py              # second round: family scores (seconds, CPU)
+    python src/ensemble.py --replicates 10000 --seed 42   # second round: ensemble (~12 min, CPU)
 
 Tested with Python 3.12.10, PyTorch 2.11.0 (CUDA 12.8), numpy 2.5, pandas 3.1, seqeval 1.2.2. The exact versions and settings of each run are stored in `results/{crf,bilstm_crf}_metrics.json`.
 
 Checkpoints are not in git: `models/bilstm_crf.pt` (15 MB, `models/` is gitignored), and the CRF's 470 MB checkpoint was written outside the repository with `--model-dir`.
+
+## 10. Second round: label families and ensemble
+
+Both use only saved predictions and existing analysis files. No model was retrained, and no prediction file or other member's result was changed. Full method, tables and findings are in the two results folders.
+
+### Label family analysis (`src/label_families.py`)
+
+- The 139 types are grouped into 11 financial families by the main accounting topic of their XBRL name, fixed before any family score was computed. Each type is in exactly one family (tested against the dataset's label list). The 24 close calls, e.g. the share-based compensation tax benefit or business-combination intangibles, are documented with a reason.
+- Scores reuse Ece's `results/analysis/per_class.csv`:
+  - **pooled F1** sums TP, gold and predicted counts over a family's types, so frequent types dominate, as in micro-F1;
+  - **label-mean F1** is the unweighted mean of per-type F1, so every type counts equally, as in macro-F1.
+  They are reported in separate tables. Summed over families, the counts reproduce each model's saved micro P/R/F1 and macro-F1.
+- **Findings (pooled F1):** SEC-BERT-SHAPE is best in 9 of 11 families and beats BERT-base-cased in all 11. The BiLSTM-CRF is best in Revenue & customer contracts (74.4 vs 73.6) and Contingencies & guarantees (65.2 vs 61.8, the smallest family with 549 gold entities). Income tax is the easiest family for all three models (82-84); Acquisitions & investments and Contingencies & guarantees are the two hardest (59-67). No per-family intervals were computed, so small differences may be noise.
+- Details: `results/label_families/LABEL_FAMILIES.md`.
+
+### Majority-vote ensemble (`src/ensemble.py`)
+
+- **Rule, fixed in advance:**
+  1. each model's orphan `I-` tags become `O`;
+  2. per word, the full BIO tag chosen by at least two of BiLSTM-CRF, BERT-base-cased and SEC-BERT-SHAPE, with SEC-BERT-SHAPE breaking three-way ties;
+  3. an `I-X` that does not follow `B-X` / `I-X` becomes `B-X`.
+- The method and its 12 tests were committed (`7d8dc33`) before the ensemble was applied to the test predictions. It was run once and not tuned.
+- **Checks in the run:**
+  - cleaning the orphan tags (155 for BERT, 147 for SEC-BERT-SHAPE, 0 for the constrained BiLSTM-CRF) leaves every strict score unchanged and reproduces the saved eval files;
+  - all 95,030 output sentences are valid IOB2;
+  - the input files' SHA-256 hashes are unchanged.
+- **Result (main view):** 73.51 micro-F1 vs 72.95 for SEC-BERT-SHAPE, **+0.56 points**, paired bootstrap 95% interval [0.34, 0.79]. Precision +0.87, recall +0.10: the gain comes mainly from 431 fewer false positives.
+- **Exploratory only:** only test predictions exist and the test set had already been inspected, so the gain is not unbiased confirmation. Confirming it would need validation predictions to check the rule and an untouched test set.
+- Details: `results/ensemble/ENSEMBLE.md`. The files are in `results/ensemble/`, so `results/RESULTS.md` is unchanged.
 
 ## Files I added or changed
 
@@ -195,10 +230,24 @@ Checkpoints are not in git: `models/bilstm_crf.pt` (15 MB, `models/` is gitignor
 - `README.md`: Tests bullet, Models table, "CRF and BiLSTM-CRF" section, Results table, repository structure, GPU setup
 - this file
 
-I did not change other members' code (`src/finer.py`, `src/baseline_hmm.py`, `src/evaluate_predictions.py`, `train_transformer22.py`, `tests/test_finer.py`), the data, or their results. My code imports their shared functions (`load_splits`, `evaluate`, `save_results`, `norm_token`, `is_number`, `save_predictions`, the HMM's unknown-word classes).
+Second round:
+
+- `src/label_families.py`, `src/ensemble.py` (new)
+- `tests/test_label_families.py`, `tests/test_ensemble.py` (new)
+- `results/label_families/`, `results/ensemble/` (new)
+- `README.md`: "Label families" and "Majority-vote ensemble (exploratory)" sections, Tests bullet, repository structure
+- this file: overview rows 9-10, sections 8-10, reproduce commands, file list, commit evidence
+
+I did not change other members' code (`src/finer.py`, `src/baseline_hmm.py`, `src/evaluate_predictions.py`, `train_transformer22.py`, `tests/test_finer.py`), the data, or their results. My code imports their shared functions (`load_splits`, `evaluate`, `save_results`, `norm_token`, `is_number`, `save_predictions`, the HMM's unknown-word classes). In the second round I also did not change Ece's analysis code or results; my scripts import her `entities`, `metrics`, `paired_bootstrap`, `pooled_f1` and `digest`, and read `results/analysis/per_class.csv`.
 
 ## Commit evidence
 
 Commits are in the repository ([tia88na/finer139-token-classification](https://github.com/tia88na/finer139-token-classification), branch `feature/crf-bilstm-crf`):
 
 - [`a4d9e04`](https://github.com/tia88na/finer139-token-classification/commit/a4d9e04) (2026-10-31) - added the CRF layer, the feature CRF and the BiLSTM-CRF (`src/`), their tests, results (`results/crf_*`, `results/bilstm_crf_*`), the rebuilt results tables, README sections and this contribution file (22 files)
+
+Second round, branch `feature/label-families-ensemble`:
+
+- [`d917f61`](https://github.com/tia88na/finer139-token-classification/commit/d917f61) (2026-11-01) - label family analysis: `src/label_families.py`, its tests and `results/label_families/`
+- [`7d8dc33`](https://github.com/tia88na/finer139-token-classification/commit/7d8dc33) (2026-11-01) - the fixed ensemble method and its tests, committed before the test run
+- [`647e641`](https://github.com/tia88na/finer139-token-classification/commit/647e641) (2026-11-01) - ensemble results (`results/ensemble/`) from one run of that committed method
