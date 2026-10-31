@@ -84,4 +84,4 @@ To add a model to the table, save its word-level predicted tag ids as `results/<
 
 Commits are in the repository ([tia88na/finer139-token-classification](https://github.com/tia88na/finer139-token-classification), branch `main`):
 
-- *(add the commit link after pushing)*
+- [`8a21443`](https://github.com/tia88na/finer139-token-classification/commit/8a21443) (2026-10-31) - added the shared evaluation (`src/finer.py`), the baseline and HMM (`src/baseline_hmm.py`), re-scoring and results tables (`src/evaluate_predictions.py`, `results/`), tests, README sections and this contribution file (19 files)
