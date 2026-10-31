@@ -1,0 +1,6099 @@
+[
+  {
+    "sample_id": "Q001",
+    "test_row": 43390,
+    "start": 30,
+    "end": 31,
+    "predicted_type": "DebtInstrumentMaturityDate",
+    "target_text": "July",
+    "sentence": "Senior Notes The Company has outstanding 5.375 % senior unsecured notes due December 15 , 2024 ( \" 2024 Senior Notes \" ) and 5.000 % senior unsecured notes due July 15 , 2026 ( \" 2026 Senior Notes \" and together with the 2024 Senior Notes , the \" Senior Unsecured Notes \" ) .",
+    "marked_sentence": "Senior Notes The Company has outstanding 5.375 % senior unsecured notes due December 15 , 2024 ( \" 2024 Senior Notes \" ) and 5.000 % senior unsecured notes due [[ July ]] 15 , 2026 ( \" 2026 Senior Notes \" and together with the 2024 Senior Notes , the \" Senior Unsecured Notes \" ) .",
+    "tokens": [
+      "Senior",
+      "Notes",
+      "The",
+      "Company",
+      "has",
+      "outstanding",
+      "5.375",
+      "%",
+      "senior",
+      "unsecured",
+      "notes",
+      "due",
+      "December",
+      "15",
+      ",",
+      "2024",
+      "(",
+      "\"",
+      "2024",
+      "Senior",
+      "Notes",
+      "\"",
+      ")",
+      "and",
+      "5.000",
+      "%",
+      "senior",
+      "unsecured",
+      "notes",
+      "due",
+      "July",
+      "15",
+      ",",
+      "2026",
+      "(",
+      "\"",
+      "2026",
+      "Senior",
+      "Notes",
+      "\"",
+      "and",
+      "together",
+      "with",
+      "the",
+      "2024",
+      "Senior",
+      "Notes",
+      ",",
+      "the",
+      "\"",
+      "Senior",
+      "Unsecured",
+      "Notes",
+      "\"",
+      ")",
+      "."
+    ],
+    "gold_spans": [
+      [
+        6,
+        7,
+        "DebtInstrumentInterestRateStatedPercentage"
+      ],
+      [
+        24,
+        25,
+        "DebtInstrumentInterestRateStatedPercentage"
+      ]
+    ],
+    "model_spans": {
+      "bilstm_crf": [
+        [
+          6,
+          7,
+          "DebtInstrumentInterestRateStatedPercentage"
+        ],
+        [
+          12,
+          16,
+          "DebtInstrumentMaturityDate"
+        ],
+        [
+          24,
+          25,
+          "DebtInstrumentInterestRateStatedPercentage"
+        ],
+        [
+          30,
+          34,
+          "DebtInstrumentMaturityDate"
+        ]
+      ],
+      "bert-base-cased": [
+        [
+          6,
+          7,
+          "DebtInstrumentInterestRateStatedPercentage"
+        ],
+        [
+          24,
+          25,
+          "DebtInstrumentInterestRateStatedPercentage"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          6,
+          7,
+          "DebtInstrumentInterestRateStatedPercentage"
+        ],
+        [
+          24,
+          25,
+          "DebtInstrumentInterestRateStatedPercentage"
+        ],
+        [
+          30,
+          31,
+          "DebtInstrumentMaturityDate"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "train",
+        "raw_row": 363830,
+        "source_id": "363830",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      },
+      {
+        "split": "train",
+        "raw_row": 631220,
+        "source_id": "631220",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      },
+      {
+        "split": "test",
+        "raw_row": 48820,
+        "source_id": "1061698",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q002",
+    "test_row": 53171,
+    "start": 33,
+    "end": 34,
+    "predicted_type": "TreasuryStockSharesAcquired",
+    "target_text": "3,476",
+    "sentence": "The following table shows shares purchased and value ( $ in millions ) under the respective stock purchase plans : For the three months ended March 31 , 2020 , the Company acquired 3,476 shares of Common Stock , at a cost of $ 0.2 million for shares surrendered by employees to pay taxes due on vested restricted stock awards .",
+    "marked_sentence": "The following table shows shares purchased and value ( $ in millions ) under the respective stock purchase plans : For the three months ended March 31 , 2020 , the Company acquired [[ 3,476 ]] shares of Common Stock , at a cost of $ 0.2 million for shares surrendered by employees to pay taxes due on vested restricted stock awards .",
+    "tokens": [
+      "The",
+      "following",
+      "table",
+      "shows",
+      "shares",
+      "purchased",
+      "and",
+      "value",
+      "(",
+      "$",
+      "in",
+      "millions",
+      ")",
+      "under",
+      "the",
+      "respective",
+      "stock",
+      "purchase",
+      "plans",
+      ":",
+      "For",
+      "the",
+      "three",
+      "months",
+      "ended",
+      "March",
+      "31",
+      ",",
+      "2020",
+      ",",
+      "the",
+      "Company",
+      "acquired",
+      "3,476",
+      "shares",
+      "of",
+      "Common",
+      "Stock",
+      ",",
+      "at",
+      "a",
+      "cost",
+      "of",
+      "$",
+      "0.2",
+      "million",
+      "for",
+      "shares",
+      "surrendered",
+      "by",
+      "employees",
+      "to",
+      "pay",
+      "taxes",
+      "due",
+      "on",
+      "vested",
+      "restricted",
+      "stock",
+      "awards",
+      "."
+    ],
+    "gold_spans": [],
+    "model_spans": {
+      "bilstm_crf": [],
+      "bert-base-cased": [
+        [
+          33,
+          34,
+          "TreasuryStockSharesAcquired"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          33,
+          34,
+          "TreasuryStockSharesAcquired"
+        ],
+        [
+          44,
+          45,
+          "TreasuryStockValueAcquiredCostMethod"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "test",
+        "raw_row": 59167,
+        "source_id": "1072045",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q003",
+    "test_row": 47284,
+    "start": 14,
+    "end": 15,
+    "predicted_type": "NumberOfRealEstateProperties",
+    "target_text": "seven",
+    "sentence": "Foreclosure Proceedings and Balances : As of March 31 , 2020 , there were seven properties secured by real estate included in other real estate owned and there were no consumer mortgage loans collateralized by residential real estate property that were in the process of foreclosure .",
+    "marked_sentence": "Foreclosure Proceedings and Balances : As of March 31 , 2020 , there were [[ seven ]] properties secured by real estate included in other real estate owned and there were no consumer mortgage loans collateralized by residential real estate property that were in the process of foreclosure .",
+    "tokens": [
+      "Foreclosure",
+      "Proceedings",
+      "and",
+      "Balances",
+      ":",
+      "As",
+      "of",
+      "March",
+      "31",
+      ",",
+      "2020",
+      ",",
+      "there",
+      "were",
+      "seven",
+      "properties",
+      "secured",
+      "by",
+      "real",
+      "estate",
+      "included",
+      "in",
+      "other",
+      "real",
+      "estate",
+      "owned",
+      "and",
+      "there",
+      "were",
+      "no",
+      "consumer",
+      "mortgage",
+      "loans",
+      "collateralized",
+      "by",
+      "residential",
+      "real",
+      "estate",
+      "property",
+      "that",
+      "were",
+      "in",
+      "the",
+      "process",
+      "of",
+      "foreclosure",
+      "."
+    ],
+    "gold_spans": [],
+    "model_spans": {
+      "bilstm_crf": [],
+      "bert-base-cased": [
+        [
+          14,
+          15,
+          "NumberOfRealEstateProperties"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          14,
+          15,
+          "NumberOfRealEstateProperties"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "test",
+        "raw_row": 53088,
+        "source_id": "1065966",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q004",
+    "test_row": 10150,
+    "start": 9,
+    "end": 10,
+    "predicted_type": "SharebasedCompensationArrangementBySharebasedPaymentAwardAwardVestingRightsPercentage",
+    "target_text": "150",
+    "sentence": "Actual PSUs earned may range from 0 % - 150 % of the PSUs allocated to the award recipient , based on the Company 's total shareholder return ( \" TSR \" ) compared to a peer group based on companies with similar assets and revenue over a three - year performance period that commenced on the respective Grant Date ( as referenced below ) .",
+    "marked_sentence": "Actual PSUs earned may range from 0 % - [[ 150 ]] % of the PSUs allocated to the award recipient , based on the Company 's total shareholder return ( \" TSR \" ) compared to a peer group based on companies with similar assets and revenue over a three - year performance period that commenced on the respective Grant Date ( as referenced below ) .",
+    "tokens": [
+      "Actual",
+      "PSUs",
+      "earned",
+      "may",
+      "range",
+      "from",
+      "0",
+      "%",
+      "-",
+      "150",
+      "%",
+      "of",
+      "the",
+      "PSUs",
+      "allocated",
+      "to",
+      "the",
+      "award",
+      "recipient",
+      ",",
+      "based",
+      "on",
+      "the",
+      "Company",
+      "'s",
+      "total",
+      "shareholder",
+      "return",
+      "(",
+      "\"",
+      "TSR",
+      "\"",
+      ")",
+      "compared",
+      "to",
+      "a",
+      "peer",
+      "group",
+      "based",
+      "on",
+      "companies",
+      "with",
+      "similar",
+      "assets",
+      "and",
+      "revenue",
+      "over",
+      "a",
+      "three",
+      "-",
+      "year",
+      "performance",
+      "period",
+      "that",
+      "commenced",
+      "on",
+      "the",
+      "respective",
+      "Grant",
+      "Date",
+      "(",
+      "as",
+      "referenced",
+      "below",
+      ")",
+      "."
+    ],
+    "gold_spans": [],
+    "model_spans": {
+      "bilstm_crf": [
+        [
+          6,
+          7,
+          "SharebasedCompensationArrangementBySharebasedPaymentAwardAwardVestingRightsPercentage"
+        ]
+      ],
+      "bert-base-cased": [],
+      "sec-bert-shape": [
+        [
+          6,
+          7,
+          "SharebasedCompensationArrangementBySharebasedPaymentAwardAwardVestingRightsPercentage"
+        ],
+        [
+          9,
+          10,
+          "SharebasedCompensationArrangementBySharebasedPaymentAwardAwardVestingRightsPercentage"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "train",
+        "raw_row": 241527,
+        "source_id": "241527",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      },
+      {
+        "split": "train",
+        "raw_row": 245840,
+        "source_id": "245840",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      },
+      {
+        "split": "train",
+        "raw_row": 502800,
+        "source_id": "502800",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      },
+      {
+        "split": "train",
+        "raw_row": 504297,
+        "source_id": "504297",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      },
+      {
+        "split": "test",
+        "raw_row": 10757,
+        "source_id": "1023635",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      },
+      {
+        "split": "test",
+        "raw_row": 32199,
+        "source_id": "1045077",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q005",
+    "test_row": 78691,
+    "start": 47,
+    "end": 48,
+    "predicted_type": "TreasuryStockAcquiredAverageCostPerShare",
+    "target_text": "14.93",
+    "sentence": "During the first three months of 2020 and 2019 , the Company purchased , under its Share Repurchase Program , approximately 1.5 million and 0.3 million of its common shares , respectively , at a weighted - average market purchase price of approximately $ 9.42 and $ 14.93 per common share , respectively , for an aggregate purchase price , including commissions , of approximately $ 14.3 million and $ 4.1 million , respectively .",
+    "marked_sentence": "During the first three months of 2020 and 2019 , the Company purchased , under its Share Repurchase Program , approximately 1.5 million and 0.3 million of its common shares , respectively , at a weighted - average market purchase price of approximately $ 9.42 and $ [[ 14.93 ]] per common share , respectively , for an aggregate purchase price , including commissions , of approximately $ 14.3 million and $ 4.1 million , respectively .",
+    "tokens": [
+      "During",
+      "the",
+      "first",
+      "three",
+      "months",
+      "of",
+      "2020",
+      "and",
+      "2019",
+      ",",
+      "the",
+      "Company",
+      "purchased",
+      ",",
+      "under",
+      "its",
+      "Share",
+      "Repurchase",
+      "Program",
+      ",",
+      "approximately",
+      "1.5",
+      "million",
+      "and",
+      "0.3",
+      "million",
+      "of",
+      "its",
+      "common",
+      "shares",
+      ",",
+      "respectively",
+      ",",
+      "at",
+      "a",
+      "weighted",
+      "-",
+      "average",
+      "market",
+      "purchase",
+      "price",
+      "of",
+      "approximately",
+      "$",
+      "9.42",
+      "and",
+      "$",
+      "14.93",
+      "per",
+      "common",
+      "share",
+      ",",
+      "respectively",
+      ",",
+      "for",
+      "an",
+      "aggregate",
+      "purchase",
+      "price",
+      ",",
+      "including",
+      "commissions",
+      ",",
+      "of",
+      "approximately",
+      "$",
+      "14.3",
+      "million",
+      "and",
+      "$",
+      "4.1",
+      "million",
+      ",",
+      "respectively",
+      "."
+    ],
+    "gold_spans": [
+      [
+        21,
+        22,
+        "StockRepurchasedAndRetiredDuringPeriodShares"
+      ],
+      [
+        24,
+        25,
+        "StockRepurchasedAndRetiredDuringPeriodShares"
+      ]
+    ],
+    "model_spans": {
+      "bilstm_crf": [
+        [
+          21,
+          22,
+          "StockRepurchasedDuringPeriodShares"
+        ],
+        [
+          24,
+          25,
+          "StockRepurchasedDuringPeriodShares"
+        ],
+        [
+          44,
+          45,
+          "TreasuryStockAcquiredAverageCostPerShare"
+        ],
+        [
+          47,
+          48,
+          "TreasuryStockAcquiredAverageCostPerShare"
+        ],
+        [
+          66,
+          67,
+          "TreasuryStockValueAcquiredCostMethod"
+        ],
+        [
+          70,
+          71,
+          "TreasuryStockValueAcquiredCostMethod"
+        ]
+      ],
+      "bert-base-cased": [
+        [
+          21,
+          22,
+          "TreasuryStockSharesAcquired"
+        ],
+        [
+          24,
+          25,
+          "TreasuryStockSharesAcquired"
+        ],
+        [
+          44,
+          45,
+          "TreasuryStockAcquiredAverageCostPerShare"
+        ],
+        [
+          47,
+          48,
+          "TreasuryStockAcquiredAverageCostPerShare"
+        ],
+        [
+          66,
+          67,
+          "TreasuryStockValueAcquiredCostMethod"
+        ],
+        [
+          70,
+          71,
+          "TreasuryStockValueAcquiredCostMethod"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          21,
+          22,
+          "TreasuryStockSharesAcquired"
+        ],
+        [
+          24,
+          25,
+          "TreasuryStockSharesAcquired"
+        ],
+        [
+          44,
+          45,
+          "TreasuryStockAcquiredAverageCostPerShare"
+        ],
+        [
+          47,
+          48,
+          "TreasuryStockAcquiredAverageCostPerShare"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "test",
+        "raw_row": 91074,
+        "source_id": "1103952",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q006",
+    "test_row": 92818,
+    "start": 42,
+    "end": 43,
+    "predicted_type": "EquityMethodInvestmentOwnershipPercentage",
+    "target_text": "30",
+    "sentence": "In March 2018 , Xianning Xiangtian formed Xiangtian Zhongdian ( Hubei ) New Energy Co. Ltd. ( “ Xiangtian Zhongdian ” ) , a joint venture in China , in which Xianning Xiangtian holds a 70 % ownership interest with the remaining 30 % ownership held by Nanjing Zhongdian Photovoltaic Co. Ltd. Xiangtian Zhongdian is in the business of manufacturing and sales of PV panels In April 2018 , Xianning Xiangtian formed a wholly owned subsidiary , Jingshan Sanhe Xiangtian New Energy Technology Co. Ltd. ( “ Jingshan Sanhe ” ) , which is engaged in the business of researching , manufacturing and sales of high - grade synthetic fuel products .",
+    "marked_sentence": "In March 2018 , Xianning Xiangtian formed Xiangtian Zhongdian ( Hubei ) New Energy Co. Ltd. ( “ Xiangtian Zhongdian ” ) , a joint venture in China , in which Xianning Xiangtian holds a 70 % ownership interest with the remaining [[ 30 ]] % ownership held by Nanjing Zhongdian Photovoltaic Co. Ltd. Xiangtian Zhongdian is in the business of manufacturing and sales of PV panels In April 2018 , Xianning Xiangtian formed a wholly owned subsidiary , Jingshan Sanhe Xiangtian New Energy Technology Co. Ltd. ( “ Jingshan Sanhe ” ) , which is engaged in the business of researching , manufacturing and sales of high - grade synthetic fuel products .",
+    "tokens": [
+      "In",
+      "March",
+      "2018",
+      ",",
+      "Xianning",
+      "Xiangtian",
+      "formed",
+      "Xiangtian",
+      "Zhongdian",
+      "(",
+      "Hubei",
+      ")",
+      "New",
+      "Energy",
+      "Co.",
+      "Ltd.",
+      "(",
+      "“",
+      "Xiangtian",
+      "Zhongdian",
+      "”",
+      ")",
+      ",",
+      "a",
+      "joint",
+      "venture",
+      "in",
+      "China",
+      ",",
+      "in",
+      "which",
+      "Xianning",
+      "Xiangtian",
+      "holds",
+      "a",
+      "70",
+      "%",
+      "ownership",
+      "interest",
+      "with",
+      "the",
+      "remaining",
+      "30",
+      "%",
+      "ownership",
+      "held",
+      "by",
+      "Nanjing",
+      "Zhongdian",
+      "Photovoltaic",
+      "Co.",
+      "Ltd.",
+      "Xiangtian",
+      "Zhongdian",
+      "is",
+      "in",
+      "the",
+      "business",
+      "of",
+      "manufacturing",
+      "and",
+      "sales",
+      "of",
+      "PV",
+      "panels",
+      "In",
+      "April",
+      "2018",
+      ",",
+      "Xianning",
+      "Xiangtian",
+      "formed",
+      "a",
+      "wholly",
+      "owned",
+      "subsidiary",
+      ",",
+      "Jingshan",
+      "Sanhe",
+      "Xiangtian",
+      "New",
+      "Energy",
+      "Technology",
+      "Co.",
+      "Ltd.",
+      "(",
+      "“",
+      "Jingshan",
+      "Sanhe",
+      "”",
+      ")",
+      ",",
+      "which",
+      "is",
+      "engaged",
+      "in",
+      "the",
+      "business",
+      "of",
+      "researching",
+      ",",
+      "manufacturing",
+      "and",
+      "sales",
+      "of",
+      "high",
+      "-",
+      "grade",
+      "synthetic",
+      "fuel",
+      "products",
+      "."
+    ],
+    "gold_spans": [],
+    "model_spans": {
+      "bilstm_crf": [
+        [
+          35,
+          36,
+          "EquityMethodInvestmentOwnershipPercentage"
+        ],
+        [
+          42,
+          43,
+          "EquityMethodInvestmentOwnershipPercentage"
+        ]
+      ],
+      "bert-base-cased": [
+        [
+          35,
+          36,
+          "EquityMethodInvestmentOwnershipPercentage"
+        ],
+        [
+          42,
+          43,
+          "MinorityInterestOwnershipPercentageByNoncontrollingOwners"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          35,
+          36,
+          "EquityMethodInvestmentOwnershipPercentage"
+        ],
+        [
+          42,
+          43,
+          "EquityMethodInvestmentOwnershipPercentage"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "test",
+        "raw_row": 106117,
+        "source_id": "1118995",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q007",
+    "test_row": 65823,
+    "start": 13,
+    "end": 14,
+    "predicted_type": "AllocatedShareBasedCompensationExpense",
+    "target_text": "0.1",
+    "sentence": "The impact of this change would have resulted in a decrease of $ 0.1 million to stock compensation expense for the period if the forfeiture methodology had not been changed .",
+    "marked_sentence": "The impact of this change would have resulted in a decrease of $ [[ 0.1 ]] million to stock compensation expense for the period if the forfeiture methodology had not been changed .",
+    "tokens": [
+      "The",
+      "impact",
+      "of",
+      "this",
+      "change",
+      "would",
+      "have",
+      "resulted",
+      "in",
+      "a",
+      "decrease",
+      "of",
+      "$",
+      "0.1",
+      "million",
+      "to",
+      "stock",
+      "compensation",
+      "expense",
+      "for",
+      "the",
+      "period",
+      "if",
+      "the",
+      "forfeiture",
+      "methodology",
+      "had",
+      "not",
+      "been",
+      "changed",
+      "."
+    ],
+    "gold_spans": [],
+    "model_spans": {
+      "bilstm_crf": [
+        [
+          13,
+          14,
+          "AllocatedShareBasedCompensationExpense"
+        ]
+      ],
+      "bert-base-cased": [
+        [
+          13,
+          14,
+          "AllocatedShareBasedCompensationExpense"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          13,
+          14,
+          "AllocatedShareBasedCompensationExpense"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "test",
+        "raw_row": 75382,
+        "source_id": "1088260",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q008",
+    "test_row": 71486,
+    "start": 64,
+    "end": 65,
+    "predicted_type": "BusinessCombinationConsiderationTransferred1",
+    "target_text": "221.9",
+    "sentence": "Following the Initial Unit Purchase Closing , on December 31 , 2018 , the Company exercised a limited call right under EQGP 's partnership agreement pursuant to which , on January 10 , 2019 , the Company closed on the acquisition of the remaining 11,097,287 outstanding EQGP common units not owned by the Company or its affiliates for an aggregate purchase price of $ 221.9 million ( such acquisition , together with the EQGP Unit Purchases , the EQGP Buyout ) , and EQGP became a wholly owned subsidiary of the Company .",
+    "marked_sentence": "Following the Initial Unit Purchase Closing , on December 31 , 2018 , the Company exercised a limited call right under EQGP 's partnership agreement pursuant to which , on January 10 , 2019 , the Company closed on the acquisition of the remaining 11,097,287 outstanding EQGP common units not owned by the Company or its affiliates for an aggregate purchase price of $ [[ 221.9 ]] million ( such acquisition , together with the EQGP Unit Purchases , the EQGP Buyout ) , and EQGP became a wholly owned subsidiary of the Company .",
+    "tokens": [
+      "Following",
+      "the",
+      "Initial",
+      "Unit",
+      "Purchase",
+      "Closing",
+      ",",
+      "on",
+      "December",
+      "31",
+      ",",
+      "2018",
+      ",",
+      "the",
+      "Company",
+      "exercised",
+      "a",
+      "limited",
+      "call",
+      "right",
+      "under",
+      "EQGP",
+      "'s",
+      "partnership",
+      "agreement",
+      "pursuant",
+      "to",
+      "which",
+      ",",
+      "on",
+      "January",
+      "10",
+      ",",
+      "2019",
+      ",",
+      "the",
+      "Company",
+      "closed",
+      "on",
+      "the",
+      "acquisition",
+      "of",
+      "the",
+      "remaining",
+      "11,097,287",
+      "outstanding",
+      "EQGP",
+      "common",
+      "units",
+      "not",
+      "owned",
+      "by",
+      "the",
+      "Company",
+      "or",
+      "its",
+      "affiliates",
+      "for",
+      "an",
+      "aggregate",
+      "purchase",
+      "price",
+      "of",
+      "$",
+      "221.9",
+      "million",
+      "(",
+      "such",
+      "acquisition",
+      ",",
+      "together",
+      "with",
+      "the",
+      "EQGP",
+      "Unit",
+      "Purchases",
+      ",",
+      "the",
+      "EQGP",
+      "Buyout",
+      ")",
+      ",",
+      "and",
+      "EQGP",
+      "became",
+      "a",
+      "wholly",
+      "owned",
+      "subsidiary",
+      "of",
+      "the",
+      "Company",
+      "."
+    ],
+    "gold_spans": [],
+    "model_spans": {
+      "bilstm_crf": [],
+      "bert-base-cased": [
+        [
+          44,
+          45,
+          "BusinessAcquisitionEquityInterestsIssuedOrIssuableNumberOfSharesIssued"
+        ],
+        [
+          64,
+          65,
+          "BusinessCombinationConsiderationTransferred1"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          64,
+          65,
+          "BusinessCombinationConsiderationTransferred1"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "test",
+        "raw_row": 82934,
+        "source_id": "1095812",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q009",
+    "test_row": 29202,
+    "start": 100,
+    "end": 101,
+    "predicted_type": "ShareBasedCompensationArrangementByShareBasedPaymentAwardNumberOfSharesAuthorized",
+    "target_text": "14,000,000",
+    "sentence": "Under the ESPP , the Company initially reserved for issuance 1,400,000 shares of common stock , which will increase automatically on July 1 of each fiscal year during the term of the ESPP by the number of shares equal to 1 % of the total number of shares of common stock and preferred stock ( on as - converted basis ) outstanding as of the immediately preceding June 30th , unless the board of directors elects to authorize a lesser number of shares ; provided , that , the total number of shares issued under the ESPP may not exceed 14,000,000 shares of common stock .",
+    "marked_sentence": "Under the ESPP , the Company initially reserved for issuance 1,400,000 shares of common stock , which will increase automatically on July 1 of each fiscal year during the term of the ESPP by the number of shares equal to 1 % of the total number of shares of common stock and preferred stock ( on as - converted basis ) outstanding as of the immediately preceding June 30th , unless the board of directors elects to authorize a lesser number of shares ; provided , that , the total number of shares issued under the ESPP may not exceed [[ 14,000,000 ]] shares of common stock .",
+    "tokens": [
+      "Under",
+      "the",
+      "ESPP",
+      ",",
+      "the",
+      "Company",
+      "initially",
+      "reserved",
+      "for",
+      "issuance",
+      "1,400,000",
+      "shares",
+      "of",
+      "common",
+      "stock",
+      ",",
+      "which",
+      "will",
+      "increase",
+      "automatically",
+      "on",
+      "July",
+      "1",
+      "of",
+      "each",
+      "fiscal",
+      "year",
+      "during",
+      "the",
+      "term",
+      "of",
+      "the",
+      "ESPP",
+      "by",
+      "the",
+      "number",
+      "of",
+      "shares",
+      "equal",
+      "to",
+      "1",
+      "%",
+      "of",
+      "the",
+      "total",
+      "number",
+      "of",
+      "shares",
+      "of",
+      "common",
+      "stock",
+      "and",
+      "preferred",
+      "stock",
+      "(",
+      "on",
+      "as",
+      "-",
+      "converted",
+      "basis",
+      ")",
+      "outstanding",
+      "as",
+      "of",
+      "the",
+      "immediately",
+      "preceding",
+      "June",
+      "30th",
+      ",",
+      "unless",
+      "the",
+      "board",
+      "of",
+      "directors",
+      "elects",
+      "to",
+      "authorize",
+      "a",
+      "lesser",
+      "number",
+      "of",
+      "shares",
+      ";",
+      "provided",
+      ",",
+      "that",
+      ",",
+      "the",
+      "total",
+      "number",
+      "of",
+      "shares",
+      "issued",
+      "under",
+      "the",
+      "ESPP",
+      "may",
+      "not",
+      "exceed",
+      "14,000,000",
+      "shares",
+      "of",
+      "common",
+      "stock",
+      "."
+    ],
+    "gold_spans": [
+      [
+        10,
+        11,
+        "CommonStockCapitalSharesReservedForFutureIssuance"
+      ]
+    ],
+    "model_spans": {
+      "bilstm_crf": [
+        [
+          10,
+          11,
+          "CommonStockCapitalSharesReservedForFutureIssuance"
+        ],
+        [
+          100,
+          101,
+          "ShareBasedCompensationArrangementByShareBasedPaymentAwardNumberOfSharesAuthorized"
+        ]
+      ],
+      "bert-base-cased": [
+        [
+          10,
+          11,
+          "ShareBasedCompensationArrangementByShareBasedPaymentAwardNumberOfSharesAuthorized"
+        ],
+        [
+          100,
+          101,
+          "ShareBasedCompensationArrangementByShareBasedPaymentAwardNumberOfSharesAuthorized"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          10,
+          11,
+          "ShareBasedCompensationArrangementByShareBasedPaymentAwardNumberOfSharesAuthorized"
+        ],
+        [
+          100,
+          101,
+          "ShareBasedCompensationArrangementByShareBasedPaymentAwardNumberOfSharesAuthorized"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "test",
+        "raw_row": 33856,
+        "source_id": "1046734",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q010",
+    "test_row": 46777,
+    "start": 4,
+    "end": 6,
+    "predicted_type": "LesseeOperatingLeaseRenewalTerm",
+    "target_text": "five years",
+    "sentence": "Lease extensions were for five years each and the Company reassessed the ROU asset and lease liability related to these leases .",
+    "marked_sentence": "Lease extensions were for [[ five years ]] each and the Company reassessed the ROU asset and lease liability related to these leases .",
+    "tokens": [
+      "Lease",
+      "extensions",
+      "were",
+      "for",
+      "five",
+      "years",
+      "each",
+      "and",
+      "the",
+      "Company",
+      "reassessed",
+      "the",
+      "ROU",
+      "asset",
+      "and",
+      "lease",
+      "liability",
+      "related",
+      "to",
+      "these",
+      "leases",
+      "."
+    ],
+    "gold_spans": [],
+    "model_spans": {
+      "bilstm_crf": [],
+      "bert-base-cased": [
+        [
+          4,
+          6,
+          "LesseeOperatingLeaseRenewalTerm"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          4,
+          6,
+          "LesseeOperatingLeaseRenewalTerm"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "test",
+        "raw_row": 52331,
+        "source_id": "1065209",
+        "target_tags": [
+          "O",
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q011",
+    "test_row": 38598,
+    "start": 24,
+    "end": 25,
+    "predicted_type": "AssetImpairmentCharges",
+    "target_text": "16.9",
+    "sentence": "Of this total , $ 112.0 million was for impairments of goodwill , $ 42.2 million for impairments of gaming license rights and $ 16.9 million for the impairments of trademarks .",
+    "marked_sentence": "Of this total , $ 112.0 million was for impairments of goodwill , $ 42.2 million for impairments of gaming license rights and $ [[ 16.9 ]] million for the impairments of trademarks .",
+    "tokens": [
+      "Of",
+      "this",
+      "total",
+      ",",
+      "$",
+      "112.0",
+      "million",
+      "was",
+      "for",
+      "impairments",
+      "of",
+      "goodwill",
+      ",",
+      "$",
+      "42.2",
+      "million",
+      "for",
+      "impairments",
+      "of",
+      "gaming",
+      "license",
+      "rights",
+      "and",
+      "$",
+      "16.9",
+      "million",
+      "for",
+      "the",
+      "impairments",
+      "of",
+      "trademarks",
+      "."
+    ],
+    "gold_spans": [
+      [
+        5,
+        6,
+        "GoodwillImpairmentLoss"
+      ]
+    ],
+    "model_spans": {
+      "bilstm_crf": [
+        [
+          5,
+          6,
+          "GoodwillImpairmentLoss"
+        ],
+        [
+          14,
+          15,
+          "GoodwillImpairmentLoss"
+        ],
+        [
+          24,
+          25,
+          "AssetImpairmentCharges"
+        ]
+      ],
+      "bert-base-cased": [
+        [
+          5,
+          6,
+          "GoodwillImpairmentLoss"
+        ],
+        [
+          14,
+          15,
+          "GoodwillImpairmentLoss"
+        ],
+        [
+          24,
+          25,
+          "GoodwillImpairmentLoss"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          5,
+          6,
+          "GoodwillImpairmentLoss"
+        ],
+        [
+          14,
+          15,
+          "AssetImpairmentCharges"
+        ],
+        [
+          24,
+          25,
+          "AssetImpairmentCharges"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "test",
+        "raw_row": 43606,
+        "source_id": "1056484",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q012",
+    "test_row": 69523,
+    "start": 12,
+    "end": 13,
+    "predicted_type": "LineOfCreditFacilityMaximumBorrowingCapacity",
+    "target_text": "160.0",
+    "sentence": "The maximum amount Duferdofin Nucor could borrow under Facility A was € 160.0 million ( $ 173.0 million ) at April 4 , 2020 .",
+    "marked_sentence": "The maximum amount Duferdofin Nucor could borrow under Facility A was € [[ 160.0 ]] million ( $ 173.0 million ) at April 4 , 2020 .",
+    "tokens": [
+      "The",
+      "maximum",
+      "amount",
+      "Duferdofin",
+      "Nucor",
+      "could",
+      "borrow",
+      "under",
+      "Facility",
+      "A",
+      "was",
+      "€",
+      "160.0",
+      "million",
+      "(",
+      "$",
+      "173.0",
+      "million",
+      ")",
+      "at",
+      "April",
+      "4",
+      ",",
+      "2020",
+      "."
+    ],
+    "gold_spans": [],
+    "model_spans": {
+      "bilstm_crf": [
+        [
+          12,
+          13,
+          "LineOfCreditFacilityMaximumBorrowingCapacity"
+        ],
+        [
+          16,
+          17,
+          "LineOfCreditFacilityMaximumBorrowingCapacity"
+        ]
+      ],
+      "bert-base-cased": [
+        [
+          12,
+          13,
+          "LineOfCreditFacilityMaximumBorrowingCapacity"
+        ],
+        [
+          16,
+          17,
+          "LineOfCreditFacilityMaximumBorrowingCapacity"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          12,
+          13,
+          "LineOfCreditFacilityMaximumBorrowingCapacity"
+        ],
+        [
+          16,
+          17,
+          "LineOfCreditFacilityMaximumBorrowingCapacity"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "test",
+        "raw_row": 80885,
+        "source_id": "1093763",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q013",
+    "test_row": 45156,
+    "start": 43,
+    "end": 44,
+    "predicted_type": "ContractWithCustomerLiability",
+    "target_text": "3,536",
+    "sentence": "As of December 31 , 2019 , the Company had contract assets of $ 4,660 , primarily related to billings on one large ( $ 7,249 ) order in the Infrastructure Solutions group , and contract liabilities of $ 6,511 , including $ 3,536 of deferred revenue related to extended warranties .",
+    "marked_sentence": "As of December 31 , 2019 , the Company had contract assets of $ 4,660 , primarily related to billings on one large ( $ 7,249 ) order in the Infrastructure Solutions group , and contract liabilities of $ 6,511 , including $ [[ 3,536 ]] of deferred revenue related to extended warranties .",
+    "tokens": [
+      "As",
+      "of",
+      "December",
+      "31",
+      ",",
+      "2019",
+      ",",
+      "the",
+      "Company",
+      "had",
+      "contract",
+      "assets",
+      "of",
+      "$",
+      "4,660",
+      ",",
+      "primarily",
+      "related",
+      "to",
+      "billings",
+      "on",
+      "one",
+      "large",
+      "(",
+      "$",
+      "7,249",
+      ")",
+      "order",
+      "in",
+      "the",
+      "Infrastructure",
+      "Solutions",
+      "group",
+      ",",
+      "and",
+      "contract",
+      "liabilities",
+      "of",
+      "$",
+      "6,511",
+      ",",
+      "including",
+      "$",
+      "3,536",
+      "of",
+      "deferred",
+      "revenue",
+      "related",
+      "to",
+      "extended",
+      "warranties",
+      "."
+    ],
+    "gold_spans": [
+      [
+        39,
+        40,
+        "ContractWithCustomerLiability"
+      ]
+    ],
+    "model_spans": {
+      "bilstm_crf": [
+        [
+          39,
+          40,
+          "ContractWithCustomerLiability"
+        ],
+        [
+          43,
+          44,
+          "ContractWithCustomerLiability"
+        ]
+      ],
+      "bert-base-cased": [
+        [
+          25,
+          26,
+          "ContractWithCustomerLiability"
+        ],
+        [
+          39,
+          40,
+          "ContractWithCustomerLiability"
+        ],
+        [
+          43,
+          44,
+          "ContractWithCustomerLiability"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          39,
+          40,
+          "ContractWithCustomerLiability"
+        ],
+        [
+          43,
+          44,
+          "ContractWithCustomerLiability"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "test",
+        "raw_row": 50656,
+        "source_id": "1063534",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q014",
+    "test_row": 7759,
+    "start": 33,
+    "end": 34,
+    "predicted_type": "UnrecognizedTaxBenefits",
+    "target_text": "52.6",
+    "sentence": "As of March 31 , 2020 and December 31 , 2019 , we have recorded a liability for unrecognized income tax benefits and related interest and penalties of $ 47.5 million and $ 52.6 million , respectively .",
+    "marked_sentence": "As of March 31 , 2020 and December 31 , 2019 , we have recorded a liability for unrecognized income tax benefits and related interest and penalties of $ 47.5 million and $ [[ 52.6 ]] million , respectively .",
+    "tokens": [
+      "As",
+      "of",
+      "March",
+      "31",
+      ",",
+      "2020",
+      "and",
+      "December",
+      "31",
+      ",",
+      "2019",
+      ",",
+      "we",
+      "have",
+      "recorded",
+      "a",
+      "liability",
+      "for",
+      "unrecognized",
+      "income",
+      "tax",
+      "benefits",
+      "and",
+      "related",
+      "interest",
+      "and",
+      "penalties",
+      "of",
+      "$",
+      "47.5",
+      "million",
+      "and",
+      "$",
+      "52.6",
+      "million",
+      ",",
+      "respectively",
+      "."
+    ],
+    "gold_spans": [],
+    "model_spans": {
+      "bilstm_crf": [
+        [
+          29,
+          30,
+          "UnrecognizedTaxBenefits"
+        ],
+        [
+          33,
+          34,
+          "UnrecognizedTaxBenefits"
+        ]
+      ],
+      "bert-base-cased": [
+        [
+          29,
+          30,
+          "UnrecognizedTaxBenefits"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          29,
+          30,
+          "UnrecognizedTaxBenefits"
+        ],
+        [
+          33,
+          34,
+          "UnrecognizedTaxBenefits"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "test",
+        "raw_row": 8279,
+        "source_id": "1021157",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q015",
+    "test_row": 79574,
+    "start": 29,
+    "end": 30,
+    "predicted_type": "LesseeOperatingLeaseTermOfContract",
+    "target_text": "30",
+    "sentence": "Operating Leases - Our operating leases , for network assets and equipment , office space , office equipment and real estate , have remaining lease terms of 1 to 30 years , some of which may include one or more options to renew with renewal terms that can extend the lease term from 1 to 10 years or more .",
+    "marked_sentence": "Operating Leases - Our operating leases , for network assets and equipment , office space , office equipment and real estate , have remaining lease terms of 1 to [[ 30 ]] years , some of which may include one or more options to renew with renewal terms that can extend the lease term from 1 to 10 years or more .",
+    "tokens": [
+      "Operating",
+      "Leases",
+      "-",
+      "Our",
+      "operating",
+      "leases",
+      ",",
+      "for",
+      "network",
+      "assets",
+      "and",
+      "equipment",
+      ",",
+      "office",
+      "space",
+      ",",
+      "office",
+      "equipment",
+      "and",
+      "real",
+      "estate",
+      ",",
+      "have",
+      "remaining",
+      "lease",
+      "terms",
+      "of",
+      "1",
+      "to",
+      "30",
+      "years",
+      ",",
+      "some",
+      "of",
+      "which",
+      "may",
+      "include",
+      "one",
+      "or",
+      "more",
+      "options",
+      "to",
+      "renew",
+      "with",
+      "renewal",
+      "terms",
+      "that",
+      "can",
+      "extend",
+      "the",
+      "lease",
+      "term",
+      "from",
+      "1",
+      "to",
+      "10",
+      "years",
+      "or",
+      "more",
+      "."
+    ],
+    "gold_spans": [
+      [
+        53,
+        54,
+        "LesseeOperatingLeaseRenewalTerm"
+      ],
+      [
+        55,
+        56,
+        "LesseeOperatingLeaseRenewalTerm"
+      ]
+    ],
+    "model_spans": {
+      "bilstm_crf": [
+        [
+          27,
+          28,
+          "LesseeOperatingLeaseTermOfContract"
+        ],
+        [
+          29,
+          30,
+          "LesseeOperatingLeaseTermOfContract"
+        ],
+        [
+          53,
+          54,
+          "LesseeOperatingLeaseRenewalTerm"
+        ],
+        [
+          55,
+          56,
+          "LesseeOperatingLeaseRenewalTerm"
+        ]
+      ],
+      "bert-base-cased": [
+        [
+          27,
+          28,
+          "LesseeOperatingLeaseTermOfContract"
+        ],
+        [
+          29,
+          30,
+          "LesseeOperatingLeaseTermOfContract"
+        ],
+        [
+          53,
+          54,
+          "LesseeOperatingLeaseRenewalTerm"
+        ],
+        [
+          55,
+          56,
+          "LesseeOperatingLeaseRenewalTerm"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          27,
+          28,
+          "LesseeOperatingLeaseTermOfContract"
+        ],
+        [
+          29,
+          30,
+          "LesseeOperatingLeaseTermOfContract"
+        ],
+        [
+          53,
+          54,
+          "LesseeOperatingLeaseRenewalTerm"
+        ],
+        [
+          55,
+          56,
+          "LesseeOperatingLeaseRenewalTerm"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "test",
+        "raw_row": 92039,
+        "source_id": "1104917",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      },
+      {
+        "split": "test",
+        "raw_row": 92523,
+        "source_id": "1105401",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q016",
+    "test_row": 54542,
+    "start": 15,
+    "end": 16,
+    "predicted_type": "RevenueFromContractWithCustomerExcludingAssessedTax",
+    "target_text": "5.0",
+    "sentence": "( 2 ) Included in the Technical Nonwovens segment and Eliminations and Other is $ 5.0 million and $ 4.7 million in intercompany sales to the Thermal Acoustical Solutions segment for the quarters ended March 31 , 2020 and 2019 , respectively .",
+    "marked_sentence": "( 2 ) Included in the Technical Nonwovens segment and Eliminations and Other is $ [[ 5.0 ]] million and $ 4.7 million in intercompany sales to the Thermal Acoustical Solutions segment for the quarters ended March 31 , 2020 and 2019 , respectively .",
+    "tokens": [
+      "(",
+      "2",
+      ")",
+      "Included",
+      "in",
+      "the",
+      "Technical",
+      "Nonwovens",
+      "segment",
+      "and",
+      "Eliminations",
+      "and",
+      "Other",
+      "is",
+      "$",
+      "5.0",
+      "million",
+      "and",
+      "$",
+      "4.7",
+      "million",
+      "in",
+      "intercompany",
+      "sales",
+      "to",
+      "the",
+      "Thermal",
+      "Acoustical",
+      "Solutions",
+      "segment",
+      "for",
+      "the",
+      "quarters",
+      "ended",
+      "March",
+      "31",
+      ",",
+      "2020",
+      "and",
+      "2019",
+      ",",
+      "respectively",
+      "."
+    ],
+    "gold_spans": [],
+    "model_spans": {
+      "bilstm_crf": [],
+      "bert-base-cased": [
+        [
+          15,
+          16,
+          "RevenueFromContractWithCustomerExcludingAssessedTax"
+        ],
+        [
+          19,
+          20,
+          "RevenueFromContractWithCustomerExcludingAssessedTax"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          15,
+          16,
+          "RevenueFromContractWithCustomerExcludingAssessedTax"
+        ],
+        [
+          19,
+          20,
+          "RevenueFromContractWithCustomerExcludingAssessedTax"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "test",
+        "raw_row": 60567,
+        "source_id": "1073445",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q017",
+    "test_row": 52299,
+    "start": 23,
+    "end": 24,
+    "predicted_type": "EmployeeServiceShareBasedCompensationNonvestedAwardsTotalCompensationCostNotYetRecognized",
+    "target_text": "1.0",
+    "sentence": "As of March 31 , 2020 , total unrecognized stock - based compensation expense related to non - vested employee awards was $ 1.0 million which is expected to be recognized over a weighted average period of approximately 2.05 years . Restricted Stock Awards The Restated Plan permits the award of restricted stock awards ( “ RSA ’ s ” ) .",
+    "marked_sentence": "As of March 31 , 2020 , total unrecognized stock - based compensation expense related to non - vested employee awards was $ [[ 1.0 ]] million which is expected to be recognized over a weighted average period of approximately 2.05 years . Restricted Stock Awards The Restated Plan permits the award of restricted stock awards ( “ RSA ’ s ” ) .",
+    "tokens": [
+      "As",
+      "of",
+      "March",
+      "31",
+      ",",
+      "2020",
+      ",",
+      "total",
+      "unrecognized",
+      "stock",
+      "-",
+      "based",
+      "compensation",
+      "expense",
+      "related",
+      "to",
+      "non",
+      "-",
+      "vested",
+      "employee",
+      "awards",
+      "was",
+      "$",
+      "1.0",
+      "million",
+      "which",
+      "is",
+      "expected",
+      "to",
+      "be",
+      "recognized",
+      "over",
+      "a",
+      "weighted",
+      "average",
+      "period",
+      "of",
+      "approximately",
+      "2.05",
+      "years",
+      ".",
+      "Restricted",
+      "Stock",
+      "Awards",
+      "The",
+      "Restated",
+      "Plan",
+      "permits",
+      "the",
+      "award",
+      "of",
+      "restricted",
+      "stock",
+      "awards",
+      "(",
+      "“",
+      "RSA",
+      "’",
+      "s",
+      "”",
+      ")",
+      "."
+    ],
+    "gold_spans": [
+      [
+        38,
+        39,
+        "EmployeeServiceShareBasedCompensationNonvestedAwardsTotalCompensationCostNotYetRecognizedPeriodForRecognition1"
+      ]
+    ],
+    "model_spans": {
+      "bilstm_crf": [
+        [
+          23,
+          24,
+          "EmployeeServiceShareBasedCompensationNonvestedAwardsTotalCompensationCostNotYetRecognized"
+        ],
+        [
+          38,
+          39,
+          "EmployeeServiceShareBasedCompensationNonvestedAwardsTotalCompensationCostNotYetRecognizedPeriodForRecognition1"
+        ]
+      ],
+      "bert-base-cased": [
+        [
+          23,
+          24,
+          "EmployeeServiceShareBasedCompensationNonvestedAwardsTotalCompensationCostNotYetRecognized"
+        ],
+        [
+          38,
+          39,
+          "EmployeeServiceShareBasedCompensationNonvestedAwardsTotalCompensationCostNotYetRecognizedPeriodForRecognition1"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          23,
+          24,
+          "EmployeeServiceShareBasedCompensationNonvestedAwardsTotalCompensationCostNotYetRecognized"
+        ],
+        [
+          38,
+          39,
+          "EmployeeServiceShareBasedCompensationNonvestedAwardsTotalCompensationCostNotYetRecognizedPeriodForRecognition1"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "test",
+        "raw_row": 58268,
+        "source_id": "1071146",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q018",
+    "test_row": 76725,
+    "start": 9,
+    "end": 10,
+    "predicted_type": "DebtInstrumentFaceAmount",
+    "target_text": "8.4",
+    "sentence": "In April 2020 , the Company obtained an $ 8.4 million loan under the PPP .",
+    "marked_sentence": "In April 2020 , the Company obtained an $ [[ 8.4 ]] million loan under the PPP .",
+    "tokens": [
+      "In",
+      "April",
+      "2020",
+      ",",
+      "the",
+      "Company",
+      "obtained",
+      "an",
+      "$",
+      "8.4",
+      "million",
+      "loan",
+      "under",
+      "the",
+      "PPP",
+      "."
+    ],
+    "gold_spans": [],
+    "model_spans": {
+      "bilstm_crf": [
+        [
+          9,
+          10,
+          "DebtInstrumentFaceAmount"
+        ]
+      ],
+      "bert-base-cased": [
+        [
+          9,
+          10,
+          "DebtInstrumentFaceAmount"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          9,
+          10,
+          "DebtInstrumentFaceAmount"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "test",
+        "raw_row": 88535,
+        "source_id": "1101413",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      },
+      {
+        "split": "test",
+        "raw_row": 89020,
+        "source_id": "1101898",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q019",
+    "test_row": 19982,
+    "start": 17,
+    "end": 18,
+    "predicted_type": "DebtInstrumentBasisSpreadOnVariableRate1",
+    "target_text": "1.75",
+    "sentence": "The $ 425 million Term Loan bears interest at a variable rate , which is LIBOR plus 1.75 % .",
+    "marked_sentence": "The $ 425 million Term Loan bears interest at a variable rate , which is LIBOR plus [[ 1.75 ]] % .",
+    "tokens": [
+      "The",
+      "$",
+      "425",
+      "million",
+      "Term",
+      "Loan",
+      "bears",
+      "interest",
+      "at",
+      "a",
+      "variable",
+      "rate",
+      ",",
+      "which",
+      "is",
+      "LIBOR",
+      "plus",
+      "1.75",
+      "%",
+      "."
+    ],
+    "gold_spans": [],
+    "model_spans": {
+      "bilstm_crf": [
+        [
+          2,
+          3,
+          "DebtInstrumentFaceAmount"
+        ],
+        [
+          17,
+          18,
+          "DebtInstrumentBasisSpreadOnVariableRate1"
+        ]
+      ],
+      "bert-base-cased": [
+        [
+          2,
+          3,
+          "DebtInstrumentFaceAmount"
+        ],
+        [
+          17,
+          18,
+          "DebtInstrumentBasisSpreadOnVariableRate1"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          2,
+          3,
+          "DebtInstrumentFaceAmount"
+        ],
+        [
+          17,
+          18,
+          "DebtInstrumentBasisSpreadOnVariableRate1"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "test",
+        "raw_row": 22345,
+        "source_id": "1035223",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q020",
+    "test_row": 83240,
+    "start": 0,
+    "end": 1,
+    "predicted_type": "CumulativeEffectOfNewAccountingPrincipleInPeriodOfAdoption",
+    "target_text": "No",
+    "sentence": "No cumulative effect adjustment to retained earnings was recognized upon adoption of the new standard .",
+    "marked_sentence": "[[ No ]] cumulative effect adjustment to retained earnings was recognized upon adoption of the new standard .",
+    "tokens": [
+      "No",
+      "cumulative",
+      "effect",
+      "adjustment",
+      "to",
+      "retained",
+      "earnings",
+      "was",
+      "recognized",
+      "upon",
+      "adoption",
+      "of",
+      "the",
+      "new",
+      "standard",
+      "."
+    ],
+    "gold_spans": [],
+    "model_spans": {
+      "bilstm_crf": [
+        [
+          0,
+          1,
+          "CumulativeEffectOfNewAccountingPrincipleInPeriodOfAdoption"
+        ]
+      ],
+      "bert-base-cased": [
+        [
+          0,
+          1,
+          "CumulativeEffectOfNewAccountingPrincipleInPeriodOfAdoption"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          0,
+          1,
+          "CumulativeEffectOfNewAccountingPrincipleInPeriodOfAdoption"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "train",
+        "raw_row": 757855,
+        "source_id": "757855",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      },
+      {
+        "split": "test",
+        "raw_row": 96260,
+        "source_id": "1109138",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q021",
+    "test_row": 57253,
+    "start": 5,
+    "end": 6,
+    "predicted_type": "StockRepurchaseProgramRemainingAuthorizedRepurchaseAmount1",
+    "target_text": "50",
+    "sentence": "We have an authorized $ 50 million remaining under our current stock repurchase program for any additional repurchases .",
+    "marked_sentence": "We have an authorized $ [[ 50 ]] million remaining under our current stock repurchase program for any additional repurchases .",
+    "tokens": [
+      "We",
+      "have",
+      "an",
+      "authorized",
+      "$",
+      "50",
+      "million",
+      "remaining",
+      "under",
+      "our",
+      "current",
+      "stock",
+      "repurchase",
+      "program",
+      "for",
+      "any",
+      "additional",
+      "repurchases",
+      "."
+    ],
+    "gold_spans": [],
+    "model_spans": {
+      "bilstm_crf": [
+        [
+          5,
+          6,
+          "StockRepurchaseProgramRemainingAuthorizedRepurchaseAmount1"
+        ]
+      ],
+      "bert-base-cased": [
+        [
+          5,
+          6,
+          "StockRepurchaseProgramRemainingAuthorizedRepurchaseAmount1"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          5,
+          6,
+          "StockRepurchaseProgramRemainingAuthorizedRepurchaseAmount1"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "test",
+        "raw_row": 63668,
+        "source_id": "1076546",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q022",
+    "test_row": 82058,
+    "start": 25,
+    "end": 26,
+    "predicted_type": "BusinessCombinationContingentConsiderationLiability",
+    "target_text": "4.9",
+    "sentence": "The $ 0.5 million was paid to the seller in July 2018 . We had a contingent liability at March 31 , 2018 for $ 4.9 million related to the acquisition of Simena in November 2011 , which was based on the ultimate settlement of assets and liabilities acquired as part of the transaction , and the former owners ' future period of employment with us .",
+    "marked_sentence": "The $ 0.5 million was paid to the seller in July 2018 . We had a contingent liability at March 31 , 2018 for $ [[ 4.9 ]] million related to the acquisition of Simena in November 2011 , which was based on the ultimate settlement of assets and liabilities acquired as part of the transaction , and the former owners ' future period of employment with us .",
+    "tokens": [
+      "The",
+      "$",
+      "0.5",
+      "million",
+      "was",
+      "paid",
+      "to",
+      "the",
+      "seller",
+      "in",
+      "July",
+      "2018",
+      ".",
+      "We",
+      "had",
+      "a",
+      "contingent",
+      "liability",
+      "at",
+      "March",
+      "31",
+      ",",
+      "2018",
+      "for",
+      "$",
+      "4.9",
+      "million",
+      "related",
+      "to",
+      "the",
+      "acquisition",
+      "of",
+      "Simena",
+      "in",
+      "November",
+      "2011",
+      ",",
+      "which",
+      "was",
+      "based",
+      "on",
+      "the",
+      "ultimate",
+      "settlement",
+      "of",
+      "assets",
+      "and",
+      "liabilities",
+      "acquired",
+      "as",
+      "part",
+      "of",
+      "the",
+      "transaction",
+      ",",
+      "and",
+      "the",
+      "former",
+      "owners",
+      "'",
+      "future",
+      "period",
+      "of",
+      "employment",
+      "with",
+      "us",
+      "."
+    ],
+    "gold_spans": [],
+    "model_spans": {
+      "bilstm_crf": [
+        [
+          2,
+          3,
+          "PaymentsToAcquireBusinessesGross"
+        ],
+        [
+          25,
+          26,
+          "BusinessCombinationContingentConsiderationLiability"
+        ]
+      ],
+      "bert-base-cased": [
+        [
+          2,
+          3,
+          "PaymentsToAcquireBusinessesGross"
+        ],
+        [
+          25,
+          26,
+          "BusinessCombinationContingentConsiderationLiability"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          2,
+          3,
+          "PaymentsToAcquireBusinessesGross"
+        ],
+        [
+          25,
+          26,
+          "BusinessCombinationContingentConsiderationLiability"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "test",
+        "raw_row": 94915,
+        "source_id": "1107793",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q023",
+    "test_row": 16953,
+    "start": 3,
+    "end": 5,
+    "predicted_type": "SharebasedCompensationArrangementBySharebasedPaymentAwardExpirationPeriod",
+    "target_text": "ten years",
+    "sentence": "All options expire ten years after the date of grant .",
+    "marked_sentence": "All options expire [[ ten years ]] after the date of grant .",
+    "tokens": [
+      "All",
+      "options",
+      "expire",
+      "ten",
+      "years",
+      "after",
+      "the",
+      "date",
+      "of",
+      "grant",
+      "."
+    ],
+    "gold_spans": [],
+    "model_spans": {
+      "bilstm_crf": [
+        [
+          3,
+          5,
+          "SharebasedCompensationArrangementBySharebasedPaymentAwardExpirationPeriod"
+        ]
+      ],
+      "bert-base-cased": [
+        [
+          3,
+          5,
+          "SharebasedCompensationArrangementBySharebasedPaymentAwardExpirationPeriod"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          3,
+          5,
+          "SharebasedCompensationArrangementBySharebasedPaymentAwardExpirationPeriod"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "test",
+        "raw_row": 18706,
+        "source_id": "1031584",
+        "target_tags": [
+          "O",
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q024",
+    "test_row": 70689,
+    "start": 14,
+    "end": 15,
+    "predicted_type": "ShareBasedCompensationArrangementByShareBasedPaymentAwardEquityInstrumentsOtherThanOptionsGrantsInPeriod",
+    "target_text": "3,333",
+    "sentence": "Each subsequent independent director that joins the Company ’ s board of directors receives 3,333 shares of restricted common stock upon election to the Company ’ s board of directors .",
+    "marked_sentence": "Each subsequent independent director that joins the Company ’ s board of directors receives [[ 3,333 ]] shares of restricted common stock upon election to the Company ’ s board of directors .",
+    "tokens": [
+      "Each",
+      "subsequent",
+      "independent",
+      "director",
+      "that",
+      "joins",
+      "the",
+      "Company",
+      "’",
+      "s",
+      "board",
+      "of",
+      "directors",
+      "receives",
+      "3,333",
+      "shares",
+      "of",
+      "restricted",
+      "common",
+      "stock",
+      "upon",
+      "election",
+      "to",
+      "the",
+      "Company",
+      "’",
+      "s",
+      "board",
+      "of",
+      "directors",
+      "."
+    ],
+    "gold_spans": [],
+    "model_spans": {
+      "bilstm_crf": [
+        [
+          14,
+          15,
+          "ShareBasedCompensationArrangementByShareBasedPaymentAwardEquityInstrumentsOtherThanOptionsGrantsInPeriod"
+        ]
+      ],
+      "bert-base-cased": [
+        [
+          14,
+          15,
+          "ShareBasedCompensationArrangementByShareBasedPaymentAwardEquityInstrumentsOtherThanOptionsGrantsInPeriod"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          14,
+          15,
+          "ShareBasedCompensationArrangementByShareBasedPaymentAwardEquityInstrumentsOtherThanOptionsGrantsInPeriod"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "test",
+        "raw_row": 82082,
+        "source_id": "1094960",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q025",
+    "test_row": 86883,
+    "start": 13,
+    "end": 14,
+    "predicted_type": "RestructuringCharges",
+    "target_text": "37.6",
+    "sentence": "During Fiscal 2020 and Fiscal 2019 , we recorded restructuring charges of $ 37.6 million and $ 93.6 million , respectively , in connection with our restructuring plans , primarily consisting of severance and benefits costs , as well as a loss on sale of property during the prior fiscal year period .",
+    "marked_sentence": "During Fiscal 2020 and Fiscal 2019 , we recorded restructuring charges of $ [[ 37.6 ]] million and $ 93.6 million , respectively , in connection with our restructuring plans , primarily consisting of severance and benefits costs , as well as a loss on sale of property during the prior fiscal year period .",
+    "tokens": [
+      "During",
+      "Fiscal",
+      "2020",
+      "and",
+      "Fiscal",
+      "2019",
+      ",",
+      "we",
+      "recorded",
+      "restructuring",
+      "charges",
+      "of",
+      "$",
+      "37.6",
+      "million",
+      "and",
+      "$",
+      "93.6",
+      "million",
+      ",",
+      "respectively",
+      ",",
+      "in",
+      "connection",
+      "with",
+      "our",
+      "restructuring",
+      "plans",
+      ",",
+      "primarily",
+      "consisting",
+      "of",
+      "severance",
+      "and",
+      "benefits",
+      "costs",
+      ",",
+      "as",
+      "well",
+      "as",
+      "a",
+      "loss",
+      "on",
+      "sale",
+      "of",
+      "property",
+      "during",
+      "the",
+      "prior",
+      "fiscal",
+      "year",
+      "period",
+      "."
+    ],
+    "gold_spans": [],
+    "model_spans": {
+      "bilstm_crf": [
+        [
+          13,
+          14,
+          "RestructuringCharges"
+        ],
+        [
+          17,
+          18,
+          "RestructuringCharges"
+        ]
+      ],
+      "bert-base-cased": [
+        [
+          13,
+          14,
+          "RestructuringCharges"
+        ],
+        [
+          17,
+          18,
+          "RestructuringCharges"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          13,
+          14,
+          "RestructuringCharges"
+        ],
+        [
+          17,
+          18,
+          "RestructuringCharges"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "test",
+        "raw_row": 100020,
+        "source_id": "1112898",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q026",
+    "test_row": 87044,
+    "start": 72,
+    "end": 73,
+    "predicted_type": "DebtInstrumentInterestRateStatedPercentage",
+    "target_text": "2.625",
+    "sentence": "Dollar - denominated variable interest rate payments based on the 3 - month LIBOR plus a fixed spread ( as paid under the 2.625 % Interest Rate Swap discussed below ) for Euro - denominated variable interest rate payments based on the 3 - month EURIBOR plus a fixed spread , which , in combination with the 2.625 % Interest Rate Swap , economically converts our $ 300 million fixed - rate 2.625 % Senior Notes obligation to a € 274 million floating - rate Euro - denominated obligation . Additionally , in August 2018 , we entered into pay - fixed rate , receive - fixed rate cross - currency swap contracts with an aggregate notional amount of € 346 million which we designated as hedges of our net investment in certain of our European subsidiaries .",
+    "marked_sentence": "Dollar - denominated variable interest rate payments based on the 3 - month LIBOR plus a fixed spread ( as paid under the 2.625 % Interest Rate Swap discussed below ) for Euro - denominated variable interest rate payments based on the 3 - month EURIBOR plus a fixed spread , which , in combination with the 2.625 % Interest Rate Swap , economically converts our $ 300 million fixed - rate [[ 2.625 ]] % Senior Notes obligation to a € 274 million floating - rate Euro - denominated obligation . Additionally , in August 2018 , we entered into pay - fixed rate , receive - fixed rate cross - currency swap contracts with an aggregate notional amount of € 346 million which we designated as hedges of our net investment in certain of our European subsidiaries .",
+    "tokens": [
+      "Dollar",
+      "-",
+      "denominated",
+      "variable",
+      "interest",
+      "rate",
+      "payments",
+      "based",
+      "on",
+      "the",
+      "3",
+      "-",
+      "month",
+      "LIBOR",
+      "plus",
+      "a",
+      "fixed",
+      "spread",
+      "(",
+      "as",
+      "paid",
+      "under",
+      "the",
+      "2.625",
+      "%",
+      "Interest",
+      "Rate",
+      "Swap",
+      "discussed",
+      "below",
+      ")",
+      "for",
+      "Euro",
+      "-",
+      "denominated",
+      "variable",
+      "interest",
+      "rate",
+      "payments",
+      "based",
+      "on",
+      "the",
+      "3",
+      "-",
+      "month",
+      "EURIBOR",
+      "plus",
+      "a",
+      "fixed",
+      "spread",
+      ",",
+      "which",
+      ",",
+      "in",
+      "combination",
+      "with",
+      "the",
+      "2.625",
+      "%",
+      "Interest",
+      "Rate",
+      "Swap",
+      ",",
+      "economically",
+      "converts",
+      "our",
+      "$",
+      "300",
+      "million",
+      "fixed",
+      "-",
+      "rate",
+      "2.625",
+      "%",
+      "Senior",
+      "Notes",
+      "obligation",
+      "to",
+      "a",
+      "€",
+      "274",
+      "million",
+      "floating",
+      "-",
+      "rate",
+      "Euro",
+      "-",
+      "denominated",
+      "obligation",
+      ".",
+      "Additionally",
+      ",",
+      "in",
+      "August",
+      "2018",
+      ",",
+      "we",
+      "entered",
+      "into",
+      "pay",
+      "-",
+      "fixed",
+      "rate",
+      ",",
+      "receive",
+      "-",
+      "fixed",
+      "rate",
+      "cross",
+      "-",
+      "currency",
+      "swap",
+      "contracts",
+      "with",
+      "an",
+      "aggregate",
+      "notional",
+      "amount",
+      "of",
+      "€",
+      "346",
+      "million",
+      "which",
+      "we",
+      "designated",
+      "as",
+      "hedges",
+      "of",
+      "our",
+      "net",
+      "investment",
+      "in",
+      "certain",
+      "of",
+      "our",
+      "European",
+      "subsidiaries",
+      "."
+    ],
+    "gold_spans": [],
+    "model_spans": {
+      "bilstm_crf": [
+        [
+          23,
+          24,
+          "DebtInstrumentInterestRateStatedPercentage"
+        ],
+        [
+          57,
+          58,
+          "DebtInstrumentInterestRateStatedPercentage"
+        ],
+        [
+          67,
+          68,
+          "DebtInstrumentFaceAmount"
+        ],
+        [
+          72,
+          73,
+          "DebtInstrumentInterestRateStatedPercentage"
+        ],
+        [
+          120,
+          121,
+          "DerivativeNotionalAmount"
+        ]
+      ],
+      "bert-base-cased": [
+        [
+          23,
+          24,
+          "DebtInstrumentInterestRateStatedPercentage"
+        ],
+        [
+          57,
+          58,
+          "DebtInstrumentInterestRateStatedPercentage"
+        ],
+        [
+          67,
+          68,
+          "DebtInstrumentFaceAmount"
+        ],
+        [
+          72,
+          73,
+          "DebtInstrumentInterestRateStatedPercentage"
+        ],
+        [
+          120,
+          121,
+          "DerivativeNotionalAmount"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          23,
+          24,
+          "DebtInstrumentInterestRateStatedPercentage"
+        ],
+        [
+          57,
+          58,
+          "DebtInstrumentInterestRateStatedPercentage"
+        ],
+        [
+          72,
+          73,
+          "DebtInstrumentInterestRateStatedPercentage"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "test",
+        "raw_row": 100182,
+        "source_id": "1113060",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q027",
+    "test_row": 45582,
+    "start": 27,
+    "end": 28,
+    "predicted_type": "TreasuryStockAcquiredAverageCostPerShare",
+    "target_text": "22.34",
+    "sentence": "During the three months ended March 31 , 2020 , the Company repurchased 38,411 shares of the Company 's common stock at an average price of $ 22.34 per share and a total cost of $ 858 thousand under the repurchase plan .",
+    "marked_sentence": "During the three months ended March 31 , 2020 , the Company repurchased 38,411 shares of the Company 's common stock at an average price of $ [[ 22.34 ]] per share and a total cost of $ 858 thousand under the repurchase plan .",
+    "tokens": [
+      "During",
+      "the",
+      "three",
+      "months",
+      "ended",
+      "March",
+      "31",
+      ",",
+      "2020",
+      ",",
+      "the",
+      "Company",
+      "repurchased",
+      "38,411",
+      "shares",
+      "of",
+      "the",
+      "Company",
+      "'s",
+      "common",
+      "stock",
+      "at",
+      "an",
+      "average",
+      "price",
+      "of",
+      "$",
+      "22.34",
+      "per",
+      "share",
+      "and",
+      "a",
+      "total",
+      "cost",
+      "of",
+      "$",
+      "858",
+      "thousand",
+      "under",
+      "the",
+      "repurchase",
+      "plan",
+      "."
+    ],
+    "gold_spans": [
+      [
+        13,
+        14,
+        "StockRepurchasedDuringPeriodShares"
+      ],
+      [
+        36,
+        37,
+        "TreasuryStockValueAcquiredCostMethod"
+      ]
+    ],
+    "model_spans": {
+      "bilstm_crf": [
+        [
+          13,
+          14,
+          "StockRepurchasedDuringPeriodShares"
+        ],
+        [
+          27,
+          28,
+          "TreasuryStockAcquiredAverageCostPerShare"
+        ],
+        [
+          36,
+          37,
+          "TreasuryStockValueAcquiredCostMethod"
+        ]
+      ],
+      "bert-base-cased": [
+        [
+          13,
+          14,
+          "TreasuryStockSharesAcquired"
+        ],
+        [
+          27,
+          28,
+          "TreasuryStockAcquiredAverageCostPerShare"
+        ],
+        [
+          36,
+          37,
+          "TreasuryStockValueAcquiredCostMethod"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          13,
+          14,
+          "TreasuryStockSharesAcquired"
+        ],
+        [
+          27,
+          28,
+          "TreasuryStockAcquiredAverageCostPerShare"
+        ],
+        [
+          36,
+          37,
+          "TreasuryStockValueAcquiredCostMethod"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "test",
+        "raw_row": 51116,
+        "source_id": "1063994",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q028",
+    "test_row": 10489,
+    "start": 9,
+    "end": 10,
+    "predicted_type": "StockIssuedDuringPeriodSharesNewIssues",
+    "target_text": "2,728,513",
+    "sentence": "On October 14 , 2019 , the Company issued 2,728,513 shares of Common Stock to CVI upon exercise by CVI of the Series C warrant .",
+    "marked_sentence": "On October 14 , 2019 , the Company issued [[ 2,728,513 ]] shares of Common Stock to CVI upon exercise by CVI of the Series C warrant .",
+    "tokens": [
+      "On",
+      "October",
+      "14",
+      ",",
+      "2019",
+      ",",
+      "the",
+      "Company",
+      "issued",
+      "2,728,513",
+      "shares",
+      "of",
+      "Common",
+      "Stock",
+      "to",
+      "CVI",
+      "upon",
+      "exercise",
+      "by",
+      "CVI",
+      "of",
+      "the",
+      "Series",
+      "C",
+      "warrant",
+      "."
+    ],
+    "gold_spans": [],
+    "model_spans": {
+      "bilstm_crf": [
+        [
+          9,
+          10,
+          "StockIssuedDuringPeriodSharesNewIssues"
+        ]
+      ],
+      "bert-base-cased": [
+        [
+          9,
+          10,
+          "StockIssuedDuringPeriodSharesNewIssues"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          9,
+          10,
+          "StockIssuedDuringPeriodSharesNewIssues"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "train",
+        "raw_row": 661049,
+        "source_id": "661049",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      },
+      {
+        "split": "test",
+        "raw_row": 11100,
+        "source_id": "1023978",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q029",
+    "test_row": 84338,
+    "start": 8,
+    "end": 9,
+    "predicted_type": "RelatedPartyTransactionAmountsOfTransaction",
+    "target_text": "28.4",
+    "sentence": "Texas Lehigh purchased $ 29.8 million , $ 28.4 million , and $ 21.3 million of cement from HCC in 2019 , 2018 , and 2017 , respectively , $ 1.0 million of slag from Skyway Cement Company in 2019 , and $ 0.3 million of cement from Central Plains Cement Company in 2017 .",
+    "marked_sentence": "Texas Lehigh purchased $ 29.8 million , $ [[ 28.4 ]] million , and $ 21.3 million of cement from HCC in 2019 , 2018 , and 2017 , respectively , $ 1.0 million of slag from Skyway Cement Company in 2019 , and $ 0.3 million of cement from Central Plains Cement Company in 2017 .",
+    "tokens": [
+      "Texas",
+      "Lehigh",
+      "purchased",
+      "$",
+      "29.8",
+      "million",
+      ",",
+      "$",
+      "28.4",
+      "million",
+      ",",
+      "and",
+      "$",
+      "21.3",
+      "million",
+      "of",
+      "cement",
+      "from",
+      "HCC",
+      "in",
+      "2019",
+      ",",
+      "2018",
+      ",",
+      "and",
+      "2017",
+      ",",
+      "respectively",
+      ",",
+      "$",
+      "1.0",
+      "million",
+      "of",
+      "slag",
+      "from",
+      "Skyway",
+      "Cement",
+      "Company",
+      "in",
+      "2019",
+      ",",
+      "and",
+      "$",
+      "0.3",
+      "million",
+      "of",
+      "cement",
+      "from",
+      "Central",
+      "Plains",
+      "Cement",
+      "Company",
+      "in",
+      "2017",
+      "."
+    ],
+    "gold_spans": [],
+    "model_spans": {
+      "bilstm_crf": [],
+      "bert-base-cased": [
+        [
+          4,
+          5,
+          "RelatedPartyTransactionAmountsOfTransaction"
+        ],
+        [
+          8,
+          9,
+          "RelatedPartyTransactionAmountsOfTransaction"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          4,
+          5,
+          "RelatedPartyTransactionAmountsOfTransaction"
+        ],
+        [
+          8,
+          9,
+          "RelatedPartyTransactionAmountsOfTransaction"
+        ],
+        [
+          13,
+          14,
+          "RelatedPartyTransactionAmountsOfTransaction"
+        ],
+        [
+          30,
+          31,
+          "RelatedPartyTransactionAmountsOfTransaction"
+        ],
+        [
+          43,
+          44,
+          "RelatedPartyTransactionAmountsOfTransaction"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "test",
+        "raw_row": 97396,
+        "source_id": "1110274",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q030",
+    "test_row": 89332,
+    "start": 22,
+    "end": 23,
+    "predicted_type": "EquityMethodInvestmentOwnershipPercentage",
+    "target_text": "50",
+    "sentence": "The equity method of accounting is used for investments in companies where Universal Corporation has a voting interest of 20 % to 50 % .",
+    "marked_sentence": "The equity method of accounting is used for investments in companies where Universal Corporation has a voting interest of 20 % to [[ 50 ]] % .",
+    "tokens": [
+      "The",
+      "equity",
+      "method",
+      "of",
+      "accounting",
+      "is",
+      "used",
+      "for",
+      "investments",
+      "in",
+      "companies",
+      "where",
+      "Universal",
+      "Corporation",
+      "has",
+      "a",
+      "voting",
+      "interest",
+      "of",
+      "20",
+      "%",
+      "to",
+      "50",
+      "%",
+      "."
+    ],
+    "gold_spans": [],
+    "model_spans": {
+      "bilstm_crf": [
+        [
+          19,
+          20,
+          "EquityMethodInvestmentOwnershipPercentage"
+        ],
+        [
+          22,
+          23,
+          "EquityMethodInvestmentOwnershipPercentage"
+        ]
+      ],
+      "bert-base-cased": [
+        [
+          19,
+          20,
+          "EquityMethodInvestmentOwnershipPercentage"
+        ],
+        [
+          22,
+          23,
+          "EquityMethodInvestmentOwnershipPercentage"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          19,
+          20,
+          "EquityMethodInvestmentOwnershipPercentage"
+        ],
+        [
+          22,
+          23,
+          "EquityMethodInvestmentOwnershipPercentage"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "train",
+        "raw_row": 219056,
+        "source_id": "219056",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      },
+      {
+        "split": "test",
+        "raw_row": 102532,
+        "source_id": "1115410",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q031",
+    "test_row": 64651,
+    "start": 31,
+    "end": 32,
+    "predicted_type": "BusinessAcquisitionPercentageOfVotingInterestsAcquired",
+    "target_text": "47.5",
+    "sentence": "The Company considered multiple factors in determining the fair value of the previously held equity method investment , including ( i ) the price negotiated with the selling shareholder for the 47.5 % equity interest in Centa China , ( ii ) an income valuation model ( discounted cash flow ) , and ( iii ) current trading multiples for comparable companies .",
+    "marked_sentence": "The Company considered multiple factors in determining the fair value of the previously held equity method investment , including ( i ) the price negotiated with the selling shareholder for the [[ 47.5 ]] % equity interest in Centa China , ( ii ) an income valuation model ( discounted cash flow ) , and ( iii ) current trading multiples for comparable companies .",
+    "tokens": [
+      "The",
+      "Company",
+      "considered",
+      "multiple",
+      "factors",
+      "in",
+      "determining",
+      "the",
+      "fair",
+      "value",
+      "of",
+      "the",
+      "previously",
+      "held",
+      "equity",
+      "method",
+      "investment",
+      ",",
+      "including",
+      "(",
+      "i",
+      ")",
+      "the",
+      "price",
+      "negotiated",
+      "with",
+      "the",
+      "selling",
+      "shareholder",
+      "for",
+      "the",
+      "47.5",
+      "%",
+      "equity",
+      "interest",
+      "in",
+      "Centa",
+      "China",
+      ",",
+      "(",
+      "ii",
+      ")",
+      "an",
+      "income",
+      "valuation",
+      "model",
+      "(",
+      "discounted",
+      "cash",
+      "flow",
+      ")",
+      ",",
+      "and",
+      "(",
+      "iii",
+      ")",
+      "current",
+      "trading",
+      "multiples",
+      "for",
+      "comparable",
+      "companies",
+      "."
+    ],
+    "gold_spans": [],
+    "model_spans": {
+      "bilstm_crf": [],
+      "bert-base-cased": [
+        [
+          31,
+          32,
+          "BusinessAcquisitionPercentageOfVotingInterestsAcquired"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          31,
+          32,
+          "BusinessAcquisitionPercentageOfVotingInterestsAcquired"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "train",
+        "raw_row": 261753,
+        "source_id": "261753",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      },
+      {
+        "split": "test",
+        "raw_row": 72342,
+        "source_id": "1085220",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q032",
+    "test_row": 66868,
+    "start": 16,
+    "end": 17,
+    "predicted_type": "ShareBasedCompensationArrangementByShareBasedPaymentAwardNumberOfSharesAuthorized",
+    "target_text": "1,596,753",
+    "sentence": "The number of shares that may be issued pursuant to awards under the 2018 Plan is 1,596,753 . In 2010 , the Company adopted an equity compensation plan , or 2010 Plan , that provides for the grant of stock options to employees , directors , and other persons referred to in Rule 701 under the U.S. Securities Act of 1933 .",
+    "marked_sentence": "The number of shares that may be issued pursuant to awards under the 2018 Plan is [[ 1,596,753 ]] . In 2010 , the Company adopted an equity compensation plan , or 2010 Plan , that provides for the grant of stock options to employees , directors , and other persons referred to in Rule 701 under the U.S. Securities Act of 1933 .",
+    "tokens": [
+      "The",
+      "number",
+      "of",
+      "shares",
+      "that",
+      "may",
+      "be",
+      "issued",
+      "pursuant",
+      "to",
+      "awards",
+      "under",
+      "the",
+      "2018",
+      "Plan",
+      "is",
+      "1,596,753",
+      ".",
+      "In",
+      "2010",
+      ",",
+      "the",
+      "Company",
+      "adopted",
+      "an",
+      "equity",
+      "compensation",
+      "plan",
+      ",",
+      "or",
+      "2010",
+      "Plan",
+      ",",
+      "that",
+      "provides",
+      "for",
+      "the",
+      "grant",
+      "of",
+      "stock",
+      "options",
+      "to",
+      "employees",
+      ",",
+      "directors",
+      ",",
+      "and",
+      "other",
+      "persons",
+      "referred",
+      "to",
+      "in",
+      "Rule",
+      "701",
+      "under",
+      "the",
+      "U.S.",
+      "Securities",
+      "Act",
+      "of",
+      "1933",
+      "."
+    ],
+    "gold_spans": [],
+    "model_spans": {
+      "bilstm_crf": [],
+      "bert-base-cased": [
+        [
+          16,
+          17,
+          "ShareBasedCompensationArrangementByShareBasedPaymentAwardNumberOfSharesAuthorized"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          16,
+          17,
+          "ShareBasedCompensationArrangementByShareBasedPaymentAwardNumberOfSharesAuthorized"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "train",
+        "raw_row": 769649,
+        "source_id": "769649",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      },
+      {
+        "split": "test",
+        "raw_row": 76674,
+        "source_id": "1089552",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q033",
+    "test_row": 74571,
+    "start": 19,
+    "end": 20,
+    "predicted_type": "BusinessCombinationContingentConsiderationLiability",
+    "target_text": "77.3",
+    "sentence": "The Company recorded the acquisition date fair value of the earn - out provision as contingent consideration of $ 77.3 million within “ Other long - term liabilities ” within the Company ’ s Condensed Consolidated Balance Sheets .",
+    "marked_sentence": "The Company recorded the acquisition date fair value of the earn - out provision as contingent consideration of $ [[ 77.3 ]] million within “ Other long - term liabilities ” within the Company ’ s Condensed Consolidated Balance Sheets .",
+    "tokens": [
+      "The",
+      "Company",
+      "recorded",
+      "the",
+      "acquisition",
+      "date",
+      "fair",
+      "value",
+      "of",
+      "the",
+      "earn",
+      "-",
+      "out",
+      "provision",
+      "as",
+      "contingent",
+      "consideration",
+      "of",
+      "$",
+      "77.3",
+      "million",
+      "within",
+      "“",
+      "Other",
+      "long",
+      "-",
+      "term",
+      "liabilities",
+      "”",
+      "within",
+      "the",
+      "Company",
+      "’",
+      "s",
+      "Condensed",
+      "Consolidated",
+      "Balance",
+      "Sheets",
+      "."
+    ],
+    "gold_spans": [],
+    "model_spans": {
+      "bilstm_crf": [
+        [
+          19,
+          20,
+          "BusinessCombinationContingentConsiderationLiability"
+        ]
+      ],
+      "bert-base-cased": [
+        [
+          19,
+          20,
+          "BusinessCombinationContingentConsiderationLiability"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          19,
+          20,
+          "BusinessCombinationContingentConsiderationLiability"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "test",
+        "raw_row": 86300,
+        "source_id": "1099178",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      },
+      {
+        "split": "test",
+        "raw_row": 88661,
+        "source_id": "1101539",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      },
+      {
+        "split": "test",
+        "raw_row": 88791,
+        "source_id": "1101669",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      },
+      {
+        "split": "test",
+        "raw_row": 90361,
+        "source_id": "1103239",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q034",
+    "test_row": 47400,
+    "start": 71,
+    "end": 72,
+    "predicted_type": "Goodwill",
+    "target_text": "1.0",
+    "sentence": "Moreover , expansion into any new industry or channel could result in higher compliance costs as we may become subject to laws and regulations to which we are not currently subject . Goodwill and other identifiable intangible assets represent a significant portion of our total assets , and we may never realize the full value of our intangible assets . As of March 31 , 2020 , we had approximately $ 1.0 billion of goodwill and identifiable intangible assets .",
+    "marked_sentence": "Moreover , expansion into any new industry or channel could result in higher compliance costs as we may become subject to laws and regulations to which we are not currently subject . Goodwill and other identifiable intangible assets represent a significant portion of our total assets , and we may never realize the full value of our intangible assets . As of March 31 , 2020 , we had approximately $ [[ 1.0 ]] billion of goodwill and identifiable intangible assets .",
+    "tokens": [
+      "Moreover",
+      ",",
+      "expansion",
+      "into",
+      "any",
+      "new",
+      "industry",
+      "or",
+      "channel",
+      "could",
+      "result",
+      "in",
+      "higher",
+      "compliance",
+      "costs",
+      "as",
+      "we",
+      "may",
+      "become",
+      "subject",
+      "to",
+      "laws",
+      "and",
+      "regulations",
+      "to",
+      "which",
+      "we",
+      "are",
+      "not",
+      "currently",
+      "subject",
+      ".",
+      "Goodwill",
+      "and",
+      "other",
+      "identifiable",
+      "intangible",
+      "assets",
+      "represent",
+      "a",
+      "significant",
+      "portion",
+      "of",
+      "our",
+      "total",
+      "assets",
+      ",",
+      "and",
+      "we",
+      "may",
+      "never",
+      "realize",
+      "the",
+      "full",
+      "value",
+      "of",
+      "our",
+      "intangible",
+      "assets",
+      ".",
+      "As",
+      "of",
+      "March",
+      "31",
+      ",",
+      "2020",
+      ",",
+      "we",
+      "had",
+      "approximately",
+      "$",
+      "1.0",
+      "billion",
+      "of",
+      "goodwill",
+      "and",
+      "identifiable",
+      "intangible",
+      "assets",
+      "."
+    ],
+    "gold_spans": [],
+    "model_spans": {
+      "bilstm_crf": [
+        [
+          71,
+          72,
+          "Goodwill"
+        ]
+      ],
+      "bert-base-cased": [
+        [
+          71,
+          72,
+          "Goodwill"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          71,
+          72,
+          "Goodwill"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "test",
+        "raw_row": 53212,
+        "source_id": "1066090",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      },
+      {
+        "split": "test",
+        "raw_row": 84783,
+        "source_id": "1097661",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q035",
+    "test_row": 92859,
+    "start": 27,
+    "end": 28,
+    "predicted_type": "FiniteLivedIntangibleAssetUsefulLife",
+    "target_text": "10",
+    "sentence": "Certain PV panel certifications were contributed by the Company ’ s noncontrolling interest shareholders as capital contribution in March 2018 with an estimated finite useful lives of 10 years .",
+    "marked_sentence": "Certain PV panel certifications were contributed by the Company ’ s noncontrolling interest shareholders as capital contribution in March 2018 with an estimated finite useful lives of [[ 10 ]] years .",
+    "tokens": [
+      "Certain",
+      "PV",
+      "panel",
+      "certifications",
+      "were",
+      "contributed",
+      "by",
+      "the",
+      "Company",
+      "’",
+      "s",
+      "noncontrolling",
+      "interest",
+      "shareholders",
+      "as",
+      "capital",
+      "contribution",
+      "in",
+      "March",
+      "2018",
+      "with",
+      "an",
+      "estimated",
+      "finite",
+      "useful",
+      "lives",
+      "of",
+      "10",
+      "years",
+      "."
+    ],
+    "gold_spans": [],
+    "model_spans": {
+      "bilstm_crf": [],
+      "bert-base-cased": [
+        [
+          27,
+          28,
+          "FiniteLivedIntangibleAssetUsefulLife"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          27,
+          28,
+          "FiniteLivedIntangibleAssetUsefulLife"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "train",
+        "raw_row": 797703,
+        "source_id": "797703",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      },
+      {
+        "split": "test",
+        "raw_row": 106158,
+        "source_id": "1119036",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q036",
+    "test_row": 73048,
+    "start": 120,
+    "end": 121,
+    "predicted_type": "SaleOfStockPricePerShare",
+    "target_text": "17.376",
+    "sentence": "December 2019 Offering On December 16 , 2019 , Brigham Minerals completed an offering of 12,650,000 shares of its Class A common stock ( the \" December 2019 Offering \" ) , including 6,000,000 shares issued and sold by Brigham Minerals and an aggregate of 6,650,000 shares sold by certain shareholders of the Company ( the \" Selling Shareholders \" ) , of which 5,496,813 represents shares issued upon redemption of an equivalent number of their common units in Brigham LLC ( the \" Brigham LLC Units \" ) ( together with a corresponding number of shares of Class B common stock in Brigham Minerals ) , at a price to the public of $ 18.10 per share ( $ 17.376 per share net of underwriting discounts and commissions ) .",
+    "marked_sentence": "December 2019 Offering On December 16 , 2019 , Brigham Minerals completed an offering of 12,650,000 shares of its Class A common stock ( the \" December 2019 Offering \" ) , including 6,000,000 shares issued and sold by Brigham Minerals and an aggregate of 6,650,000 shares sold by certain shareholders of the Company ( the \" Selling Shareholders \" ) , of which 5,496,813 represents shares issued upon redemption of an equivalent number of their common units in Brigham LLC ( the \" Brigham LLC Units \" ) ( together with a corresponding number of shares of Class B common stock in Brigham Minerals ) , at a price to the public of $ 18.10 per share ( $ [[ 17.376 ]] per share net of underwriting discounts and commissions ) .",
+    "tokens": [
+      "December",
+      "2019",
+      "Offering",
+      "On",
+      "December",
+      "16",
+      ",",
+      "2019",
+      ",",
+      "Brigham",
+      "Minerals",
+      "completed",
+      "an",
+      "offering",
+      "of",
+      "12,650,000",
+      "shares",
+      "of",
+      "its",
+      "Class",
+      "A",
+      "common",
+      "stock",
+      "(",
+      "the",
+      "\"",
+      "December",
+      "2019",
+      "Offering",
+      "\"",
+      ")",
+      ",",
+      "including",
+      "6,000,000",
+      "shares",
+      "issued",
+      "and",
+      "sold",
+      "by",
+      "Brigham",
+      "Minerals",
+      "and",
+      "an",
+      "aggregate",
+      "of",
+      "6,650,000",
+      "shares",
+      "sold",
+      "by",
+      "certain",
+      "shareholders",
+      "of",
+      "the",
+      "Company",
+      "(",
+      "the",
+      "\"",
+      "Selling",
+      "Shareholders",
+      "\"",
+      ")",
+      ",",
+      "of",
+      "which",
+      "5,496,813",
+      "represents",
+      "shares",
+      "issued",
+      "upon",
+      "redemption",
+      "of",
+      "an",
+      "equivalent",
+      "number",
+      "of",
+      "their",
+      "common",
+      "units",
+      "in",
+      "Brigham",
+      "LLC",
+      "(",
+      "the",
+      "\"",
+      "Brigham",
+      "LLC",
+      "Units",
+      "\"",
+      ")",
+      "(",
+      "together",
+      "with",
+      "a",
+      "corresponding",
+      "number",
+      "of",
+      "shares",
+      "of",
+      "Class",
+      "B",
+      "common",
+      "stock",
+      "in",
+      "Brigham",
+      "Minerals",
+      ")",
+      ",",
+      "at",
+      "a",
+      "price",
+      "to",
+      "the",
+      "public",
+      "of",
+      "$",
+      "18.10",
+      "per",
+      "share",
+      "(",
+      "$",
+      "17.376",
+      "per",
+      "share",
+      "net",
+      "of",
+      "underwriting",
+      "discounts",
+      "and",
+      "commissions",
+      ")",
+      "."
+    ],
+    "gold_spans": [
+      [
+        15,
+        16,
+        "SaleOfStockNumberOfSharesIssuedInTransaction"
+      ],
+      [
+        33,
+        34,
+        "SaleOfStockNumberOfSharesIssuedInTransaction"
+      ],
+      [
+        45,
+        46,
+        "SaleOfStockNumberOfSharesIssuedInTransaction"
+      ],
+      [
+        64,
+        65,
+        "SaleOfStockNumberOfSharesIssuedInTransaction"
+      ],
+      [
+        115,
+        116,
+        "SaleOfStockPricePerShare"
+      ]
+    ],
+    "model_spans": {
+      "bilstm_crf": [
+        [
+          15,
+          16,
+          "StockIssuedDuringPeriodSharesNewIssues"
+        ],
+        [
+          33,
+          34,
+          "SaleOfStockNumberOfSharesIssuedInTransaction"
+        ],
+        [
+          45,
+          46,
+          "SaleOfStockNumberOfSharesIssuedInTransaction"
+        ],
+        [
+          64,
+          65,
+          "SaleOfStockNumberOfSharesIssuedInTransaction"
+        ],
+        [
+          115,
+          116,
+          "SaleOfStockPricePerShare"
+        ],
+        [
+          120,
+          121,
+          "SaleOfStockPricePerShare"
+        ]
+      ],
+      "bert-base-cased": [
+        [
+          15,
+          16,
+          "SaleOfStockNumberOfSharesIssuedInTransaction"
+        ],
+        [
+          33,
+          34,
+          "SaleOfStockNumberOfSharesIssuedInTransaction"
+        ],
+        [
+          45,
+          46,
+          "SaleOfStockNumberOfSharesIssuedInTransaction"
+        ],
+        [
+          64,
+          65,
+          "StockIssuedDuringPeriodSharesNewIssues"
+        ],
+        [
+          115,
+          116,
+          "SaleOfStockPricePerShare"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          15,
+          16,
+          "StockIssuedDuringPeriodSharesNewIssues"
+        ],
+        [
+          33,
+          34,
+          "StockIssuedDuringPeriodSharesNewIssues"
+        ],
+        [
+          45,
+          46,
+          "SaleOfStockNumberOfSharesIssuedInTransaction"
+        ],
+        [
+          64,
+          65,
+          "StockIssuedDuringPeriodSharesNewIssues"
+        ],
+        [
+          115,
+          116,
+          "SaleOfStockPricePerShare"
+        ],
+        [
+          120,
+          121,
+          "SaleOfStockPricePerShare"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "test",
+        "raw_row": 84667,
+        "source_id": "1097545",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q037",
+    "test_row": 7078,
+    "start": 44,
+    "end": 45,
+    "predicted_type": "DebtInstrumentBasisSpreadOnVariableRate1",
+    "target_text": "2.85",
+    "sentence": "Deferred issuance costs of $ 0.6 million are being amortized on a straight - line basis over the term of the securities . Interest on the debentures issued to First Commonwealth Capital Trust II is paid quarterly at a floating rate of LIBOR + 2.85 % , which is reset quarterly .",
+    "marked_sentence": "Deferred issuance costs of $ 0.6 million are being amortized on a straight - line basis over the term of the securities . Interest on the debentures issued to First Commonwealth Capital Trust II is paid quarterly at a floating rate of LIBOR + [[ 2.85 ]] % , which is reset quarterly .",
+    "tokens": [
+      "Deferred",
+      "issuance",
+      "costs",
+      "of",
+      "$",
+      "0.6",
+      "million",
+      "are",
+      "being",
+      "amortized",
+      "on",
+      "a",
+      "straight",
+      "-",
+      "line",
+      "basis",
+      "over",
+      "the",
+      "term",
+      "of",
+      "the",
+      "securities",
+      ".",
+      "Interest",
+      "on",
+      "the",
+      "debentures",
+      "issued",
+      "to",
+      "First",
+      "Commonwealth",
+      "Capital",
+      "Trust",
+      "II",
+      "is",
+      "paid",
+      "quarterly",
+      "at",
+      "a",
+      "floating",
+      "rate",
+      "of",
+      "LIBOR",
+      "+",
+      "2.85",
+      "%",
+      ",",
+      "which",
+      "is",
+      "reset",
+      "quarterly",
+      "."
+    ],
+    "gold_spans": [
+      [
+        5,
+        6,
+        "DeferredFinanceCostsGross"
+      ]
+    ],
+    "model_spans": {
+      "bilstm_crf": [
+        [
+          5,
+          6,
+          "DeferredFinanceCostsGross"
+        ],
+        [
+          44,
+          45,
+          "DebtInstrumentBasisSpreadOnVariableRate1"
+        ]
+      ],
+      "bert-base-cased": [
+        [
+          5,
+          6,
+          "DeferredFinanceCostsGross"
+        ],
+        [
+          44,
+          45,
+          "DebtInstrumentBasisSpreadOnVariableRate1"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          5,
+          6,
+          "DeferredFinanceCostsGross"
+        ],
+        [
+          44,
+          45,
+          "DebtInstrumentBasisSpreadOnVariableRate1"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "train",
+        "raw_row": 396475,
+        "source_id": "396475",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      },
+      {
+        "split": "train",
+        "raw_row": 707817,
+        "source_id": "707817",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      },
+      {
+        "split": "test",
+        "raw_row": 7577,
+        "source_id": "1020455",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q038",
+    "test_row": 76764,
+    "start": 24,
+    "end": 25,
+    "predicted_type": "EquityMethodInvestmentOwnershipPercentage",
+    "target_text": "99.2",
+    "sentence": "PBF Energy Inc. ( “ PBF Energy ” ) is the sole managing member of , and owner of an equity interest representing approximately 99.2 % of the outstanding economic interest in , PBF LLC as of March 31 , 2020 .",
+    "marked_sentence": "PBF Energy Inc. ( “ PBF Energy ” ) is the sole managing member of , and owner of an equity interest representing approximately [[ 99.2 ]] % of the outstanding economic interest in , PBF LLC as of March 31 , 2020 .",
+    "tokens": [
+      "PBF",
+      "Energy",
+      "Inc.",
+      "(",
+      "“",
+      "PBF",
+      "Energy",
+      "”",
+      ")",
+      "is",
+      "the",
+      "sole",
+      "managing",
+      "member",
+      "of",
+      ",",
+      "and",
+      "owner",
+      "of",
+      "an",
+      "equity",
+      "interest",
+      "representing",
+      "approximately",
+      "99.2",
+      "%",
+      "of",
+      "the",
+      "outstanding",
+      "economic",
+      "interest",
+      "in",
+      ",",
+      "PBF",
+      "LLC",
+      "as",
+      "of",
+      "March",
+      "31",
+      ",",
+      "2020",
+      "."
+    ],
+    "gold_spans": [],
+    "model_spans": {
+      "bilstm_crf": [],
+      "bert-base-cased": [
+        [
+          24,
+          25,
+          "MinorityInterestOwnershipPercentageByParent"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          24,
+          25,
+          "EquityMethodInvestmentOwnershipPercentage"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "test",
+        "raw_row": 88724,
+        "source_id": "1101602",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      },
+      {
+        "split": "test",
+        "raw_row": 90294,
+        "source_id": "1103172",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q039",
+    "test_row": 46225,
+    "start": 15,
+    "end": 16,
+    "predicted_type": "AntidilutiveSecuritiesExcludedFromComputationOfEarningsPerShareAmount",
+    "target_text": "1.2",
+    "sentence": "For the three months ended March 31 , 2020 and 2019 approximately 1.5 million and 1.2 million notional units were excluded from the computation , respectively , because these notional units either would not have been issuable if the end of the reporting period were the end of the contingency period or as they were anti - dilutive .",
+    "marked_sentence": "For the three months ended March 31 , 2020 and 2019 approximately 1.5 million and [[ 1.2 ]] million notional units were excluded from the computation , respectively , because these notional units either would not have been issuable if the end of the reporting period were the end of the contingency period or as they were anti - dilutive .",
+    "tokens": [
+      "For",
+      "the",
+      "three",
+      "months",
+      "ended",
+      "March",
+      "31",
+      ",",
+      "2020",
+      "and",
+      "2019",
+      "approximately",
+      "1.5",
+      "million",
+      "and",
+      "1.2",
+      "million",
+      "notional",
+      "units",
+      "were",
+      "excluded",
+      "from",
+      "the",
+      "computation",
+      ",",
+      "respectively",
+      ",",
+      "because",
+      "these",
+      "notional",
+      "units",
+      "either",
+      "would",
+      "not",
+      "have",
+      "been",
+      "issuable",
+      "if",
+      "the",
+      "end",
+      "of",
+      "the",
+      "reporting",
+      "period",
+      "were",
+      "the",
+      "end",
+      "of",
+      "the",
+      "contingency",
+      "period",
+      "or",
+      "as",
+      "they",
+      "were",
+      "anti",
+      "-",
+      "dilutive",
+      "."
+    ],
+    "gold_spans": [],
+    "model_spans": {
+      "bilstm_crf": [
+        [
+          12,
+          13,
+          "AntidilutiveSecuritiesExcludedFromComputationOfEarningsPerShareAmount"
+        ],
+        [
+          15,
+          16,
+          "AntidilutiveSecuritiesExcludedFromComputationOfEarningsPerShareAmount"
+        ]
+      ],
+      "bert-base-cased": [
+        [
+          12,
+          13,
+          "AntidilutiveSecuritiesExcludedFromComputationOfEarningsPerShareAmount"
+        ],
+        [
+          15,
+          16,
+          "AntidilutiveSecuritiesExcludedFromComputationOfEarningsPerShareAmount"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          12,
+          13,
+          "AntidilutiveSecuritiesExcludedFromComputationOfEarningsPerShareAmount"
+        ],
+        [
+          15,
+          16,
+          "AntidilutiveSecuritiesExcludedFromComputationOfEarningsPerShareAmount"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "test",
+        "raw_row": 51767,
+        "source_id": "1064645",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      },
+      {
+        "split": "test",
+        "raw_row": 67623,
+        "source_id": "1080501",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q040",
+    "test_row": 84549,
+    "start": 36,
+    "end": 37,
+    "predicted_type": "DebtInstrumentFaceAmount",
+    "target_text": "1.7",
+    "sentence": "Withholding taxes that would be payable upon remittance of these lower tier earnings are not expected to be material . In July 2018 , we issued the 2023 Notes with an aggregate principal amount of $ 1.7 billion .",
+    "marked_sentence": "Withholding taxes that would be payable upon remittance of these lower tier earnings are not expected to be material . In July 2018 , we issued the 2023 Notes with an aggregate principal amount of $ [[ 1.7 ]] billion .",
+    "tokens": [
+      "Withholding",
+      "taxes",
+      "that",
+      "would",
+      "be",
+      "payable",
+      "upon",
+      "remittance",
+      "of",
+      "these",
+      "lower",
+      "tier",
+      "earnings",
+      "are",
+      "not",
+      "expected",
+      "to",
+      "be",
+      "material",
+      ".",
+      "In",
+      "July",
+      "2018",
+      ",",
+      "we",
+      "issued",
+      "the",
+      "2023",
+      "Notes",
+      "with",
+      "an",
+      "aggregate",
+      "principal",
+      "amount",
+      "of",
+      "$",
+      "1.7",
+      "billion",
+      "."
+    ],
+    "gold_spans": [],
+    "model_spans": {
+      "bilstm_crf": [
+        [
+          36,
+          37,
+          "DebtInstrumentFaceAmount"
+        ]
+      ],
+      "bert-base-cased": [
+        [
+          36,
+          37,
+          "DebtInstrumentFaceAmount"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          36,
+          37,
+          "DebtInstrumentFaceAmount"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "train",
+        "raw_row": 765321,
+        "source_id": "765321",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      },
+      {
+        "split": "test",
+        "raw_row": 97618,
+        "source_id": "1110496",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q041",
+    "test_row": 56258,
+    "start": 28,
+    "end": 29,
+    "predicted_type": "DebtInstrumentFaceAmount",
+    "target_text": "500",
+    "sentence": "See Note 14 for information on the Company ’ s fair value hedges . Long - term Debt On April 2 , 2020 , the Company issued $ 500 million of unsecured 3.0 % senior notes due April 2 , 2025 and incurred debt issuance costs of $ 4 million .",
+    "marked_sentence": "See Note 14 for information on the Company ’ s fair value hedges . Long - term Debt On April 2 , 2020 , the Company issued $ [[ 500 ]] million of unsecured 3.0 % senior notes due April 2 , 2025 and incurred debt issuance costs of $ 4 million .",
+    "tokens": [
+      "See",
+      "Note",
+      "14",
+      "for",
+      "information",
+      "on",
+      "the",
+      "Company",
+      "’",
+      "s",
+      "fair",
+      "value",
+      "hedges",
+      ".",
+      "Long",
+      "-",
+      "term",
+      "Debt",
+      "On",
+      "April",
+      "2",
+      ",",
+      "2020",
+      ",",
+      "the",
+      "Company",
+      "issued",
+      "$",
+      "500",
+      "million",
+      "of",
+      "unsecured",
+      "3.0",
+      "%",
+      "senior",
+      "notes",
+      "due",
+      "April",
+      "2",
+      ",",
+      "2025",
+      "and",
+      "incurred",
+      "debt",
+      "issuance",
+      "costs",
+      "of",
+      "$",
+      "4",
+      "million",
+      "."
+    ],
+    "gold_spans": [
+      [
+        32,
+        33,
+        "DebtInstrumentInterestRateStatedPercentage"
+      ]
+    ],
+    "model_spans": {
+      "bilstm_crf": [
+        [
+          28,
+          29,
+          "DebtInstrumentFaceAmount"
+        ],
+        [
+          32,
+          33,
+          "DebtInstrumentInterestRateStatedPercentage"
+        ],
+        [
+          48,
+          49,
+          "DeferredFinanceCostsNet"
+        ]
+      ],
+      "bert-base-cased": [
+        [
+          28,
+          29,
+          "DebtInstrumentFaceAmount"
+        ],
+        [
+          32,
+          33,
+          "DebtInstrumentInterestRateStatedPercentage"
+        ],
+        [
+          48,
+          49,
+          "DeferredFinanceCostsGross"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          28,
+          29,
+          "DebtInstrumentFaceAmount"
+        ],
+        [
+          32,
+          33,
+          "DebtInstrumentInterestRateStatedPercentage"
+        ],
+        [
+          48,
+          49,
+          "DeferredFinanceCostsGross"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "test",
+        "raw_row": 62405,
+        "source_id": "1075283",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q042",
+    "test_row": 23438,
+    "start": 28,
+    "end": 29,
+    "predicted_type": "RelatedPartyTransactionAmountsOfTransaction",
+    "target_text": "296.0",
+    "sentence": "During the three months ended March 31 , 2020 and 2019 , we paid EPCO and its privately held affiliates cash distributions totaling $ 302.8 million and $ 296.0 million , respectively .",
+    "marked_sentence": "During the three months ended March 31 , 2020 and 2019 , we paid EPCO and its privately held affiliates cash distributions totaling $ 302.8 million and $ [[ 296.0 ]] million , respectively .",
+    "tokens": [
+      "During",
+      "the",
+      "three",
+      "months",
+      "ended",
+      "March",
+      "31",
+      ",",
+      "2020",
+      "and",
+      "2019",
+      ",",
+      "we",
+      "paid",
+      "EPCO",
+      "and",
+      "its",
+      "privately",
+      "held",
+      "affiliates",
+      "cash",
+      "distributions",
+      "totaling",
+      "$",
+      "302.8",
+      "million",
+      "and",
+      "$",
+      "296.0",
+      "million",
+      ",",
+      "respectively",
+      "."
+    ],
+    "gold_spans": [],
+    "model_spans": {
+      "bilstm_crf": [],
+      "bert-base-cased": [],
+      "sec-bert-shape": [
+        [
+          24,
+          25,
+          "RelatedPartyTransactionAmountsOfTransaction"
+        ],
+        [
+          28,
+          29,
+          "RelatedPartyTransactionAmountsOfTransaction"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "test",
+        "raw_row": 26419,
+        "source_id": "1039297",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q043",
+    "test_row": 9800,
+    "start": 28,
+    "end": 29,
+    "predicted_type": "RestructuringAndRelatedCostExpectedCost1",
+    "target_text": "11",
+    "sentence": "We expect to incur restructuring charges totaling approximately $ 16 million to $ 22 million , consisting primarily of severance benefits ( between $ 8 million and $ 11 million ) and retention benefits ( between $ 8 million and $ 11 million ) primarily associated with the retention of employees impacted by the Spin - Off transaction and certain key research and development employees .",
+    "marked_sentence": "We expect to incur restructuring charges totaling approximately $ 16 million to $ 22 million , consisting primarily of severance benefits ( between $ 8 million and $ [[ 11 ]] million ) and retention benefits ( between $ 8 million and $ 11 million ) primarily associated with the retention of employees impacted by the Spin - Off transaction and certain key research and development employees .",
+    "tokens": [
+      "We",
+      "expect",
+      "to",
+      "incur",
+      "restructuring",
+      "charges",
+      "totaling",
+      "approximately",
+      "$",
+      "16",
+      "million",
+      "to",
+      "$",
+      "22",
+      "million",
+      ",",
+      "consisting",
+      "primarily",
+      "of",
+      "severance",
+      "benefits",
+      "(",
+      "between",
+      "$",
+      "8",
+      "million",
+      "and",
+      "$",
+      "11",
+      "million",
+      ")",
+      "and",
+      "retention",
+      "benefits",
+      "(",
+      "between",
+      "$",
+      "8",
+      "million",
+      "and",
+      "$",
+      "11",
+      "million",
+      ")",
+      "primarily",
+      "associated",
+      "with",
+      "the",
+      "retention",
+      "of",
+      "employees",
+      "impacted",
+      "by",
+      "the",
+      "Spin",
+      "-",
+      "Off",
+      "transaction",
+      "and",
+      "certain",
+      "key",
+      "research",
+      "and",
+      "development",
+      "employees",
+      "."
+    ],
+    "gold_spans": [
+      [
+        9,
+        10,
+        "RestructuringCharges"
+      ],
+      [
+        13,
+        14,
+        "RestructuringCharges"
+      ]
+    ],
+    "model_spans": {
+      "bilstm_crf": [
+        [
+          9,
+          10,
+          "RestructuringCharges"
+        ],
+        [
+          13,
+          14,
+          "RestructuringAndRelatedCostExpectedCost1"
+        ],
+        [
+          24,
+          25,
+          "RestructuringAndRelatedCostExpectedCost1"
+        ],
+        [
+          28,
+          29,
+          "RestructuringAndRelatedCostExpectedCost1"
+        ],
+        [
+          37,
+          38,
+          "RestructuringAndRelatedCostExpectedCost1"
+        ],
+        [
+          41,
+          42,
+          "RestructuringAndRelatedCostExpectedCost1"
+        ]
+      ],
+      "bert-base-cased": [
+        [
+          9,
+          10,
+          "RestructuringAndRelatedCostExpectedCost1"
+        ],
+        [
+          13,
+          14,
+          "RestructuringAndRelatedCostExpectedCost1"
+        ],
+        [
+          24,
+          25,
+          "RestructuringCharges"
+        ],
+        [
+          28,
+          29,
+          "RestructuringCharges"
+        ],
+        [
+          37,
+          38,
+          "RestructuringCharges"
+        ],
+        [
+          41,
+          42,
+          "RestructuringCharges"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          9,
+          10,
+          "RestructuringAndRelatedCostExpectedCost1"
+        ],
+        [
+          13,
+          14,
+          "RestructuringAndRelatedCostExpectedCost1"
+        ],
+        [
+          24,
+          25,
+          "RestructuringAndRelatedCostExpectedCost1"
+        ],
+        [
+          28,
+          29,
+          "RestructuringAndRelatedCostExpectedCost1"
+        ],
+        [
+          37,
+          38,
+          "RestructuringAndRelatedCostExpectedCost1"
+        ],
+        [
+          41,
+          42,
+          "RestructuringAndRelatedCostExpectedCost1"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "test",
+        "raw_row": 10360,
+        "source_id": "1023238",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q044",
+    "test_row": 78828,
+    "start": 124,
+    "end": 125,
+    "predicted_type": "CommonStockParOrStatedValuePerShare",
+    "target_text": "0.01",
+    "sentence": "In the Entertainment Distribution , stockholders of Madison Square Garden Sports Corp. received ( a ) one share of the Company ’ s Class A common stock , par value $ 0.01 per share , for every share of Madison Square Garden Sports Corp. Class A common stock , par value $ 0.01 per share , held of record as of the close of business , New York City time , on April 13 , 2020 ( the “ Record Date ” ) , and ( b ) one share of the Company ’ s Class B common stock , par value $ 0.01 per share , for every share of Madison Square Garden Sports Corp. Class B common stock , par value $ 0.01 per share , held of record as of the close of business , New York City time , on the Record Date . Description of Business The Company is a leader in live experiences comprised of iconic venues ; marquee entertainment content ; popular dining and nightlife offerings ; and a premier music festival .",
+    "marked_sentence": "In the Entertainment Distribution , stockholders of Madison Square Garden Sports Corp. received ( a ) one share of the Company ’ s Class A common stock , par value $ 0.01 per share , for every share of Madison Square Garden Sports Corp. Class A common stock , par value $ 0.01 per share , held of record as of the close of business , New York City time , on April 13 , 2020 ( the “ Record Date ” ) , and ( b ) one share of the Company ’ s Class B common stock , par value $ 0.01 per share , for every share of Madison Square Garden Sports Corp. Class B common stock , par value $ [[ 0.01 ]] per share , held of record as of the close of business , New York City time , on the Record Date . Description of Business The Company is a leader in live experiences comprised of iconic venues ; marquee entertainment content ; popular dining and nightlife offerings ; and a premier music festival .",
+    "tokens": [
+      "In",
+      "the",
+      "Entertainment",
+      "Distribution",
+      ",",
+      "stockholders",
+      "of",
+      "Madison",
+      "Square",
+      "Garden",
+      "Sports",
+      "Corp.",
+      "received",
+      "(",
+      "a",
+      ")",
+      "one",
+      "share",
+      "of",
+      "the",
+      "Company",
+      "’",
+      "s",
+      "Class",
+      "A",
+      "common",
+      "stock",
+      ",",
+      "par",
+      "value",
+      "$",
+      "0.01",
+      "per",
+      "share",
+      ",",
+      "for",
+      "every",
+      "share",
+      "of",
+      "Madison",
+      "Square",
+      "Garden",
+      "Sports",
+      "Corp.",
+      "Class",
+      "A",
+      "common",
+      "stock",
+      ",",
+      "par",
+      "value",
+      "$",
+      "0.01",
+      "per",
+      "share",
+      ",",
+      "held",
+      "of",
+      "record",
+      "as",
+      "of",
+      "the",
+      "close",
+      "of",
+      "business",
+      ",",
+      "New",
+      "York",
+      "City",
+      "time",
+      ",",
+      "on",
+      "April",
+      "13",
+      ",",
+      "2020",
+      "(",
+      "the",
+      "“",
+      "Record",
+      "Date",
+      "”",
+      ")",
+      ",",
+      "and",
+      "(",
+      "b",
+      ")",
+      "one",
+      "share",
+      "of",
+      "the",
+      "Company",
+      "’",
+      "s",
+      "Class",
+      "B",
+      "common",
+      "stock",
+      ",",
+      "par",
+      "value",
+      "$",
+      "0.01",
+      "per",
+      "share",
+      ",",
+      "for",
+      "every",
+      "share",
+      "of",
+      "Madison",
+      "Square",
+      "Garden",
+      "Sports",
+      "Corp.",
+      "Class",
+      "B",
+      "common",
+      "stock",
+      ",",
+      "par",
+      "value",
+      "$",
+      "0.01",
+      "per",
+      "share",
+      ",",
+      "held",
+      "of",
+      "record",
+      "as",
+      "of",
+      "the",
+      "close",
+      "of",
+      "business",
+      ",",
+      "New",
+      "York",
+      "City",
+      "time",
+      ",",
+      "on",
+      "the",
+      "Record",
+      "Date",
+      ".",
+      "Description",
+      "of",
+      "Business",
+      "The",
+      "Company",
+      "is",
+      "a",
+      "leader",
+      "in",
+      "live",
+      "experiences",
+      "comprised",
+      "of",
+      "iconic",
+      "venues",
+      ";",
+      "marquee",
+      "entertainment",
+      "content",
+      ";",
+      "popular",
+      "dining",
+      "and",
+      "nightlife",
+      "offerings",
+      ";",
+      "and",
+      "a",
+      "premier",
+      "music",
+      "festival",
+      "."
+    ],
+    "gold_spans": [],
+    "model_spans": {
+      "bilstm_crf": [
+        [
+          31,
+          32,
+          "CommonStockParOrStatedValuePerShare"
+        ],
+        [
+          52,
+          53,
+          "CommonStockParOrStatedValuePerShare"
+        ],
+        [
+          103,
+          104,
+          "CommonStockParOrStatedValuePerShare"
+        ],
+        [
+          124,
+          125,
+          "CommonStockParOrStatedValuePerShare"
+        ]
+      ],
+      "bert-base-cased": [
+        [
+          31,
+          32,
+          "CommonStockParOrStatedValuePerShare"
+        ],
+        [
+          52,
+          53,
+          "CommonStockParOrStatedValuePerShare"
+        ],
+        [
+          103,
+          104,
+          "CommonStockParOrStatedValuePerShare"
+        ],
+        [
+          124,
+          125,
+          "CommonStockParOrStatedValuePerShare"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          31,
+          32,
+          "CommonStockParOrStatedValuePerShare"
+        ],
+        [
+          52,
+          53,
+          "CommonStockParOrStatedValuePerShare"
+        ],
+        [
+          103,
+          104,
+          "CommonStockParOrStatedValuePerShare"
+        ],
+        [
+          124,
+          125,
+          "CommonStockParOrStatedValuePerShare"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "test",
+        "raw_row": 91213,
+        "source_id": "1104091",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q045",
+    "test_row": 78108,
+    "start": 20,
+    "end": 21,
+    "predicted_type": "IncomeTaxExpenseBenefit",
+    "target_text": "328,000",
+    "sentence": "54 Income Tax Expense Income tax expense for the three months ended March 31 , 2020 and 2019 was $ 328,000 and $ 699,000 , respectively .",
+    "marked_sentence": "54 Income Tax Expense Income tax expense for the three months ended March 31 , 2020 and 2019 was $ [[ 328,000 ]] and $ 699,000 , respectively .",
+    "tokens": [
+      "54",
+      "Income",
+      "Tax",
+      "Expense",
+      "Income",
+      "tax",
+      "expense",
+      "for",
+      "the",
+      "three",
+      "months",
+      "ended",
+      "March",
+      "31",
+      ",",
+      "2020",
+      "and",
+      "2019",
+      "was",
+      "$",
+      "328,000",
+      "and",
+      "$",
+      "699,000",
+      ",",
+      "respectively",
+      "."
+    ],
+    "gold_spans": [],
+    "model_spans": {
+      "bilstm_crf": [
+        [
+          20,
+          21,
+          "IncomeTaxExpenseBenefit"
+        ],
+        [
+          23,
+          24,
+          "IncomeTaxExpenseBenefit"
+        ]
+      ],
+      "bert-base-cased": [
+        [
+          20,
+          21,
+          "IncomeTaxExpenseBenefit"
+        ],
+        [
+          23,
+          24,
+          "IncomeTaxExpenseBenefit"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          20,
+          21,
+          "IncomeTaxExpenseBenefit"
+        ],
+        [
+          23,
+          24,
+          "IncomeTaxExpenseBenefit"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "test",
+        "raw_row": 90464,
+        "source_id": "1103342",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q046",
+    "test_row": 18852,
+    "start": 14,
+    "end": 15,
+    "predicted_type": "LineOfCreditFacilityMaximumBorrowingCapacity",
+    "target_text": "1.4",
+    "sentence": "The total borrowing capacity of the 2020 Senior Unsecured Credit Facility is approximately $ 1.4 billion USD .",
+    "marked_sentence": "The total borrowing capacity of the 2020 Senior Unsecured Credit Facility is approximately $ [[ 1.4 ]] billion USD .",
+    "tokens": [
+      "The",
+      "total",
+      "borrowing",
+      "capacity",
+      "of",
+      "the",
+      "2020",
+      "Senior",
+      "Unsecured",
+      "Credit",
+      "Facility",
+      "is",
+      "approximately",
+      "$",
+      "1.4",
+      "billion",
+      "USD",
+      "."
+    ],
+    "gold_spans": [],
+    "model_spans": {
+      "bilstm_crf": [
+        [
+          14,
+          15,
+          "LineOfCreditFacilityMaximumBorrowingCapacity"
+        ]
+      ],
+      "bert-base-cased": [
+        [
+          14,
+          15,
+          "LineOfCreditFacilityMaximumBorrowingCapacity"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          14,
+          15,
+          "LineOfCreditFacilityMaximumBorrowingCapacity"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "test",
+        "raw_row": 21103,
+        "source_id": "1033981",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q047",
+    "test_row": 39760,
+    "start": 5,
+    "end": 6,
+    "predicted_type": "NumberOfOperatingSegments",
+    "target_text": "four",
+    "sentence": "We report our operations in four business segments - Gaming , Lottery , Sci Play and Digital . Basis of Presentation and Principles of Consolidation The accompanying condensed consolidated financial statements have been prepared in accordance with U.S. GAAP .",
+    "marked_sentence": "We report our operations in [[ four ]] business segments - Gaming , Lottery , Sci Play and Digital . Basis of Presentation and Principles of Consolidation The accompanying condensed consolidated financial statements have been prepared in accordance with U.S. GAAP .",
+    "tokens": [
+      "We",
+      "report",
+      "our",
+      "operations",
+      "in",
+      "four",
+      "business",
+      "segments",
+      "-",
+      "Gaming",
+      ",",
+      "Lottery",
+      ",",
+      "Sci",
+      "Play",
+      "and",
+      "Digital",
+      ".",
+      "Basis",
+      "of",
+      "Presentation",
+      "and",
+      "Principles",
+      "of",
+      "Consolidation",
+      "The",
+      "accompanying",
+      "condensed",
+      "consolidated",
+      "financial",
+      "statements",
+      "have",
+      "been",
+      "prepared",
+      "in",
+      "accordance",
+      "with",
+      "U.S.",
+      "GAAP",
+      "."
+    ],
+    "gold_spans": [],
+    "model_spans": {
+      "bilstm_crf": [
+        [
+          5,
+          6,
+          "NumberOfOperatingSegments"
+        ]
+      ],
+      "bert-base-cased": [
+        [
+          5,
+          6,
+          "NumberOfReportableSegments"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          5,
+          6,
+          "NumberOfOperatingSegments"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "test",
+        "raw_row": 44802,
+        "source_id": "1057680",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q048",
+    "test_row": 14716,
+    "start": 4,
+    "end": 5,
+    "predicted_type": "DebtInstrumentTerm",
+    "target_text": "10",
+    "sentence": "The loan has a 10 - year term and bears interest on the principal amount outstanding at an annual rate of 1.00 % until April 23 , 2025 , and the applicable Secured Overnight Financing Rate ( \" SOFR \" ) plus 2.00 % thereafter until April 23 , 2030 .",
+    "marked_sentence": "The loan has a [[ 10 ]] - year term and bears interest on the principal amount outstanding at an annual rate of 1.00 % until April 23 , 2025 , and the applicable Secured Overnight Financing Rate ( \" SOFR \" ) plus 2.00 % thereafter until April 23 , 2030 .",
+    "tokens": [
+      "The",
+      "loan",
+      "has",
+      "a",
+      "10",
+      "-",
+      "year",
+      "term",
+      "and",
+      "bears",
+      "interest",
+      "on",
+      "the",
+      "principal",
+      "amount",
+      "outstanding",
+      "at",
+      "an",
+      "annual",
+      "rate",
+      "of",
+      "1.00",
+      "%",
+      "until",
+      "April",
+      "23",
+      ",",
+      "2025",
+      ",",
+      "and",
+      "the",
+      "applicable",
+      "Secured",
+      "Overnight",
+      "Financing",
+      "Rate",
+      "(",
+      "\"",
+      "SOFR",
+      "\"",
+      ")",
+      "plus",
+      "2.00",
+      "%",
+      "thereafter",
+      "until",
+      "April",
+      "23",
+      ",",
+      "2030",
+      "."
+    ],
+    "gold_spans": [],
+    "model_spans": {
+      "bilstm_crf": [
+        [
+          4,
+          5,
+          "DebtInstrumentTerm"
+        ],
+        [
+          21,
+          22,
+          "DebtInstrumentInterestRateStatedPercentage"
+        ],
+        [
+          42,
+          43,
+          "DebtInstrumentBasisSpreadOnVariableRate1"
+        ]
+      ],
+      "bert-base-cased": [
+        [
+          4,
+          5,
+          "DebtInstrumentTerm"
+        ],
+        [
+          21,
+          22,
+          "DebtInstrumentInterestRateStatedPercentage"
+        ],
+        [
+          42,
+          43,
+          "DebtInstrumentBasisSpreadOnVariableRate1"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          4,
+          5,
+          "DebtInstrumentTerm"
+        ],
+        [
+          21,
+          22,
+          "DebtInstrumentInterestRateStatedPercentage"
+        ],
+        [
+          42,
+          43,
+          "DebtInstrumentBasisSpreadOnVariableRate1"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "test",
+        "raw_row": 16395,
+        "source_id": "1029273",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q049",
+    "test_row": 10655,
+    "start": 11,
+    "end": 12,
+    "predicted_type": "LineOfCredit",
+    "target_text": "298.1",
+    "sentence": "As of March 31 , 2020 , the Company had $ 298.1 million drawn , letters of credit issued in the amount of $ 24.9 million , and $ 177.0 million of remaining borrowing capacity available under the Credit Agreement .",
+    "marked_sentence": "As of March 31 , 2020 , the Company had $ [[ 298.1 ]] million drawn , letters of credit issued in the amount of $ 24.9 million , and $ 177.0 million of remaining borrowing capacity available under the Credit Agreement .",
+    "tokens": [
+      "As",
+      "of",
+      "March",
+      "31",
+      ",",
+      "2020",
+      ",",
+      "the",
+      "Company",
+      "had",
+      "$",
+      "298.1",
+      "million",
+      "drawn",
+      ",",
+      "letters",
+      "of",
+      "credit",
+      "issued",
+      "in",
+      "the",
+      "amount",
+      "of",
+      "$",
+      "24.9",
+      "million",
+      ",",
+      "and",
+      "$",
+      "177.0",
+      "million",
+      "of",
+      "remaining",
+      "borrowing",
+      "capacity",
+      "available",
+      "under",
+      "the",
+      "Credit",
+      "Agreement",
+      "."
+    ],
+    "gold_spans": [
+      [
+        24,
+        25,
+        "LettersOfCreditOutstandingAmount"
+      ],
+      [
+        29,
+        30,
+        "LineOfCreditFacilityRemainingBorrowingCapacity"
+      ]
+    ],
+    "model_spans": {
+      "bilstm_crf": [
+        [
+          11,
+          12,
+          "LineOfCredit"
+        ],
+        [
+          24,
+          25,
+          "LettersOfCreditOutstandingAmount"
+        ],
+        [
+          29,
+          30,
+          "LineOfCreditFacilityRemainingBorrowingCapacity"
+        ]
+      ],
+      "bert-base-cased": [
+        [
+          11,
+          12,
+          "LineOfCredit"
+        ],
+        [
+          24,
+          25,
+          "LettersOfCreditOutstandingAmount"
+        ],
+        [
+          29,
+          30,
+          "LineOfCreditFacilityRemainingBorrowingCapacity"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          11,
+          12,
+          "LineOfCredit"
+        ],
+        [
+          24,
+          25,
+          "LettersOfCreditOutstandingAmount"
+        ],
+        [
+          29,
+          30,
+          "LineOfCreditFacilityRemainingBorrowingCapacity"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "test",
+        "raw_row": 11266,
+        "source_id": "1024144",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  },
+  {
+    "sample_id": "Q050",
+    "test_row": 82260,
+    "start": 43,
+    "end": 44,
+    "predicted_type": "DebtInstrumentCarryingAmount",
+    "target_text": "341.8",
+    "sentence": "( 3 ) During the three months ended March 31 , 2020 , the Office Partnership acquired one property from a third party for a purchase price of $ 33.1 million . The unconsolidated joint ventures had total aggregate debt outstanding of $ 341.8 million as of March 31 , 2020 , which is non - recourse to the Company , as discussed in Note 6 - Debt .",
+    "marked_sentence": "( 3 ) During the three months ended March 31 , 2020 , the Office Partnership acquired one property from a third party for a purchase price of $ 33.1 million . The unconsolidated joint ventures had total aggregate debt outstanding of $ [[ 341.8 ]] million as of March 31 , 2020 , which is non - recourse to the Company , as discussed in Note 6 - Debt .",
+    "tokens": [
+      "(",
+      "3",
+      ")",
+      "During",
+      "the",
+      "three",
+      "months",
+      "ended",
+      "March",
+      "31",
+      ",",
+      "2020",
+      ",",
+      "the",
+      "Office",
+      "Partnership",
+      "acquired",
+      "one",
+      "property",
+      "from",
+      "a",
+      "third",
+      "party",
+      "for",
+      "a",
+      "purchase",
+      "price",
+      "of",
+      "$",
+      "33.1",
+      "million",
+      ".",
+      "The",
+      "unconsolidated",
+      "joint",
+      "ventures",
+      "had",
+      "total",
+      "aggregate",
+      "debt",
+      "outstanding",
+      "of",
+      "$",
+      "341.8",
+      "million",
+      "as",
+      "of",
+      "March",
+      "31",
+      ",",
+      "2020",
+      ",",
+      "which",
+      "is",
+      "non",
+      "-",
+      "recourse",
+      "to",
+      "the",
+      "Company",
+      ",",
+      "as",
+      "discussed",
+      "in",
+      "Note",
+      "6",
+      "-",
+      "Debt",
+      "."
+    ],
+    "gold_spans": [
+      [
+        29,
+        30,
+        "BusinessCombinationConsiderationTransferred1"
+      ]
+    ],
+    "model_spans": {
+      "bilstm_crf": [
+        [
+          29,
+          30,
+          "BusinessCombinationConsiderationTransferred1"
+        ],
+        [
+          43,
+          44,
+          "LongTermDebt"
+        ]
+      ],
+      "bert-base-cased": [
+        [
+          43,
+          44,
+          "LongTermDebt"
+        ]
+      ],
+      "sec-bert-shape": [
+        [
+          17,
+          18,
+          "NumberOfRealEstateProperties"
+        ],
+        [
+          43,
+          44,
+          "DebtInstrumentCarryingAmount"
+        ]
+      ]
+    },
+    "raw_matches": [
+      {
+        "split": "test",
+        "raw_row": 95124,
+        "source_id": "1108002",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      },
+      {
+        "split": "test",
+        "raw_row": 95254,
+        "source_id": "1108132",
+        "target_tags": [
+          "O"
+        ],
+        "overlapping_spans": []
+      }
+    ]
+  }
+]
