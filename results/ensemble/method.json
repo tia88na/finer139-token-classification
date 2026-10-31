@@ -1,0 +1,63 @@
+{
+  "voters": [
+    "bilstm_crf",
+    "bert-base-cased",
+    "sec-bert-shape"
+  ],
+  "tie_breaker": "sec-bert-shape",
+  "rule": [
+    "rebuild each voter from its strict IOB2 spans (orphan I- tags -> O)",
+    "per word, the full BIO tag chosen by at least two voters; if all differ, the tie-breaker",
+    "I-X not after B-X or I-X -> B-X"
+  ],
+  "primary_comparison": "main-view micro-F1, ensemble minus tie-breaker, paired sentence bootstrap 95% percentile interval",
+  "exploratory": "only test predictions exist; rule fixed in advance, not tuned",
+  "git": {
+    "commit": "7d8dc330e2f13e1a17a0b3aec3eab7a5a5f1eb18",
+    "ensemble_script_modified": false
+  },
+  "file_sha256": {
+    "data/cleaned/test.parquet": "4a84e7efb72deb33147e134417c7951e1e8ada51cba7e02fd24e10b7edd6e07f",
+    "data/cleaned/validation.parquet": "7403cb4040dad6d87aadaf2e278e652c89137a912377e982d727d0557698d8bd",
+    "results/bilstm_crf_test_predictions.parquet": "c152e958cd1c0ec58951b98a55e1bf700ddcef508167fe5e6a4a39af361da865",
+    "results/bert-base-cased_test_predictions.parquet": "d17ce794b1f9c6691e50b309fb548c478c91355cf986e920b339ef4574da336e",
+    "results/sec-bert-shape_test_predictions.parquet": "1f5f50137d5b30e82d746a7a02b926f4a2393e3938889c6c8b542f82497212dd"
+  },
+  "python": "3.12.10",
+  "numpy": "2.5.4",
+  "pandas": "3.1.0",
+  "seqeval": "1.2.2",
+  "bootstrap": {
+    "model_a": "majority_vote",
+    "model_b": "sec-bert-shape",
+    "replicates": 10000,
+    "seed": 42,
+    "grouped_patterns": 395,
+    "f1_a": 73.5138429950916,
+    "ci95_low_a": 72.96977807349046,
+    "ci95_high_a": 74.05577970593595,
+    "f1_b": 72.9524264881664,
+    "ci95_low_b": 72.3981878626521,
+    "ci95_high_b": 73.49842297012867,
+    "delta_f1_points": 0.5614165069252053,
+    "ci95_low": 0.33618133988646076,
+    "ci95_high": 0.7888543001355725
+  },
+  "vote_stats": {
+    "sentences": 92608,
+    "words": 4493708,
+    "repairs": 2,
+    "words_differ_from_tie_breaker": 3259,
+    "sentences_differ_from_tie_breaker": 2558,
+    "entity_words": 42024,
+    "agree_3": 26408,
+    "agree_2": 14617,
+    "agree_1": 999
+  },
+  "span_changes": {
+    "tp_gained": 559,
+    "tp_lost": 531,
+    "fp_added": 1174,
+    "fp_removed": 1605
+  }
+}

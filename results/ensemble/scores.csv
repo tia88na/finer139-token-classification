@@ -1,0 +1,9 @@
+model,view,sentences,micro_P,micro_R,micro_F1,macro_F1
+bilstm_crf,main,92608,0.668,0.7679,0.7145,0.6768
+bilstm_crf,reference,95030,0.6676,0.768,0.7142,0.6783
+bert-base-cased,main,92608,0.6305,0.798,0.7044,0.6601
+bert-base-cased,reference,95030,0.6298,0.7982,0.704,0.6615
+sec-bert-shape,main,92608,0.6623,0.8119,0.7295,0.6915
+sec-bert-shape,reference,95030,0.6617,0.8122,0.7293,0.6924
+majority_vote,main,92608,0.671,0.8129,0.7351,0.6977
+majority_vote,reference,95030,0.6703,0.8132,0.7349,0.698

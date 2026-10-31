@@ -1,0 +1,4 @@
+model,orphan_tags_to_O,main_micro_F1_before,main_micro_F1_after,full_micro_F1_before,full_micro_F1_after,all_scores_identical
+bilstm_crf,0,0.7145,0.7145,0.7142,0.7142,True
+bert-base-cased,155,0.7044,0.7044,0.704,0.704,True
+sec-bert-shape,147,0.7295,0.7295,0.7293,0.7293,True
