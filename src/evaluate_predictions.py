@@ -29,6 +29,7 @@ NAMES = {
     "bert-base-cased": "BERT-base-cased",
     "sec-bert-shape": "SEC-BERT-SHAPE",
     "sec-bert-shape-crf": "SEC-BERT-SHAPE + CRF",
+    "bert-base-cased-4ep": "BERT-base-cased (4 epochs)",
     "sec-bert-shape-4ep": "SEC-BERT-SHAPE (4 epochs)",
 }
 

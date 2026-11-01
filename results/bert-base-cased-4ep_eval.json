@@ -1,0 +1,17 @@
+{
+  "model": "bert-base-cased-4ep",
+  "main": {
+    "sentences": 92608,
+    "micro_P": 0.6669,
+    "micro_R": 0.8147,
+    "micro_F1": 0.7334,
+    "macro_F1": 0.7035
+  },
+  "reference": {
+    "sentences": 95030,
+    "micro_P": 0.6659,
+    "micro_R": 0.815,
+    "micro_F1": 0.7329,
+    "macro_F1": 0.7044
+  }
+}
