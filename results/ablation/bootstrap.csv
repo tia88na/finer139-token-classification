@@ -1,0 +1,3 @@
+comparison,micro_F1_difference,ci95_low,ci95_high
+B_plus_o_only minus A_cleaned,-0.02,-0.47,0.42
+C_plus_leaked minus A_cleaned,2.22,1.76,2.68

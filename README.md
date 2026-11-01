@@ -191,10 +191,9 @@ changes both domain pretraining and number representation; the improvement
 cannot be attributed to shape replacement alone.
 
 Removing duplicates/leakage and downsampling O-only training sentences are
-different operations. Downsampling changes the training distribution; its
-effect on precision/recall has not been established by a controlled experiment.
-All training runs use one seed. Latency is not measured because trained model
-weights are not included. Slides and speech notes are maintained outside the repo.
+different operations; their effects are measured separately in the cleaning
+ablation below. All training runs use one seed. Slides and speech notes are
+maintained outside the repo.
 
 ## Bootstrap and sample assessment
 
@@ -245,6 +244,63 @@ so the gain is not unbiased confirmation. Method, checks and vote statistics are
 `results/ensemble/ENSEMBLE.md`. The files are kept in `results/ensemble/`, not
 `results/`, so `src/evaluate_predictions.py` and `results/RESULTS.md` are unchanged.
 
+## Inference speed
+
+`python src/latency.py --device cuda` and `--device cpu` time every model on the same
+machine (Colab: Tesla T4 GPU, and its CPU with 1 thread) on the same 2,000 main-view
+test sentences (96,002 words): raw words in, tags out, so input preparation (features,
+sub-word tokenisation) and decoding (Viterbi / arg-max) are included; median of 3 runs
+after a warm-up. Speed depends on model size, not on weight values: trained weights are
+not in the repository, so CRF and BiLSTM-CRF are built with the selected settings and
+the train vocabulary, and the transformers are the pre-trained encoders with a 279-tag
+head (same architecture and parameter count as the fine-tuned models). Full table:
+`results/LATENCY.md`; notebook: `05_latency_and_ablation_colab.ipynb`.
+
+| Model | micro-F1 | sentences / s (T4 GPU) | sentences / s (CPU, 1 thread) | parameters |
+|---|---:|---:|---:|---:|
+| Most-frequent tag | 3.1 | 33,046 | 35,751 | 0 |
+| HMM + Viterbi | 3.5 | 223 | 214 | 4.5 M |
+| CRF | 59.0 | 5,344 | 203 | 116.2 M |
+| BiLSTM-CRF | 71.5 | 4,704 | 142 | 3.6 M |
+| BERT-base-cased | 70.4 | 679 | 5.7 | 107.9 M |
+| SEC-BERT-SHAPE | 73.0 | 819 | 9.2 | 108.7 M |
+
+- On the GPU, BiLSTM-CRF is **5.7x faster** than SEC-BERT-SHAPE for 1.5 points less
+  micro-F1; on a CPU the gap is 15x. It is the best accuracy/speed trade-off here.
+- SEC-BERT-SHAPE is **faster than BERT-base** (1.2x on GPU, 1.6x on CPU) although both
+  have the same encoder size, most likely because each number becomes one shape token
+  instead of several word pieces, so its inputs are shorter (not measured separately).
+- The HMM is slow for its size because its Viterbi runs in Python/NumPy on the CPU,
+  one sentence at a time (168 states); it does not use the GPU.
+
+## Cleaning ablation
+
+`python src/cleaning_ablation.py` (Colab T4, ~70 min) trains the team's feature CRF
+(selected settings: window 3, weight decay 0) three times, changing only the training
+data. It first rebuilds the notebook's cleaning steps from `data/raw/` and checks that
+the result is identical to `data/cleaned/train.parquet`. Main view, strict IOB2;
+differences with 10,000 paired sentence-bootstrap replicates. Details:
+`results/ablation/ABLATION.md`.
+
+| Training data | sentences | no-entity share | P | R | micro-F1 | macro-F1 |
+|---|---:|---:|---:|---:|---:|---:|
+| A cleaned (used by all models) | 261,610 | 49% | 57.5 | 60.6 | **59.0** | 52.9 |
+| B = A + the dropped no-entity sentences | 562,568 | 76% | 63.9 | 54.9 | **59.0** | 52.5 |
+| C = A + the leaked sentences (also in val/test) | 302,709 | 54% | 60.9 | 61.6 | **61.3** | 56.3 |
+
+- **No-entity downsampling (B vs A): precision for recall, same F1.** Keeping all
+  no-entity sentences raises precision by 6.3 points and lowers recall by 5.7;
+  micro-F1 does not change (-0.02, 95% interval [-0.47, +0.42]). This confirms the
+  direction of the hypothesis that downsampling makes the model predict entities more
+  often, but it does not cost F1, and it cuts training time from 30 to 11 minutes.
+  A reproduces the CRF's published score exactly (59.0, validation 0.6317).
+- **Leakage removal (C vs A) prevents an inflated score.** 17,992 of the 92,608
+  main-view test sentences (19%) occur word for word among the train sentences that
+  the leakage step removed. Training on them raises micro-F1 by 2.2 points
+  (95% interval [+1.76, +2.68]); on those 17,992 sentences F1 jumps from 62.0 to 76.5,
+  i.e. memorisation, not better tagging. C's validation sample is contaminated too (4,516 of its 20,000
+  sentences are among the leaked ones), which is why it kept improving until epoch 6.
+
 ## Repository structure
 
     finer139-token-classification/
@@ -255,6 +311,7 @@ so the gain is not unbiased confirmation. Method, checks and vote statistics are
     |- .gitignore
     |- 01_data_preprocessing.ipynb  # EDA + cleaning + tokenization
     |- train_transformer22.py       # BERT / SEC-BERT-SHAPE training + evaluation
+    |- 05_latency_and_ablation_colab.ipynb  # runs latency.py + cleaning_ablation.py on Colab
     |- src/
     |  |- finer.py                  # shared data loading + evaluation (all models)
     |  |- baseline_hmm.py           # most-frequent-tag baseline + HMM/Viterbi
@@ -266,6 +323,8 @@ so the gain is not unbiased confirmation. Method, checks and vote statistics are
     |  |- evaluate_predictions.py   # scores every saved prediction file, builds tables
     |  |- label_families.py         # 139 types -> 11 families, family-level scores
     |  |- ensemble.py               # exploratory majority-vote ensemble of saved predictions
+    |  |- latency.py                # inference speed of every model on one machine
+    |  |- cleaning_ablation.py      # CRF trained on cleaned / + no-entity / + leaked train data
     |- tests/                       # checks for the evaluator, HMM, CRF layer, CRF, BiLSTM-CRF
     |- results/                     # metrics, per-class scores, test predictions
     |- data/

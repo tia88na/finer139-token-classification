@@ -1,0 +1,4 @@
+variant,train_sentences,train_words,o_only_share,tags,features,selected_epoch,val_micro_F1,minutes,main_micro_P,main_micro_R,main_micro_F1,main_macro_F1,leaked_subset_micro_P,leaked_subset_micro_R,leaked_subset_micro_F1,leaked_subset_macro_F1
+A_cleaned,261610,13087629,0.4927,168,691716,2,0.6317,11.1,0.5754,0.6059,0.5903,0.5286,0.5928,0.6497,0.62,0.4553
+B_plus_o_only,562568,27596025,0.7641,168,830999,3,0.6286,30.3,0.6386,0.5485,0.5901,0.5254,0.6258,0.5549,0.5882,0.4353
+C_plus_leaked,302709,14663185,0.5419,168,717049,6,0.6602,24.5,0.6092,0.6158,0.6125,0.5632,0.7651,0.7647,0.7649,0.6768

@@ -1,0 +1,17 @@
+{
+  "model": "C  A + leaked sentences (also in val/test)",
+  "main": {
+    "sentences": 92608,
+    "micro_P": 0.6092,
+    "micro_R": 0.6158,
+    "micro_F1": 0.6125,
+    "macro_F1": 0.5632
+  },
+  "reference": {
+    "sentences": 95030,
+    "micro_P": 0.6091,
+    "micro_R": 0.6167,
+    "micro_F1": 0.6129,
+    "macro_F1": 0.5661
+  }
+}

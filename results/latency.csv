@@ -1,0 +1,13 @@
+model,key,device,hardware,sentences,words,seconds,sentences_per_s,words_per_s,ms_per_sentence,parameters,weights,setup_s,repeats
+Most-frequent tag,baseline_mft,cpu,"CPU (x86_64, 1 threads)",2000,96002,0.056,35750.7,1716070,0.028,0,fitted on train,10.9,3
+HMM + Viterbi,hmm,cpu,"CPU (x86_64, 1 threads)",2000,96002,9.356,213.8,10261,4.678,4519368,fitted on train,27.9,3
+CRF,crf,cpu,"CPU (x86_64, 1 threads)",2000,96002,9.862,202.8,9734,4.931,116236848,"untrained, same size",11.3,3
+BiLSTM-CRF,bilstm_crf,cpu,"CPU (x86_64, 1 threads)",2000,96002,14.075,142.1,6821,7.037,3649276,"untrained, same size",15.7,3
+BERT-base-cased,bert-base-cased,cpu,"CPU (x86_64, 1 threads)",2000,96002,352.922,5.7,272,176.461,107934231,"pre-trained encoder + new 279-tag head, same size",5.9,3
+SEC-BERT-SHAPE,sec-bert-shape,cpu,"CPU (x86_64, 1 threads)",2000,96002,218.381,9.2,440,109.19,108705303,"pre-trained encoder + new 279-tag head, same size",0.7,3
+Most-frequent tag,baseline_mft,cuda,Tesla T4,2000,96002,0.061,33046.0,1586241,0.03,0,fitted on train,11.5,3
+HMM + Viterbi,hmm,cuda,Tesla T4,2000,96002,8.96,223.2,10714,4.48,4519368,fitted on train,28.1,3
+CRF,crf,cuda,Tesla T4,2000,96002,0.374,5344.4,256537,0.187,116236848,"untrained, same size",10.7,3
+BiLSTM-CRF,bilstm_crf,cuda,Tesla T4,2000,96002,0.425,4703.7,225784,0.213,3649276,"untrained, same size",16.9,3
+BERT-base-cased,bert-base-cased,cuda,Tesla T4,2000,96002,2.944,679.4,32614,1.472,107934231,"pre-trained encoder + new 279-tag head, same size",22.1,3
+SEC-BERT-SHAPE,sec-bert-shape,cuda,Tesla T4,2000,96002,2.443,818.8,39304,1.221,108705303,"pre-trained encoder + new 279-tag head, same size",7.0,3

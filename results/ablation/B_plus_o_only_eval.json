@@ -1,0 +1,17 @@
+{
+  "model": "B  A + dropped no-entity sentences",
+  "main": {
+    "sentences": 92608,
+    "micro_P": 0.6386,
+    "micro_R": 0.5485,
+    "micro_F1": 0.5901,
+    "macro_F1": 0.5254
+  },
+  "reference": {
+    "sentences": 95030,
+    "micro_P": 0.638,
+    "micro_R": 0.5482,
+    "micro_F1": 0.5897,
+    "macro_F1": 0.528
+  }
+}
