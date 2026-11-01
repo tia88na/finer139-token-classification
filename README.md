@@ -72,7 +72,9 @@ numbers in the results table are comparable:
   checks the CRF layer (log Z, every gradient and Viterbi against brute-force
   enumeration), the CRF features, and that the CRF and the BiLSTM-CRF learn from
   context and save predictions in the shared format. Further tests cover the error
-  analysis, the bootstrap, the label families and the ensemble (54 tests in total).
+  analysis, the original and extended bootstrap, the label families, the ensemble,
+  and the latency/ablation helpers. The latest bootstrap update passed 18 targeted
+  evaluator/HMM and analysis tests; this is not a claim that the full GPU suite was rerun.
 
 ## Models
 
@@ -82,8 +84,11 @@ numbers in the results table are comparable:
 | HMM + Viterbi | the token + the previous tag | `src/baseline_hmm.py` (CPU, about 7 min) |
 | CRF | hand-made features of the word and of the 3 words on each side (shape, number type, word pairs, 8 previous words) + tag transitions | `src/baseline_crf.py` (GPU, about 75 min with the search) |
 | BiLSTM-CRF | whole sentence (BiLSTM over word, character and casing embeddings) + tag transitions | `src/bilstm_crf.py` (GPU, about 2 h with the search) |
-| BERT-base-cased | whole sentence, numbers split into sub-word pieces | `train_transformer22.py` (GPU) |
-| SEC-BERT-SHAPE | whole sentence, numbers replaced by their shape (`645.1` -> `[XXX.X]`) | `train_transformer22.py` (GPU) |
+| BERT-base-cased | whole sentence, numbers split into sub-word pieces; 2 epochs | `train_transformer22.py` (GPU) |
+| SEC-BERT-SHAPE | whole sentence, numbers replaced by their shape (`645.1` -> `[XXX.X]`); 2 epochs | `train_transformer22.py --model nlpaueb/sec-bert-shape` (GPU) |
+| SEC-BERT-SHAPE + CRF | shape-normalised transformer emissions plus CRF tag transitions; 2 epochs | `train_transformer22.py --model nlpaueb/sec-bert-shape --crf` (GPU) |
+| BERT-base-cased (4 epochs) | the BERT baseline with a larger training budget | `train_transformer22.py --model bert-base-cased --epochs 4` (GPU) |
+| SEC-BERT-SHAPE (4 epochs) | the shape-normalised model with a larger training budget | `train_transformer22.py --model nlpaueb/sec-bert-shape --epochs 4` (GPU) |
 
 The baseline and the HMM normalise tokens the same way: numbers -> digit shape
 (`645.1` -> `XXX.X`), words -> lowercase. The CRF and the BiLSTM-CRF use the same
@@ -156,6 +161,9 @@ Entity-level, strict IOB2 (seqeval), word level, full-length sentences.
 | BiLSTM-CRF | 66.8 | 76.8 | **71.5** | 67.7 | 71.4 |
 | BERT-base-cased | 63.0 | 79.8 | **70.4** | 66.0 | 70.4 |
 | SEC-BERT-SHAPE | 66.2 | 81.2 | **73.0** | 69.2 | 72.9 |
+| SEC-BERT-SHAPE + CRF | 66.4 | 82.3 | **73.5** | 70.0 | 73.5 |
+| BERT-base-cased (4 epochs) | 66.7 | 81.5 | **73.3** | 70.4 | 73.3 |
+| SEC-BERT-SHAPE (4 epochs) | 70.1 | 82.8 | **75.9** | 73.2 | 75.9 |
 
 Why the token-only models fail (`results/hmm_analysis.txt`): a number's shape does
 not decide its tag. In train, the shape `XX` occurs 306,226 times, is `O` 91.8% of
@@ -163,14 +171,23 @@ the time and belongs to 134 different entity types. `P(O -> O) = 0.981`, so the
 Viterbi path almost never leaves `O`: the HMM predicts `O` for 91.8% of the gold
 entity words. The words that decide the tag ("interest rate of", "matures in") are
 not visible to an HMM emission. Models that read the context reach 59.0 (CRF with
-hand-made context features), 71.5 (BiLSTM-CRF) and 70-73 micro-F1 (the transformers).
+hand-made context features), 71.5 (BiLSTM-CRF) and 70.4-75.9 micro-F1 (the transformer runs).
 On the main view the HMM predicts `O` for 91.8% of the gold entity words, the CRF
 for 23.7%, and the BiLSTM-CRF for 12.5%.
 
+The best saved run is **SEC-BERT-SHAPE (4 epochs): 75.9 micro-F1 and
+73.2 macro-F1**. At four epochs, BERT scores 73.3 / 70.4. From the unrounded
+predictions, SHAPE leads BERT by 2.58 micro-F1 points at this epoch budget;
+four versus two epochs adds 2.90 points for BERT and 2.97 for SHAPE.
+Adding CRF to the two-epoch SHAPE model adds 0.57 points. Confidence intervals
+are reported below. Equal epoch counts do not imply equal wall-clock time,
+and these single-seed results do not isolate domain pretraining from number shapes.
+
 ## Error analysis
 
-Run `python src/analyze_errors.py` to compare the saved BiLSTM-CRF, BERT-base-cased
-and SEC-BERT-SHAPE predictions without training or model weights. Outputs are in
+Run `python src/analyze_errors.py` to compare saved BiLSTM-CRF predictions
+and the original two-epoch BERT/SEC-BERT-SHAPE runs without training or model weights.
+This error analysis does not include the CRF transformer or four-epoch runs. Outputs are in
 `results/analysis/`: `ANALYSIS.md`, overall and per-class scores, sentence-length
 and training-frequency breakdowns, word-level type confusions, and illustrative
 examples with original test row IDs. Analysis uses only the main test view and
@@ -196,6 +213,35 @@ ablation below. All training runs use one seed. Slides and speech notes are
 maintained outside the repo.
 
 ## Bootstrap and sample assessment
+
+### Current six-model comparison
+
+Run `python src/compare_models_bootstrap.py --replicates 10000 --seed 42`.
+The [extended bootstrap report](results/assessment/extended/BOOTSTRAP.md) compares
+BiLSTM-CRF, the original two-epoch BERT and SEC-BERT-SHAPE, SHAPE+CRF,
+and both four-epoch transformers on 92,608 main-test sentences.
+It reproduces each model's saved precision, recall and micro-F1 before computing
+10,000 paired sentence-bootstrap replicates. Source hashes, sentence counts and
+replicate scores are retained in `results/assessment/extended/`.
+
+| Comparison | Micro-F1 gain (points) | 95% interval | Family-wise 95% interval |
+|---|---:|---|---|
+| SHAPE+CRF minus SHAPE, both 2 epochs | +0.57 | [0.34, 0.80] | [0.25, 0.89] |
+| BERT: 4 minus 2 epochs | +2.90 | [2.55, 3.25] | [2.42, 3.37] |
+| SHAPE: 4 minus 2 epochs | +2.97 | [2.63, 3.32] | [2.50, 3.45] |
+| SHAPE minus BERT, both 4 epochs | +2.58 | [2.22, 2.95] | [2.07, 3.08] |
+
+The report contains eight contrasts in total; the family-wise intervals adjust
+for all eight with Bonferroni correction. All eight adjusted intervals are above
+zero on these saved predictions. They describe test-sentence sampling uncertainty,
+not training-seed variability or annotation uncertainty. Sentences are treated as
+independent, which can underestimate uncertainty within filings. The test results
+had already been inspected, so these are descriptive comparisons.
+
+### Original three-model comparison and 50-example assessment
+
+The original report and sample remain unchanged and concern the two-epoch
+transformers and BiLSTM-CRF; they are separate from the extended comparison.
 
 `python src/assess_results.py --replicates 10000 --sample-size 50 --seed 42`
 computes paired sentence-bootstrap confidence intervals from existing predictions
@@ -246,15 +292,19 @@ so the gain is not unbiased confirmation. Method, checks and vote statistics are
 
 ## Inference speed
 
-`python src/latency.py --device cuda` and `--device cpu` time every model on the same
-machine (Colab: Tesla T4 GPU, and its CPU with 1 thread) on the same 2,000 main-view
-test sentences (96,002 words): raw words in, tags out, so input preparation (features,
-sub-word tokenisation) and decoding (Viterbi / arg-max) are included; median of 3 runs
-after a warm-up. Speed depends on model size, not on weight values: trained weights are
-not in the repository, so CRF and BiLSTM-CRF are built with the selected settings and
-the train vocabulary, and the transformers are the pre-trained encoders with a 279-tag
-head (same architecture and parameter count as the fine-tuned models). Full table:
-`results/LATENCY.md`; notebook: `05_latency_and_ablation_colab.ipynb`.
+`python src/latency.py --device cuda` and `--device cpu` time the six original
+model architectures on the same machine (Colab: Tesla T4 GPU and its CPU with
+1 thread), using 2,000 main-view test sentences (96,002 words). Input preparation,
+model execution and decoding are included; the reported throughput is based on
+the median of three runs after a warm-up. The `ms / sentence` column in the full
+report is amortised batch time, not a batch-size-one request-latency percentile.
+
+MFT and HMM use fitted weights. CRF and BiLSTM-CRF use untrained models built with
+the selected settings and training vocabulary; the transformers use pretrained
+encoders with new 279-tag heads. These are architecture-level speed measurements,
+not measurements of the saved fine-tuned checkpoints. See
+[the full speed report](results/LATENCY.md) for weight provenance and
+`05_latency_and_ablation_colab.ipynb` for the workflow.
 
 | Model | micro-F1 | sentences / s (T4 GPU) | sentences / s (CPU, 1 thread) | parameters |
 |---|---:|---:|---:|---:|
@@ -264,23 +314,22 @@ head (same architecture and parameter count as the fine-tuned models). Full tabl
 | BiLSTM-CRF | 71.5 | 4,704 | 142 | 3.6 M |
 | BERT-base-cased | 70.4 | 679 | 5.7 | 107.9 M |
 | SEC-BERT-SHAPE | 73.0 | 819 | 9.2 | 108.7 M |
-| SEC-BERT-SHAPE (4 epochs) | 75.9 | 819\* | 9.2\* | 108.7 M |
+| SEC-BERT-SHAPE + CRF | 73.5 | Not measured | Not measured | — |
+| BERT-base-cased (4 epochs) | 73.3 | Not measured separately | Not measured separately | 107.9 M |
+| SEC-BERT-SHAPE (4 epochs) | 75.9 | Not measured separately | Not measured separately | 108.7 M |
 
-\* Not timed separately: the 4-epoch run is the same model (`nlpaueb/sec-bert-shape`,
-same token-classification head, no CRF) trained for more epochs, so it has the same
-architecture and parameter count and therefore the same speed. SEC-BERT-SHAPE + CRF
-(73.5) adds a Viterbi layer and was not timed.
+The four-epoch runs have the same architectures as their two-epoch counterparts,
+so the existing speed measurements are useful proxies, not additional measured
+results. SHAPE+CRF adds Viterbi decoding and cannot inherit the SHAPE speed.
 
-- **Speed vs accuracy.** The best model, SEC-BERT-SHAPE trained for 4 epochs (75.9),
-  labels 819 sentences/s on the GPU. BiLSTM-CRF is **5.7x faster** (15x on a CPU) and
-  4.5 points lower in micro-F1. Against the 2-epoch SEC-BERT-SHAPE the gap is 1.5
-  points, but that BiLSTM-CRF was trained for 12 epochs and the transformer for 2, so
-  the 4-epoch comparison is the fairer one.
-- SEC-BERT-SHAPE is **faster than BERT-base** (1.2x on GPU, 1.6x on CPU) although both
-  have the same encoder size, most likely because each number becomes one shape token
-  instead of several word pieces, so its inputs are shorter (not measured separately).
-- The HMM is slow for its size because its Viterbi runs in Python/NumPy on the CPU,
-  one sentence at a time (168 states); it does not use the GPU.
+- **Speed versus F1.** The measured BiLSTM-CRF architecture is about 5.7 times
+  faster than SHAPE on the T4 (15 times on this CPU). Its benchmark F1 is 4.5 points
+  below the best four-epoch SHAPE run. Model selection and training budgets differ;
+  this is a practical trade-off, not an equal-compute comparison.
+- In this setup SHAPE is faster than BERT (1.2 times on GPU, 1.6 on CPU).
+  Shorter number representations are a possible explanation; their contribution
+  to runtime was not isolated in an experiment.
+- HMM decoding runs on the CPU even in the table labelled T4; it does not use the GPU.
 
 ## Cleaning ablation
 
@@ -299,16 +348,31 @@ differences with 10,000 paired sentence-bootstrap replicates. Details:
 
 - **No-entity downsampling (B vs A): precision for recall, same F1.** Keeping all
   no-entity sentences raises precision by 6.3 points and lowers recall by 5.7;
-  micro-F1 does not change (-0.02, 95% interval [-0.47, +0.42]). This confirms the
-  direction of the hypothesis that downsampling makes the model predict entities more
-  often, but it does not cost F1, and it cuts training time from 30 to 11 minutes.
+  micro-F1 changes by -0.02 (95% interval [-0.47, +0.42]), providing no clear
+  evidence of an F1 difference in this feature-CRF experiment. The precision/recall
+  shift supports the proposed direction for this model; it was not tested for the
+  transformers. The recorded training time falls from 30 to 11 minutes.
   A reproduces the CRF's published score exactly (59.0, validation 0.6317).
 - **Leakage removal (C vs A) prevents an inflated score.** 17,992 of the 92,608
   main-view test sentences (19%) occur word for word among the train sentences that
   the leakage step removed. Training on them raises micro-F1 by 2.2 points
   (95% interval [+1.76, +2.68]); on those 17,992 sentences F1 jumps from 62.0 to 76.5,
-  i.e. memorisation, not better tagging. C's validation sample is contaminated too (4,516 of its 20,000
-  sentences are among the leaked ones), which is why it kept improving until epoch 6.
+  consistent with an advantage from seeing evaluation sentences during training.
+  C's validation sample is contaminated too (4,516 of its 20,000 sentences), so
+  both training exposure and epoch selection are affected. C is a leakage
+  demonstration, not a valid improved benchmark result.
+
+## Additional saved analyses
+
+- [Conflicting labels](results/label_conflicts/CONFLICTS.md): 762 retained sentences
+  have exact raw copies with different annotations (725 train, 8 validation, 29 test).
+  Removing the 29 conflicting main-test sentences changes the reported models'
+  scores only slightly. This analysis predates the four-epoch runs.
+- [LLM comparison](results/llm/LLM.md): Qwen2.5-7B-Instruct with three training
+  examples in the prompt scores 39.4 micro-F1 on a 300-sentence test subset;
+  the two-epoch SHAPE model scores 81.1 on that same subset. These are not full-test
+  scores. The LLM is not fine-tuned, is asked only about detected numbers, and
+  this one-model, one-prompt experiment does not establish a general LLM ranking.
 
 ## Repository structure
 
@@ -332,7 +396,13 @@ differences with 10,000 paired sentence-bootstrap replicates. Details:
     |  |- evaluate_predictions.py   # scores every saved prediction file, builds tables
     |  |- label_families.py         # 139 types -> 11 families, family-level scores
     |  |- ensemble.py               # exploratory majority-vote ensemble of saved predictions
-    |  |- latency.py                # inference speed of every model on one machine
+    |  |- analyze_errors.py         # original three-model error analysis
+    |  |- assess_results.py         # original bootstrap and 50-example sample
+    |  |- compare_models_bootstrap.py # six-model bootstrap and eight comparisons
+    |  |- render_assessment.py      # renders the saved sample assessment
+    |  |- label_conflicts.py        # exact-sentence annotation inconsistencies
+    |  |- llm_fewshot.py            # small Qwen few-shot comparison
+    |  |- latency.py                # speed of the six original architectures
     |  |- cleaning_ablation.py      # CRF trained on cleaned / + no-entity / + leaked train data
     |- tests/                       # checks for the evaluator, HMM, CRF layer, CRF, BiLSTM-CRF
     |- results/                     # metrics, per-class scores, test predictions
