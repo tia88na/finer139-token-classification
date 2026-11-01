@@ -1,0 +1,277 @@
+{"test_row": 101, "answer": "{\"1\": \"O\", \"2\": \"DebtInstrumentFaceAmount\", \"3\": \"DebtInstrumentInterestRateStatedPercentage\", \"4\": \"DebtInstrumentMaturityDate\", \"5\": \"DebtInstrumentConvertibleConversionPrice1\"}"}
+{"test_row": 380, "answer": "{\"1\": \"O\", \"2\": \"BusinessCombinationContingentConsiderationLiability\"}"}
+{"test_row": 462, "answer": "{\"1\": \"DebtInstrumentFairValue\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\", \"5\": \"O\", \"6\": \"O\"}"}
+{"test_row": 974, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"StockRepurchaseProgramAuthorizedAmount1\", \"4\": \"StockRepurchaseProgramAuthorizedAmount1\"}"}
+{"test_row": 1924, "answer": "{\"1\": \"O\", \"2\": \"O\"}"}
+{"test_row": 2044, "answer": "{\"1\": \"LineOfCreditFacilityMaximumBorrowingCapacity\", \"2\": \"LineOfCreditFacilityBorrowingBase\"}"}
+{"test_row": 2774, "answer": "{\"1\": \"O\", \"2\": \"O\"}"}
+{"test_row": 3942, "answer": "{\"1\": \"DebtInstrumentFaceAmount\", \"2\": \"DebtInstrumentMaturityDate\", \"3\": \"DebtInstrumentMaturityDate\"}"}
+{"test_row": 4453, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"LettersOfCreditOutstandingAmount\", \"4\": \"O\"}"}
+{"test_row": 5231, "answer": "{\"1\": \"DefinedContributionPlanCostRecognized\", \"2\": \"DefinedContributionPlanCostRecognized\", \"3\": \"O\", \"4\": \"O\", \"5\": \"O\", \"6\": \"O\"}"}
+{"test_row": 5457, "answer": "{\"1\": \"BusinessAcquisitionEquityInterestsIssuedOrIssuableNumberOfSharesIssued\", \"2\": \"O\", \"3\": \"O\"}"}
+{"test_row": 6071, "answer": "{\"1\": \"O\", \"2\": \"DebtInstrumentInterestRateStatedPercentage\", \"3\": \"DebtInstrumentInterestRateStatedPercentage\", \"4\": \"DebtInstrumentInterestRateStatedPercentage\", \"5\": \"O\", \"6\": \"O\", \"7\": \"O\", \"8\": \"DebtInstrumentInterestRateStatedPercentage\", \"9\": \"O\", \"10\": \"O\"}"}
+{"test_row": 6287, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"LineOfCreditFacilityMaximumBorrowingCapacity\", \"4\": \"LineOfCredit\", \"5\": \"LineOfCreditFacilityMaximumBorrowingCapacity\", \"6\": \"LineOfCreditFacilityRemainingBorrowingCapacity\"}"}
+{"test_row": 6373, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"OperatingLeaseExpense\", \"5\": \"OperatingLeaseExpense\"}"}
+{"test_row": 6447, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"OperatingLossCarryforwards\", \"4\": \"O\", \"5\": \"O\"}"}
+{"test_row": 7003, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\"}"}
+{"test_row": 8502, "answer": "{\"1\": \"O\", \"2\": \"LineOfCreditFacilityCommitment\", \"3\": \"O\", \"4\": \"LineOfCreditFacilityMaturityDate\"}"}
+{"test_row": 8653, "answer": "{\"1\": \"O\", \"2\": \"O\"}"}
+{"test_row": 8713, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\"}"}
+{"test_row": 9085, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"EmployeeServiceShareBasedCompensationNonvestedAwardsTotalCompensationCostNotYetRecognized\", \"4\": \"O\", \"5\": \"EmployeeServiceShareBasedCompensationNonvestedAwardsTotalCompensationCostNotYetRecognized\"}"}
+{"test_row": 9441, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"TreasuryStockAcquired\", \"4\": \"O\", \"5\": \"O\"}"}
+{"test_row": 9775, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\", \"5\": \"O\", \"6\": \"O\"}"}
+{"test_row": 9820, "answer": "{\"1\": \"O\"}"}
+{"test_row": 10070, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\"}"}
+{"test_row": 10095, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\"}"}
+{"test_row": 10383, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\", \"5\": \"LineOfCreditFacilityRemainingBorrowingCapacity\", \"6\": \"LineOfCreditFacilityRemainingBorrowingCapacity\", \"7\": \"O\", \"8\": \"O\", \"9\": \"O\", \"10\": \"O\", \"11\": \"O\", \"12\": \"O\", \"13\": \"O\", \"14\": \"O\", \"15\": \"O\", \"16\": \"O\", \"17\": \"O\", \"18\": \"O\", \"19\": \"O\", \"20\": \"O\", \"21\": \"O\", \"22\": \"O\", \"23\": \"O\", \"24\": \"LineOfCreditFacilityRemainingBorrowingCapacity\", \"25\": \"LineOfCreditFacilityRemainingBorrowingCapacity\", \"26\": \"O\", \"27\": \"O\", \"28\": \"O\", \"29\": \"O\"}"}
+{"test_row": 10489, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"CommonStockSharesOutstanding\"}"}
+{"test_row": 10638, "answer": "{\"1\": \"O\", \"2\": \"BusinessCombinationConsiderationTransferred1\"}"}
+{"test_row": 11277, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\"}"}
+{"test_row": 11459, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\", \"5\": \"ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsExercisesInPeriodTotalIntrinsicValue\"}"}
+{"test_row": 11589, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\", \"5\": \"O\"}"}
+{"test_row": 11670, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"ConcentrationRiskPercentage1\", \"4\": \"ConcentrationRiskPercentage1\", \"5\": \"ConcentrationRiskPercentage1\"}"}
+{"test_row": 11954, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\", \"5\": \"Depreciation\", \"6\": \"Depreciation\", \"7\": \"O\", \"8\": \"O\", \"9\": \"O\"}"}
+{"test_row": 12284, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"AccrualForEnvironmentalLossContingencies\"}"}
+{"test_row": 12402, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\", \"5\": \"O\"}"}
+{"test_row": 12730, "answer": "{\"1\": \"O\", \"2\": \"O\"}"}
+{"test_row": 13130, "answer": "{\"1\": \"LineOfCreditFacilityRemainingBorrowingCapacity\", \"2\": \"LineOfCreditFacilityCurrentBorrowingCapacity\", \"3\": \"O\", \"4\": \"O\"}"}
+{"test_row": 13528, "answer": "{\"1\": \"BusinessAcquisitionEquityInterestsIssuedOrIssuableNumberOfSharesIssued\", \"2\": \"BusinessAcquisitionEquityInterestsIssuedOrIssuableNumberOfSharesIssued\"}"}
+{"test_row": 13559, "answer": "{\"1\": \"BusinessAcquisitionEquityInterestsIssuedOrIssuableNumberOfSharesIssued\", \"2\": \"BusinessAcquisitionEquityInterestsIssuedOrIssuableNumberOfSharesIssued\"}"}
+{"test_row": 13603, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"StockRepurchaseProgramRemainingAuthorizedRepurchaseAmount\", \"4\": \"O\"}"}
+{"test_row": 13837, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\"}"}
+{"test_row": 13884, "answer": "{\"1\": \"ShareBasedCompensationArrangementByShareBasedPaymentAwardAwardVestingRightsPercentage\", \"2\": \"O\", \"3\": \"O\"}"}
+{"test_row": 13923, "answer": "{\"1\": \"O\", \"2\": \"O\"}"}
+{"test_row": 15561, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\", \"5\": \"O\", \"6\": \"EmployeeServiceShareBasedCompensationNonvestedAwardsTotalCompensationCostNotYetRecognized\"}"}
+{"test_row": 15566, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\", \"5\": \"O\", \"6\": \"O\", \"7\": \"O\", \"8\": \"O\", \"9\": \"O\", \"10\": \"O\", \"11\": \"O\", \"12\": \"CommonStockSharesAvailableForGrant\"}"}
+{"test_row": 15633, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\"}"}
+{"test_row": 15681, "answer": "{\"1\": \"ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsGrantsInPeriodWeightedAverageGrantDateFairValue\", \"2\": \"O\", \"3\": \"O\", \"4\": \"ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsGrantsInPeriodWeightedAverageGrantDateFairValue\", \"5\": \"O\", \"6\": \"O\"}"}
+{"test_row": 16396, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\", \"5\": \"O\", \"6\": \"LossContingencyAccrualAtCarryingValue\"}"}
+{"test_row": 16710, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\"}"}
+{"test_row": 16886, "answer": "{\"1\": \"DebtInstrumentInterestRateStatedPercentage\", \"2\": \"DebtInstrumentInterestRateStatedPercentage\"}"}
+{"test_row": 17033, "answer": "{\"1\": \"DebtInstrumentBasisSpreadOnVariableRate1\", \"2\": \"DebtInstrumentBasisSpreadOnVariableRate1\"}"}
+{"test_row": 17360, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\"}"}
+{"test_row": 17501, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"2020Notes\", \"4\": \"2025Notes\", \"5\": \"DebtInstrumentFairValue\", \"6\": \"DebtInstrumentFairValue\", \"7\": \"O\"}"}
+{"test_row": 17692, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\", \"5\": \"StockRepurchaseProgramAuthorizedAmount1\", \"6\": \"StockRepurchaseProgramAuthorizedAmount1\"}"}
+{"test_row": 17878, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"DebtInstrumentFaceAmount\", \"4\": \"O\", \"5\": \"DebtInstrumentFaceAmount\", \"6\": \"DebtInstrumentMaturityDate\"}"}
+{"test_row": 17962, "answer": "{\"1\": \"PropertyPlantAndEquipmentUsefulLife\", \"2\": \"O\", \"3\": \"Goodwill\"}"}
+{"test_row": 18006, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\", \"5\": \"O\"}"}
+{"test_row": 18467, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"CommonStockSharesAvailableForFutureGrant\"}"}
+{"test_row": 18476, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"CommonStockSharesOutstanding\", \"5\": \"CommonStockSharesOutstanding\"}"}
+{"test_row": 18689, "answer": "{\"1\": \"ConcentrationRiskPercentage1\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\", \"5\": \"O\"}"}
+{"test_row": 18952, "answer": "{\"1\": \"IncomeTaxExpenseBenefit\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\"}"}
+{"test_row": 19264, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"LineOfCreditFacilityMaximumBorrowingCapacity\", \"4\": \"LineOfCreditFacilityMaximumBorrowingCapacity\", \"5\": \"LineOfCreditFacilityInterestRateStatedPercentage\", \"6\": \"LineOfCreditFacilityMaturityDate\", \"7\": \"O\", \"8\": \"O\", \"9\": \"LineOfCreditFacilityMaturityDate\"}"}
+{"test_row": 19283, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\", \"5\": \"O\", \"6\": \"O\", \"7\": \"O\", \"8\": \"O\", \"9\": \"O\", \"10\": \"O\", \"11\": \"O\", \"12\": \"DebtInstrumentFaceAmount\"}"}
+{"test_row": 19398, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\"}"}
+{"test_row": 20054, "answer": "{\"1\": \"O\"}"}
+{"test_row": 20415, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\", \"5\": \"LineOfCreditFacilityCurrentBorrowingCapacity\", \"6\": \"LineOfCreditFacilityCurrentBorrowingCapacity\"}"}
+{"test_row": 21605, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"CommonStockSharesOutstanding\", \"4\": \"O\"}"}
+{"test_row": 21643, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"CommonStockSharesAuthorized\", \"4\": \"O\", \"5\": \"CommonStockSharesAuthorized\", \"6\": \"EmployeeServiceShareBasedCompensationNonvestedAwardsTotalCompensationCostNotYetRecognized\", \"7\": \"EmployeeServiceShareBasedShareBasedCompensationNonvestedAwardsTotalCompensationCostNotYetRecognized\", \"8\": \"O\", \"9\": \"O\", \"10\": \"O\"}"}
+{"test_row": 21671, "answer": "{\"1\": \"O\", \"2\": \"O\"}"}
+{"test_row": 21921, "answer": "{\"1\": \"O\", \"2\": \"O\"}"}
+{"test_row": 22276, "answer": "{\"1\": \"BusinessAcquisitionEquitiesInterestsIssuedOrIssuableNumberOfSharesIssued\"}"}
+{"test_row": 22328, "answer": "{\"1\": \"O\"}"}
+{"test_row": 22429, "answer": "{\"1\": \"O\", \"2\": \"DebtInstrumentFaceAmount\"}"}
+{"test_row": 22462, "answer": "{\"1\": \"LossContingencyEstimateOfPossibleLoss\", \"2\": \"LossContingencyEstimateOfPossibleLoss\", \"3\": \"O\"}"}
+{"test_row": 23042, "answer": "{\"1\": \"DebtInstrumentMaturityDate\", \"2\": \"DebtInstrumentRedemptionPricePercentage\"}"}
+{"test_row": 24265, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\", \"5\": \"O\", \"6\": \"O\", \"7\": \"O\", \"8\": \"O\", \"9\": \"AssetImpairmentCharges\", \"10\": \"RestructuringCharges\"}"}
+{"test_row": 24821, "answer": "{\"1\": \"DebtInstrumentInterestRateStatedPercentage\", \"2\": \"DebtInstrumentRedemptionPricePercentage\"}"}
+{"test_row": 25099, "answer": "{\"1\": \"RestructuringAndRelatedCostExpectedCost1\", \"2\": \"RestructuringAndRelatedCostExpectedCost1\"}"}
+{"test_row": 25516, "answer": "{\"1\": \"BusinessCombinationConsiderationTransferred1\", \"2\": \"DebtInstrumentFaceAmount\", \"3\": \"LossContingencyAccrualAtCarryingValue\"}"}
+{"test_row": 25613, "answer": "{\"1\": \"O\", \"2\": \"O\"}"}
+{"test_row": 26070, "answer": "{\"1\": \"O\"}"}
+{"test_row": 26140, "answer": "{\"1\": \"AmortizationOfFinancingCosts\", \"2\": \"O\", \"3\": \"O\"}"}
+{"test_row": 27361, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\"}"}
+{"test_row": 27503, "answer": "{\"1\": \"DefinedContributionPlanCostRecognized\", \"2\": \"DefinedContributionPlanCostRecognized\", \"3\": \"DefinedContributionPlanCostRecognized\", \"4\": \"O\", \"5\": \"O\", \"6\": \"O\"}"}
+{"test_row": 27510, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\", \"5\": \"O\", \"6\": \"O\"}"}
+{"test_row": 27569, "answer": "{\"1\": \"RevenueFromRelatedParties\", \"2\": \"LossContingencyPendingClaimsNumber\", \"3\": \"O\", \"4\": \"O\", \"5\": \"O\", \"6\": \"O\"}"}
+{"test_row": 27666, "answer": "{\"1\": \"O\"}"}
+{"test_row": 28002, "answer": "{\"1\": \"DerivativeNotionalAmount\", \"2\": \"DerivativeNotionalAmount\", \"3\": \"DebtInstrumentFaceAmount\", \"4\": \"O\", \"5\": \"O\"}"}
+{"test_row": 30070, "answer": "{\"1\": \"EmployeeServiceShareBasedCompensationNonvestedAwardsTotalCompensationCostNotYetRecognized\", \"2\": \"EmployeeServiceShareBasedCompensationNonvestedAwardsTotalCompensationCostNotYetRecognized\", \"3\": \"O\", \"4\": \"O\", \"5\": \"O\"}"}
+{"test_row": 30458, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"LineOfCreditFacilityRemainingBorrowingCapacity\"}"}
+{"test_row": 30503, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\"}"}
+{"test_row": 30877, "answer": "{\"1\": \"EmployeeServiceShareBasedCompensationNonvestedAwardsTotalCompensationCostNotYetRecognizedPeriodForRecognition1\", \"2\": \"O\", \"3\": \"O\"}"}
+{"test_row": 30905, "answer": "{\"1\": \"O\", \"2\": \"O\"}"}
+{"test_row": 31197, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\", \"5\": \"O\", \"6\": \"NoteBasedNumber\", \"7\": \"O\", \"8\": \"O\", \"9\": \"O\", \"10\": \"O\", \"11\": \"LongTermDebtFairValue\", \"12\": \"LongTermDebtFairValue\"}"}
+{"test_row": 31215, "answer": "{\"1\": \"LineOfCreditTermOfContract\"}"}
+{"test_row": 31445, "answer": "{\"1\": \"O\", \"2\": \"O\"}"}
+{"test_row": 31575, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\"}"}
+{"test_row": 31659, "answer": "{\"1\": \"EffectiveIncomeTaxRateContinuingOperations\", \"2\": \"O\", \"3\": \"O\", \"4\": \"EffectiveIncomeTaxRateContinuingOperations\", \"5\": \"O\"}"}
+{"test_row": 31791, "answer": "{\"1\": \"DebtInstrumentFaceAmount\", \"2\": \"DebtInstrumentCarryingAmount\", \"3\": \"DebtInstrumentUnamortizedDiscount\", \"4\": \"DebtInstrumentUnamortizedDiscount\", \"5\": \"O\", \"6\": \"EquityMethodInvestments\"}"}
+{"test_row": 32152, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"LongTermDebtFairValue\", \"4\": \"LongTermDebt\", \"5\": \"O\", \"8\": \"O\"}"}
+{"test_row": 33952, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\"}"}
+{"test_row": 34636, "answer": "{\"1\": \"DebtInstrumentFaceAmount\", \"2\": \"O\", \"3\": \"O\"}"}
+{"test_row": 35437, "answer": "{\"1\": \"O\"}"}
+{"test_row": 36116, "answer": "{\"1\": \"O\", \"2\": \"O\"}"}
+{"test_row": 36442, "answer": "{\"1\": \"O\", \"2\": \"DebtInstrumentFaceAmount\"}"}
+{"test_row": 36450, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\", \"5\": \"UnrecognizedTaxBenefits\", \"6\": \"UnrecognizedTaxBenefits\"}"}
+{"test_row": 36659, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"EffectiveIncomeTaxRateContinuingOperations\", \"5\": \"EffectiveIncomeTaxRateContinuingOperations\"}"}
+{"test_row": 36753, "answer": "{\"1\": \"LineOfCreditFacilityMaximumBorrowingCapacity\"}"}
+{"test_row": 37697, "answer": "{\"1\": \"EquityMethodInvestmentOwnershipPercentage\", \"2\": \"O\"}"}
+{"test_row": 37700, "answer": "{\"1\": \"MinorityInterestOwnershipPercentageByNoncontrollingOwners\"}"}
+{"test_row": 38145, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"UnrecognizedTaxBenefits\", \"4\": \"UnrecognizedTaxBenefits\"}"}
+{"test_row": 38933, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\"}"}
+{"test_row": 39162, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\", \"5\": \"O\", \"6\": \"O\"}"}
+{"test_row": 39533, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"IncomeTaxExpenseBenefit\"}"}
+{"test_row": 39853, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\", \"5\": \"LossContingencyEstimateOfPossibleLoss\"}"}
+{"test_row": 40068, "answer": "{\"1\": \"FiniteLivedIntangibleAssetUsefulLife\"}"}
+{"test_row": 40182, "answer": "{\"1\": \"O\", \"2\": \"DebtInstrumentInterestRateStatedPercentage\", \"3\": \"DebtInstrumentInterestRateStatedPercentage\", \"4\": \"DebtInstrumentInterestRateStatedPercentage\", \"5\": \"DebtInstrumentInterestRateStatedPercentage\"}"}
+{"test_row": 40333, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"CommonStockSharesOutstanding\", \"4\": \"O\", \"5\": \"CommonStockSharesOutstanding\", \"6\": \"CommonStockSharesOutstanding\", \"7\": \"O\", \"8\": \"O\", \"9\": \"O\"}"}
+{"test_row": 40464, "answer": "{\"1\": \"AssetImpairmentCharges\", \"2\": \"AssetImpairmentCharges\", \"3\": \"AssetImpairmentCharges\"}"}
+{"test_row": 40679, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"BusinessCombinationContingentConsiderationLiability\"}"}
+{"test_row": 40772, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\"}"}
+{"test_row": 40875, "answer": "{\"1\": \"O\", \"2\": \"CommonStockSharesAuthorized\", \"3\": \"CommonStockSharesAuthorized\"}"}
+{"test_row": 41542, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\"}"}
+{"test_row": 41605, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"AntidilutiveSecuritiesExcludedFromComputationOfEarningsPerShareAmount\", \"5\": \"AntidilutiveSecuritiesExcludedFromComputationOfEarningsPerShareAmount\", \"6\": \"O\", \"7\": \"O\"}"}
+{"test_row": 41672, "answer": "{\"1\": \"BusinessCombinationConsiderationTransferred1\"}"}
+{"test_row": 41744, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"LineOfCreditFacilityRemainingBorrowingCapacity\", \"4\": \"LineOfCreditFacilityCurrentBorrowingCapacity\"}"}
+{"test_row": 42205, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"ShareBasedCompensation\", \"4\": \"ShareBasedCompensationArrangementByShareBasedPaymentAwardAwardVestingRightsPercentage\", \"5\": \"O\", \"6\": \"O\", \"7\": \"O\", \"8\": \"ShareBasedCompensation\", \"9\": \"O\"}"}
+{"test_row": 42387, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"CommonStockSharesOutstanding\", \"4\": \"O\"}"}
+{"test_row": 43031, "answer": "{\"1\": \"LineOfCreditFacilityUnusedCapacityCommitmentFeePercentage\", \"2\": \"LineOfCreditFacilityUnusedCapacityCommitmentFeePercentage\", \"3\": \"LineOfCreditFacilityUnusedCapacityCommitmentFeePercentage\"}"}
+{"test_row": 43155, "answer": "{\"1\": \"OperatingLeasePayments\", \"2\": \"OperatingLeasePayments\", \"3\": \"O\", \"4\": \"O\", \"5\": \"O\"}"}
+{"test_row": 43182, "answer": "{\"1\": \"O\", \"2\": \"O\"}"}
+{"test_row": 43184, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"AntidilutiveSecuritiesExcludedFromComputationOfEarningsPerShareAmount\"}"}
+{"test_row": 43425, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"EmployeeServiceShareBasedCompensationNonvestedAwardsTotalCompensationCostNotYetRecognized\", \"4\": \"EmployeeServiceShareBasedCompensationNonvestedAwardsTotalCompensationCostNotYetRecognizedPeriodForRecognition1\"}"}
+{"test_row": 43879, "answer": "{\"1\": \"O\", \"2\": \"O\"}"}
+{"test_row": 43936, "answer": "{\"1\": \"DebtInstrumentFairValue\", \"2\": \"DebtInstrumentFairValue\", \"3\": \"DebtInstrumentFairValue\", \"4\": \"DebtInstrumentFairValue\", \"5\": \"LineOfCreditFacilityMaximumBorrowingCapacity\", \"6\": \"LineOfCreditFacilityMaximumBorrowingCapacity\", \"7\": \"O\", \"8\": \"O\"}"}
+{"test_row": 43969, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"OperatingLeaseWeightedAverageRemainingLeaseTerm1\", \"4\": \"OperatingLeaseWeightedAverageRemainingLeaseTerm1\", \"5\": \"O\", \"6\": \"O\", \"7\": \"O\", \"8\": \"O\"}"}
+{"test_row": 44069, "answer": "{\"1\": \"LineOfCreditFacilityMaximumBorrowingCapacity\", \"2\": \"O\", \"3\": \"O\"}"}
+{"test_row": 45138, "answer": "{\"1\": \"DebtInstrumentBasisSpreadOnVariableRate1\", \"2\": \"DebtInstrumentInterestRateStatedPercentage\", \"3\": \"O\", \"4\": \"O\"}"}
+{"test_row": 45579, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"CommonStockDividendsPerShareDeclared\", \"5\": \"CommonStockDividendsPerShareDeclared\", \"6\": \"CommonStockDividendsPerShareDeclared\", \"7\": \"CommonStockDividendsPerShareDeclared\"}"}
+{"test_row": 45848, "answer": "{\"1\": \"DebtInstrumentMaturityDate\", \"2\": \"DebtInstrumentFaceAmount\", \"3\": \"DebtInstrumentMaturityDate\", \"4\": \"O\", \"5\": \"DebtInstrumentIssueDate\", \"6\": \"DebtInstrumentFaceAmount\", \"7\": \"DebtInstrumentCouponRate\", \"8\": \"DebtInstrumentMaturityDate\", \"9\": \"DebtInstrumentName\", \"10\": \"DebtInstrumentIssuePrice\"}"}
+{"test_row": 45960, "answer": "{\"1\": \"O\", \"2\": \"O\"}"}
+{"test_row": 46195, "answer": "{\"1\": \"LineOfCreditFacilityMaximumBorrowingCapacity\"}"}
+{"test_row": 46640, "answer": "{\"1\": \"AntidilutiveSecuritiesExcludedFromComputationOfEarningsPerShareAmount\", \"2\": \"O\", \"3\": \"O\", \"4\": \"BusinessCombinationRecognizedIdentifiableAssetsAcquiredAndLiabilitiesAssumedIntangibles\"}"}
+{"test_row": 46649, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"ShareBasedCompensation\"}"}
+{"test_row": 46974, "answer": "{\"1\": \"O\"}"}
+{"test_row": 46984, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"BusinessCombinationAcquisitionPercentageOfVotingInterestsAcquired\", \"4\": \"O\"}"}
+{"test_row": 47012, "answer": "{\"1\": \"O\"}"}
+{"test_row": 47186, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\", \"5\": \"LongTermDebtFairValue\", \"6\": \"LongTermDebtFairValue\", \"7\": \"LongTermDebt\", \"8\": \"LongTermDebt\"}"}
+{"test_row": 47310, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"EmployeeServiceShareBasedCompensationNonvestedAwardsTotalCompensationCostNotYetRecognized\", \"4\": \"EmployeeServiceShareBasedCompensationNonvestedAwardsTotalCompensationCostNotYetRecognized\", \"5\": \"O\", \"6\": \"O\", \"7\": \"O\"}"}
+{"test_row": 47807, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\", \"5\": \"BusinessCombinationConsiderationTransferred1\"}"}
+{"test_row": 48870, "answer": "{\"1\": \"CommonStockDividendsPerShareDeclared\", \"2\": \"ShareBasedCompensation\", \"3\": \"O\"}"}
+{"test_row": 49346, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\"}"}
+{"test_row": 49454, "answer": "{\"1\": \"O\", \"2\": \"O\"}"}
+{"test_row": 49680, "answer": "{\"1\": \"RevenueFromRelatedParties\", \"2\": \"RevenueFromRelatedParties\", \"3\": \"O\", \"4\": \"O\", \"5\": \"O\"}"}
+{"test_row": 49761, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"EmployeeServiceShareBasedCompensationNonvestedAwardsTotalCompensationCostNotYetRecognized\", \"4\": \"O\"}"}
+{"test_row": 49868, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\"}"}
+{"test_row": 50185, "answer": "{\"1\": \"OperatingLeasePayments\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\"}"}
+{"test_row": 50226, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\", \"5\": \"LettersOfCreditOutstandingAmount\", \"6\": \"LettersOfCreditOutstandingAmount\"}"}
+{"test_row": 50250, "answer": "{\"1\": \"AmortizationOfIntangibleAssets\", \"2\": \"AmortizationOfIntangibleAssets\", \"3\": \"O\", \"4\": \"O\", \"5\": \"O\"}"}
+{"test_row": 50446, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"DebtInstrumentFaceAmount\", \"4\": \"DebtInstrumentInterestRateStatedPercentage\", \"5\": \"DebtInstrumentRedemptionPricePercentage\"}"}
+{"test_row": 50454, "answer": "{\"1\": \"DebtInstrumentMaturityDate\", \"2\": \"DebtInstrumentInterestRateStatedPercentage\"}"}
+{"test_row": 50484, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\", \"5\": \"LettersOfCreditOutstandingAmount\", \"6\": \"LettersOfCreditOutstandingAmount\", \"7\": \"LineOfCreditFacilityRemainingBorrowingCapacity\", \"8\": \"LineOfCreditFacilityRemainingBorrowingCapacity\"}"}
+{"test_row": 50806, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"DebtInstrumentFaceAmount\", \"5\": \"DebtInstrumentInterestRateStatedPercentage\", \"6\": \"DebtInstrumentMaturityDate\", \"7\": \"O\", \"8\": \"O\", \"9\": \"DebtInstrumentInterestRateStatedPercentage\", \"10\": \"DebtInstrumentMaturityDate\", \"11\": \"O\", \"12\": \"O\", \"13\": \"DebtInstrumentInterestRateStatedPercentage\", \"14\": \"DebtInstrumentMaturityDate\", \"15\": \"O\", \"16\": \"O\", \"17\": \"O\", \"18\": \"O\"}"}
+{"test_row": 51543, "answer": "{\"1\": \"DerivativeNotionalAmount\", \"2\": \"O\", \"3\": \"O\"}"}
+{"test_row": 51846, "answer": "{\"1\": \"O\"}"}
+{"test_row": 51905, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"LineOfCreditFacilityCurrentBorrowingCapacity\", \"4\": \"LettersOfCreditOutstandingAmount\"}"}
+{"test_row": 51908, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"LineOfCreditFacilityCurrentBorrowingCapacity\"}"}
+{"test_row": 51968, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"AmortizationOfIntangibleAssets\", \"5\": \"AmortizationOfIntangibleAssets\"}"}
+{"test_row": 52037, "answer": "{\"1\": \"DebtInstrumentInterestRateStatedPercentage\", \"2\": \"DebtInstrumentInterestRateStatedPercentage\", \"3\": \"DebtInstrumentMaturityDate\", \"4\": \"O\"}"}
+{"test_row": 52194, "answer": "{\"1\": \"O\"}"}
+{"test_row": 52227, "answer": "{\"1\": \"O\"}"}
+{"test_row": 53852, "answer": "{\"1\": \"NumberOfRealEstateProperties\", \"2\": \"OperatingLeaseExpense\", \"3\": \"O\", \"4\": \"O\"}"}
+{"test_row": 54516, "answer": "{\"1\": \"O\", \"2\": \"O\"}"}
+{"test_row": 54532, "answer": "{\"1\": \"LossContingencyAccrualAtCarryingValue\", \"2\": \"O\"}"}
+{"test_row": 55411, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"SaleOfStockNumberOfSharesIssuedInTransaction\", \"4\": \"SaleOfStockNumberOfSharesIssuedInTransaction\", \"5\": \"SaleOfStockNumberOfSharesIssuedInTransaction\", \"6\": \"ProceedsFromIssuanceOfCommonStock\"}"}
+{"test_row": 57065, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"RevenueFromContractWithCustomerIncludingAssessedTax\", \"4\": \"ContractWithCustomerLiability\"}"}
+{"test_row": 57550, "answer": "{\"1\": \"O\"}"}
+{"test_row": 57679, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"DebtInstrumentFaceAmount\", \"4\": \"O\", \"5\": \"O\", \"6\": \"DebtInstrumentFaceAmount\", \"7\": \"O\", \"8\": \"O\", \"9\": \"DebtInstrumentFaceAmount\", \"10\": \"O\", \"11\": \"O\", \"12\": \"O\", \"13\": \"O\", \"14\": \"O\", \"15\": \"O\", \"16\": \"O\", \"17\": \"O\"}"}
+{"test_row": 58535, "answer": "{\"1\": \"DebtInstrumentInterestRateStatedPercentage\"}"}
+{"test_row": 59858, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"DisposalGroupIncludingDiscontinuedOperationConsideration\", \"4\": \"O\"}"}
+{"test_row": 59899, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\", \"5\": \"CapitalizedContractCostAmortization\", \"6\": \"CapitalizedContractCostAmortization\"}"}
+{"test_row": 60781, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"OperatingLeaseExpense\", \"5\": \"OperatingLeaseExpense\"}"}
+{"test_row": 60959, "answer": "{\"1\": \"O\"}"}
+{"test_row": 62012, "answer": "{\"1\": \"OperatingLeaseExpense\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\", \"5\": \"O\"}"}
+{"test_row": 62174, "answer": "{\"1\": \"O\"}"}
+{"test_row": 62274, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"DebtWeightedAverageInterestRate\"}"}
+{"test_row": 62277, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"LineOfCreditFacilityCurrentBorrowingCapacity\"}"}
+{"test_row": 62538, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\", \"5\": \"O\"}"}
+{"test_row": 62916, "answer": "{\"1\": \"O\", \"2\": \"DebtInstrumentFaceAmount\", \"3\": \"DebtInstrumentInterestRateStatedPercentage\", \"4\": \"DebtInstrumentMaturityDate\"}"}
+{"test_row": 64614, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\", \"5\": \"O\", \"6\": \"O\"}"}
+{"test_row": 65334, "answer": "{\"1\": \"OperatingLeaseExpense\", \"2\": \"OperatingLeaseExpense\", \"3\": \"O\", \"4\": \"O\", \"5\": \"OperatingLeaseExpense\", \"6\": \"OperatingLeaseExpense\"}"}
+{"test_row": 65446, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsGrantsInPeriodGross\"}"}
+{"test_row": 65964, "answer": "{\"1\": \"DebtInstrumentInterestRateStatedPercentage\", \"2\": \"DebtInstrumentInterestRateStatedPercentage\", \"3\": \"O\", \"4\": \"O\", \"5\": \"DebtInstrumentInterestRateStatedPercentage\", \"6\": \"O\", \"7\": \"O\", \"8\": \"O\", \"9\": \"O\", \"10\": \"DebtInstrumentInterestRateStatedPercentage\", \"11\": \"DebtInstrumentInterestRateStatedPercentage\", \"12\": \"O\", \"13\": \"O\", \"14\": \"DebtInstrumentInterestRateStatedPercentage\", \"15\": \"O\", \"16\": \"O\", \"17\": \"O\", \"18\": \"O\"}"}
+{"test_row": 66460, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\"}"}
+{"test_row": 66572, "answer": "{\"1\": \"GuaranteeObligationsMaximumExposure\", \"2\": \"O\", \"3\": \"O\"}"}
+{"test_row": 66649, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\", \"5\": \"DebtInstrumentCarryingAmount\", \"6\": \"DebtInstrumentCarryingAmount\"}"}
+{"test_row": 66744, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\", \"5\": \"O\", \"6\": \"EmployeeServiceShareBasedCompensationNonvestedAwardsTotalCompensationCostNotYetRecognized\", \"7\": \"EmployeeServiceShareBasedCompensationNonvestedAwardsTotalCompensationCostNotYetRecognized\"}"}
+{"test_row": 66908, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\"}"}
+{"test_row": 67033, "answer": "{\"1\": \"O\", \"2\": \"BusinessCombinationConsiderationTransferred1\", \"3\": \"BusinessCombinationConsiderationTransferred1\", \"4\": \"BusinessCombinationConsiderationTransferred1\"}"}
+{"test_row": 67313, "answer": "{\"1\": \"O\", \"2\": \"O\"}"}
+{"test_row": 68099, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"EffectiveIncomeTaxRateContinuingOperations\"}"}
+{"test_row": 68526, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"DebtInstrumentFaceAmount\", \"4\": \"DebtInstrumentInterestRateStatedPercentage\", \"5\": \"DebtInstrument\", \"6\": \"DebtInstrumentMaturityDate\", \"7\": \"O\"}"}
+{"test_row": 68569, "answer": "{\"1\": \"O\", \"2\": \"ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsGrantsInPeriodGross\", \"3\": \"ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsGrantsInPeriodGross\", \"4\": \"O\", \"5\": \"ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsGrantsInPeriodGross\", \"6\": \"O\", \"7\": \"O\"}"}
+{"test_row": 69378, "answer": "{\"1\": \"LineOfCreditFacilityMaximumBorrowingCapacity\", \"2\": \"LineOfCreditFacilityMaximumBorrowingCapacity\", \"3\": \"O\", \"4\": \"O\"}"}
+{"test_row": 69431, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\"}"}
+{"test_row": 69529, "answer": "{\"1\": \"EquityMethodInvestments\", \"2\": \"O\", \"3\": \"O\", \"4\": \"EquityMethodInvestments\", \"5\": \"O\", \"6\": \"O\"}"}
+{"test_row": 69683, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"DebtInstrumentFaceAmount\", \"4\": \"O\", \"5\": \"O\", \"6\": \"O\", \"7\": \"O\"}"}
+{"test_row": 69772, "answer": "{\"1\": \"DebtInstrumentFaceAmount\", \"2\": \"DebtInstrumentFaceAmount\", \"3\": \"DebtInstrumentBasisSpreadOnVariableRate1\", \"4\": \"DebtInstrumentRedemptionPricePercentage\", \"5\": \"O\"}"}
+{"test_row": 69988, "answer": "{\"1\": \"O\", \"2\": \"O\"}"}
+{"test_row": 70072, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"CommonStockSharesAvailableForGrant\"}"}
+{"test_row": 70841, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"AccrualForEnvironmentalLossContingencies\"}"}
+{"test_row": 72513, "answer": "{\"1\": \"DebtInstrumentFaceAmount\"}"}
+{"test_row": 72632, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"ProceedsFromIssuanceOfCommonStock\", \"4\": \"O\", \"5\": \"O\", \"6\": \"SaleOfStockNumberOfSharesIssuedInTransaction\", \"7\": \"SaleOfStockPricePerShare\", \"8\": \"ProceedsFromIssuanceOfCommonStock\"}"}
+{"test_row": 73232, "answer": "{\"1\": \"DebtInstrumentBasisSpreadOnVariableRate1\"}"}
+{"test_row": 73303, "answer": "{\"1\": \"LettersOfCreditOutstandingAmount\"}"}
+{"test_row": 73324, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\", \"5\": \"O\", \"6\": \"O\", \"7\": \"O\", \"8\": \"O\", \"9\": \"O\", \"10\": \"O\", \"11\": \"O\", \"12\": \"O\"}"}
+{"test_row": 73584, "answer": "{\"1\": \"DebtInstrumentConvertibleConversionPrice1\", \"2\": \"DebtInstrumentFaceAmount\", \"3\": \"DebtInstrumentConvertibleConversionPrice1\", \"4\": \"DebtInstrumentMaturityDate\"}"}
+{"test_row": 73727, "answer": "{\"1\": \"BusinessCombinationContingentConsiderationLiability\", \"2\": \"BusinessCombinationContingentConsiderationLiability\", \"3\": \"O\", \"4\": \"O\", \"5\": \"O\", \"6\": \"O\", \"7\": \"O\"}"}
+{"test_row": 74709, "answer": "{\"1\": \"DebtInstrumentInterestRateStatedPercentage\"}"}
+{"test_row": 75158, "answer": "{\"1\": \"LineOfCreditFacilityMaximumBorrowingCapacity\"}"}
+{"test_row": 75338, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\"}"}
+{"test_row": 75673, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\"}"}
+{"test_row": 75849, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\", \"5\": \"O\", \"6\": \"O\", \"7\": \"O\", \"8\": \"O\", \"9\": \"O\", \"10\": \"O\", \"11\": \"O\", \"12\": \"O\", \"13\": \"O\", \"14\": \"O\"}"}
+{"test_row": 76357, "answer": "{\"1\": \"O\", \"2\": \"DebtInstrumentMaturityDate\", \"3\": \"DebtInstrumentMaturityDate\", \"4\": \"DebtInstrumentBasisSpreadOnVariableRate1\", \"5\": \"DebtInstrumentFaceAmount\", \"6\": \"DebtInstrumentMaturityDate\", \"7\": \"DebtInstrumentMaturityDate\", \"8\": \"DebtInstrumentFaceAmount\", \"9\": \"DebtInstrumentMaturityDate\", \"10\": \"DebtInstrumentMaturityDate\"}"}
+{"test_row": 76593, "answer": "{\"1\": \"O\", \"2\": \"O\"}"}
+{"test_row": 76878, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"BusinessCombinationConsiderationTransferred1\"}"}
+{"test_row": 76894, "answer": "{\"1\": \"MinorityInterestOwnershipPercentageByNoncontrollingOwners\"}"}
+{"test_row": 76936, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"DebtInstrumentUnamortizedDiscount\"}"}
+{"test_row": 76973, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"EmployeeServiceShareBasedCompensationNonvestedAwardsTotalCompensationCostNotYetRecognized\", \"4\": \"O\"}"}
+{"test_row": 77205, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"RepaymentsOfDebt\", \"4\": \"O\", \"5\": \"O\", \"6\": \"O\"}"}
+{"test_row": 77925, "answer": "{\"1\": \"EffectiveIncomeTaxRateReconciliationAtFederalStatutoryIncomeTaxRate\", \"2\": \"O\", \"3\": \"O\"}"}
+{"test_row": 78416, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"ProceedsFromIssuanceOfCommonStock\", \"5\": \"ProceedsFromIssuanceOfCommonStock\"}"}
+{"test_row": 78943, "answer": "{\"1\": \"ShareBasedCompensation\", \"2\": \"ShareBasedCompensation\", \"3\": \"O\", \"4\": \"O\", \"5\": \"O\", \"6\": \"ShareBasedCompensation\", \"7\": \"ShareBasedCompensation\", \"8\": \"O\", \"9\": \"O\", \"10\": \"O\"}"}
+{"test_row": 79397, "answer": "{\"1\": \"O\", \"2\": \"RevenueFromContractWithCustomerExcludingAssessedTax\", \"3\": \"O\", \"4\": \"O\"}"}
+{"test_row": 79899, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\"}"}
+{"test_row": 80613, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"OperatingIncome\", \"4\": \"O\", \"5\": \"O\", \"6\": \"O\"}"}
+{"test_row": 80760, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\"}"}
+{"test_row": 81095, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsGrantsInPeriodWeightedAverageGrantDateFairValue\", \"5\": \"ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsGrantsInPeriodWeightedAverageGrantDateFairValue\", \"6\": \"ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsGrantsInPeriodWeightedAverageGrantDateFairValue\"}"}
+{"test_row": 81216, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"BusinessCombinationConsiderationTransferred1\"}"}
+{"test_row": 81714, "answer": "{\"1\": \"EmployeeServiceShareBasedCompensationNonvestedAwardsTotalCompensationCostNotYetRecognizedPeriodForRecognition1\"}"}
+{"test_row": 81782, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"BusinessCombinationConsiderationTransferred1\"}"}
+{"test_row": 82539, "answer": "{\"1\": \"FiniteLivedIntangibleAssetUsefulLife\", \"2\": \"FiniteLivedIntangibleAssetUsefulLife\"}"}
+{"test_row": 82593, "answer": "{\"1\": \"O\", \"2\": \"LineOfCreditFacilityInterestRateAtPeriodEnd\"}"}
+{"test_row": 83103, "answer": "{\"1\": \"O\", \"2\": \"DebtInstrumentFaceAmount\", \"3\": \"DebtInstrumentPrincipalPaymentDue\", \"4\": \"DebtInstrumentMaturityDate\", \"5\": \"DebtInstrumentPrincipalPaymentDue\", \"6\": \"O\"}"}
+{"test_row": 83468, "answer": "{\"1\": \"LineOfCreditFacilityMaturityDate\"}"}
+{"test_row": 83959, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"DebtInstrumentFaceAmount\", \"4\": \"DebtInstrumentInterestRateStatedPercentage\", \"5\": \"DebtInstrumentTerm\"}"}
+{"test_row": 83993, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"MinorityInterestOwnershipPercentageByNoncontrollingOwners\"}"}
+{"test_row": 84107, "answer": "{\"1\": \"DebtInstrumentFaceAmount\", \"2\": \"O\"}"}
+{"test_row": 84932, "answer": "{\"1\": \"RevenueFromContractWithCustomerIncludingAssessedTax\", \"2\": \"O\", \"3\": \"IncomeLossFromEquityMethodInvestments\", \"4\": \"O\", \"5\": \"O\"}"}
+{"test_row": 85077, "answer": "{\"1\": \"AssetImpairmentCharges\", \"2\": \"O\"}"}
+{"test_row": 85327, "answer": "{\"1\": \"O\", \"2\": \"LineOfCreditFacilityMaximumBorrowingCapacity\", \"3\": \"LineOfCreditFacilityRemainingBorrowingCapacity\", \"4\": \"O\", \"5\": \"O\"}"}
+{"test_row": 86801, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\", \"5\": \"O\", \"6\": \"O\"}"}
+{"test_row": 87391, "answer": "{\"1\": \"LineOfCreditFacilityMaximumBorrowingCapacity\"}"}
+{"test_row": 87506, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"RevenueFromContractWithCustomerIncludingAssessedTax\", \"4\": \"RevenueFromContractWithCustomerIncludingAssessedTax\"}"}
+{"test_row": 87696, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\", \"5\": \"O\", \"6\": \"O\", \"7\": \"O\", \"8\": \"O\"}"}
+{"test_row": 87880, "answer": "{\"1\": \"EquityMethodInvestments\", \"2\": \"EquityMethodInvestments\", \"3\": \"O\", \"4\": \"O\", \"5\": \"O\", \"6\": \"O\"}"}
+{"test_row": 88046, "answer": "{\"1\": \"O\"}"}
+{"test_row": 88987, "answer": "{\"1\": \"O\", \"2\": \"2025Notes\", \"3\": \"DebtInstrumentFaceAmount\", \"4\": \"2025Notes\", \"5\": \"2025Notes\"}"}
+{"test_row": 89165, "answer": "{\"1\": \"FiniteLivedIntangibleAssetUsefulLife\", \"2\": \"FiniteLivedIntangibleAssetUsefulLife\"}"}
+{"test_row": 89489, "answer": "{\"1\": \"O\"}"}
+{"test_row": 89748, "answer": "{\"1\": \"O\", \"2\": \"O\"}"}
+{"test_row": 90219, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"EffectiveIncomeTaxRateContinuingOperations\", \"4\": \"EffectiveIncomeTaxRateContinuingOperations\", \"5\": \"O\", \"6\": \"O\"}"}
+{"test_row": 90417, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"LineOfCreditFacilityMaximumBorrowingCapacity\", \"4\": \"LineOfCreditFacilityMaximumBorrowingCapacity\"}"}
+{"test_row": 90971, "answer": "{\"1\": \"DebtInstrumentTerm\", \"2\": \"DebtInstrumentTerm\", \"3\": \"DebtInstrumentFairValue\", \"4\": \"DebtInstrumentFairValue\", \"5\": \"O\", \"6\": \"O\", \"7\": \"O\", \"8\": \"O\", \"9\": \"O\"}"}
+{"test_row": 91113, "answer": "{\"1\": \"O\"}"}
+{"test_row": 91323, "answer": "{\"1\": \"StockRepurchasedDuringPeriodShares\", \"2\": \"StockRepurchaseProgramAuthorizedAmount1\", \"3\": \"O\"}"}
+{"test_row": 91790, "answer": "{\"1\": \"O\"}"}
+{"test_row": 91869, "answer": "{\"1\": \"BusinessCombinationAcquisitionRelatedCosts\"}"}
+{"test_row": 91983, "answer": "{\"1\": \"O\", \"2\": \"O\"}"}
+{"test_row": 92278, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"LineOfCreditFacilityCurrentBorrowingCapacity\", \"4\": \"LineOfCreditOutstandingAmount\", \"5\": \"LineOfCreditFacilityRemainingBorrowingCapacity\"}"}
+{"test_row": 92999, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"LossContingencyEstimateOfPossibleLoss\", \"4\": \"O\", \"5\": \"LossContingencyEstimateOfPossibleLoss\", \"6\": \"O\"}"}
+{"test_row": 93210, "answer": "{\"1\": \"O\", \"2\": \"O\"}"}
+{"test_row": 93631, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\"}"}
+{"test_row": 94371, "answer": "{\"1\": \"O\", \"2\": \"O\"}"}
+{"test_row": 94379, "answer": "{\"1\": \"DebtInstrumentInterestRateStatedPercentage\", \"2\": \"DebtInstrumentInterestRateStatedPercentage\", \"3\": \"DebtInstrumentRedemptionPricePercentage\"}"}
+{"test_row": 94901, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"RevenueRemainingPerformanceObligation\", \"4\": \"O\"}"}
+{"test_row": 94982, "answer": "{\"1\": \"O\", \"2\": \"O\", \"3\": \"O\", \"4\": \"O\", \"5\": \"O\", \"6\": \"O\"}"}
