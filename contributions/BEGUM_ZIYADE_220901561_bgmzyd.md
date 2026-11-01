@@ -18,7 +18,7 @@ In a second step I added two of the team's improvement items: an **inference-spe
 | 2 | Validation–test leakage removed from the main test view (2,422 sentences) | `src/finer.py` (`load_splits`, `evaluate`) |
 | 3 | Most-frequent-tag baseline and HMM + Viterbi | `src/baseline_hmm.py`, `results/baseline_mft_*`, `results/hmm_*` |
 | 4 | Analysis: why the HMM fails | `results/hmm_analysis.txt` |
-| 5 | Re-scoring of all saved predictions, final results table (Markdown + LaTeX) | `src/evaluate_predictions.py`, `results/RESULTS.md`, `results/results_table.tex` |
+| 5 | Re-scoring of all saved predictions, final results table (Markdown + LaTeX, booktabs) with 95% bootstrap CIs and inference speed | `src/evaluate_predictions.py`, `results/RESULTS.md`, `results/results_table.tex`, `results/results_ci.csv` |
 | 6 | Tests of the evaluator and the HMM against the lecture examples | `tests/test_finer.py` |
 | 7 | README sections: Evaluation, Models, Results | `README.md` |
 | 8 | Inference speed of all six models on one machine (GPU and CPU) | `src/latency.py`, `results/latency.csv`, `results/LATENCY.md` |

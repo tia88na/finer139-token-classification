@@ -1,0 +1,10 @@
+key,model,micro_F1,ci95_low,ci95_high
+baseline_mft,Most-frequent tag,3.07,2.71,3.46
+hmm,HMM + Viterbi,3.51,3.2,3.83
+crf,CRF,59.03,58.39,59.64
+bilstm_crf,BiLSTM-CRF,71.45,70.88,72.01
+bert-base-cased,BERT-base-cased,70.44,69.87,71.01
+sec-bert-shape,SEC-BERT-SHAPE,72.95,72.4,73.51
+sec-bert-shape-crf,SEC-BERT-SHAPE + CRF,73.52,72.98,74.08
+bert-base-cased-4ep,BERT-base-cased (4 epochs),73.34,72.79,73.89
+sec-bert-shape-4ep,SEC-BERT-SHAPE (4 epochs),75.93,75.39,76.46
