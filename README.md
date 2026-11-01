@@ -264,9 +264,18 @@ head (same architecture and parameter count as the fine-tuned models). Full tabl
 | BiLSTM-CRF | 71.5 | 4,704 | 142 | 3.6 M |
 | BERT-base-cased | 70.4 | 679 | 5.7 | 107.9 M |
 | SEC-BERT-SHAPE | 73.0 | 819 | 9.2 | 108.7 M |
+| SEC-BERT-SHAPE (4 epochs) | 75.9 | 819\* | 9.2\* | 108.7 M |
 
-- On the GPU, BiLSTM-CRF is **5.7x faster** than SEC-BERT-SHAPE for 1.5 points less
-  micro-F1; on a CPU the gap is 15x. It is the best accuracy/speed trade-off here.
+\* Not timed separately: the 4-epoch run is the same model (`nlpaueb/sec-bert-shape`,
+same token-classification head, no CRF) trained for more epochs, so it has the same
+architecture and parameter count and therefore the same speed. SEC-BERT-SHAPE + CRF
+(73.5) adds a Viterbi layer and was not timed.
+
+- **Speed vs accuracy.** The best model, SEC-BERT-SHAPE trained for 4 epochs (75.9),
+  labels 819 sentences/s on the GPU. BiLSTM-CRF is **5.7x faster** (15x on a CPU) and
+  4.5 points lower in micro-F1. Against the 2-epoch SEC-BERT-SHAPE the gap is 1.5
+  points, but that BiLSTM-CRF was trained for 12 epochs and the transformer for 2, so
+  the 4-epoch comparison is the fairer one.
 - SEC-BERT-SHAPE is **faster than BERT-base** (1.2x on GPU, 1.6x on CPU) although both
   have the same encoder size, most likely because each number becomes one shape token
   instead of several word pieces, so its inputs are shorter (not measured separately).

@@ -8,7 +8,7 @@
 
 My contribution is the **HMM baseline and the shared evaluation** of the project. I wrote one evaluation module that every model in the team is scored with (word-level, full-length sentences, entity-level micro and macro F1 with seqeval), removed the validation–test leakage from the test view, added a most-frequent-tag baseline and a first-order **HMM with Viterbi decoding**, and analysed why a token-only model fails on FiNER-139. I re-scored the team's transformer predictions with the same code and built the final results table (Markdown and LaTeX). The HMM reaches only **3.5 micro-F1**, against **73.0** for SEC-BERT-SHAPE: the tag of a number is decided by its context, not by the number.
 
-In a second step I added two of the team's improvement items: an **inference-speed comparison** of all six models on the same machine (BiLSTM-CRF is 5.7x faster than SEC-BERT-SHAPE on a T4 GPU for 1.5 points less micro-F1), and a **cleaning ablation** that trains the CRF on three versions of the training data. It shows that the no-entity downsampling trades precision for recall at the same F1, and that the leakage removal prevents a 2.2-point inflation of the test score.
+In a second step I added two of the team's improvement items: an **inference-speed comparison** of all six models on the same machine (BiLSTM-CRF is 5.7x faster on a T4 GPU than the best model, SEC-BERT-SHAPE trained for 4 epochs, and 4.5 points lower in micro-F1), and a **cleaning ablation** that trains the CRF on three versions of the training data. It shows that the no-entity downsampling trades precision for recall at the same F1, and that the leakage removal prevents a 2.2-point inflation of the test score.
 
 ## Overview of my contributions
 
@@ -81,8 +81,11 @@ The team's improvement list asked for a latency column (the instructor asked abo
 | BiLSTM-CRF | 71.5 | 4,704 | 142 |
 | BERT-base-cased | 70.4 | 679 | 5.7 |
 | SEC-BERT-SHAPE | 73.0 | 819 | 9.2 |
+| SEC-BERT-SHAPE (4 epochs, Zehra) | 75.9 | 819\* | 9.2\* |
 
-- BiLSTM-CRF is 5.7x faster than SEC-BERT-SHAPE on the GPU (15x on the CPU) for 1.5 points less micro-F1: the best accuracy/speed trade-off.
+\* Same model and size as SEC-BERT-SHAPE, only trained longer, so the same speed; not timed separately.
+
+- BiLSTM-CRF is 5.7x faster than SEC-BERT-SHAPE on the GPU (15x on the CPU). It is 4.5 points below the best model (SEC-BERT-SHAPE, 4 epochs, 75.9) and 1.5 points below the 2-epoch run; the 4-epoch comparison is the fairer one, because BiLSTM-CRF was trained for 12 epochs.
 - SEC-BERT-SHAPE is faster than BERT-base (1.2x GPU, 1.6x CPU), most likely because numbers become one shape token instead of several word pieces (not measured separately).
 - The HMM does not use the GPU: its Viterbi runs in NumPy, one sentence at a time.
 
