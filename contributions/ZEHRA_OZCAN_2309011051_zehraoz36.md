@@ -8,9 +8,9 @@
 
 I built and ran the transformer part of the benchmark: a single training script for token classification on the cleaned FiNER-139 data, the **BERT-base (cased)** baseline, and the **new model, SEC-BERT-SHAPE**, a BERT model pre-trained on SEC filings that replaces every number with its shape (e.g. `645.1` -> `[XXX.X]`). SEC-BERT-SHAPE beats the BERT baseline by **+2.5 micro-F1** and **+3.1 macro-F1** on the test set and is better on 122 of the 139 entity types.
 
-I then added the team's linear-chain CRF layer (`src/crf_layer.py`) on top of SEC-BERT-SHAPE. **SEC-BERT-SHAPE + CRF is the best single model of the project: 73.5 micro-F1 and 70.0 macro-F1** (shared evaluator, main test view), +0.6 / +0.9 over SEC-BERT-SHAPE. It matches the three-model ensemble on micro-F1 (73.52 vs 73.51) and beats it on macro-F1 (70.03 vs 69.77) while running one model instead of three.
+I then added the team's linear-chain CRF layer (`src/crf_layer.py`) on top of SEC-BERT-SHAPE. **SEC-BERT-SHAPE + CRF is the best of the 2-epoch models: 73.5 micro-F1 and 70.0 macro-F1** (shared evaluator, main test view), +0.6 / +0.9 over SEC-BERT-SHAPE. It matches the three-model ensemble on micro-F1 (73.52 vs 73.51) and beats it on macro-F1 (70.03 vs 69.77) while running one model instead of three.
 
-Finally I trained SEC-BERT-SHAPE for 4 epochs instead of 2 (the BiLSTM-CRF was trained for up to 12). **SEC-BERT-SHAPE (4 epochs) is the best model of the project: 75.9 micro-F1 and 73.2 macro-F1** (shared evaluator, main test view), +3.0 / +4.0 over the 2-epoch run and +4.5 / +5.5 over the BiLSTM-CRF. I also trained the BERT baseline for 4 epochs (73.3 / 70.4), so the new model and the baseline are compared at equal training: SEC-BERT-SHAPE is +2.5 micro-F1 better at 2 epochs and +2.6 at 4 epochs.
+Finally I trained SEC-BERT-SHAPE for 4 epochs instead of 2 (the BiLSTM-CRF was trained for up to 12). **SEC-BERT-SHAPE (4 epochs) is the best model of the project: 75.9 micro-F1 and 73.2 macro-F1** (shared evaluator, main test view), +3.0 / +4.0 over the 2-epoch run and +4.5 / +5.5 over the BiLSTM-CRF. I also trained the BERT baseline for 4 epochs (73.3 / 70.4), so the new model and the baseline are also compared with the same number of epochs: SEC-BERT-SHAPE is +2.5 micro-F1 better at 2 epochs and +2.6 at 4 epochs.
 
 ## Overview of my contributions
 
@@ -22,10 +22,10 @@ Finally I trained SEC-BERT-SHAPE for 4 epochs instead of 2 (the BiLSTM-CRF was t
 | 4 | Benchmark table, per-entity reports, saved test predictions for error analysis | `results/transformer_benchmark.csv`, `*_report.txt`, `*_test_predictions.parquet` |
 | 5 | Comparison and analysis of the two models | this file |
 | 6 | CRF option in the training script: transformer emissions + the team's CRF layer, Viterbi decoding with IOB2 constraints | `train_transformer22.py --crf` |
-| 7 | SEC-BERT-SHAPE + CRF run (best single model) | `results/sec-bert-shape-crf_*` |
+| 7 | SEC-BERT-SHAPE + CRF run (best 2-epoch model) | `results/sec-bert-shape-crf_*` |
 | 8 | Added the new models to the shared results table | `src/evaluate_predictions.py`, `results/RESULTS.md`, `results/results_table.tex` |
 | 9 | SEC-BERT-SHAPE trained for 4 epochs (best model) | `results/sec-bert-shape-4ep_*` |
-| 10 | BERT-base-cased baseline trained for 4 epochs (equal-training comparison) | `results/bert-base-cased-4ep_*` |
+| 10 | BERT-base-cased baseline trained for 4 epochs (same number of epochs as the 4-epoch SEC-BERT-SHAPE) | `results/bert-base-cased-4ep_*` |
 
 ## 1. Training script (`train_transformer22.py`)
 
@@ -107,7 +107,12 @@ The 2-epoch models picked epoch 2 and the 4-epoch model picked epoch 4: validati
 - **Hardest types for both models:** ShareBasedCompensation (F1 < 0.08), DebtInstrumentMaturityDate, OperatingLeasesRentExpenseNet, StockRepurchasedDuringPeriodShares.
 - **What the CRF adds:** SEC-BERT-SHAPE + CRF is better than SEC-BERT-SHAPE on 87 of 139 types, worse on 49, equal on 3. The largest gain is DebtInstrumentMaturityDate (0.11 -> 0.26): maturity dates span several words (`December 31 , 2025`), and the CRF's tag transitions keep such multi-word entities together. Other large gains: BusinessCombination...AssumedIntangibles (0.46 -> 0.60), SaleOfStockNumberOfSharesIssuedInTransaction (0.45 -> 0.53).
 - **Precision vs recall, tested:** my hypothesis that the O-only reduction makes the models over-predict entities was tested by Begüm's cleaning ablation with the feature CRF (`results/ablation/ABLATION.md`). Adding the dropped no-entity sentences back raises precision (57.5 -> 63.9) and lowers recall (60.6 -> 54.9), but micro-F1 does not change (59.0 vs 59.0). So the reduction shifts the precision/recall balance as expected, without hurting F1.
-- **Significance:** Ece's paired bootstrap (`results/assessment/BOOTSTRAP.md`) shows SEC-BERT-SHAPE minus BERT = +2.51 (95% interval 2.16-2.85) and SEC-BERT-SHAPE minus BiLSTM-CRF = +1.51 (1.07-1.94), so both differences are not due to test-sentence sampling.
+- **Significance:** Ece's paired bootstrap (10,000 sentence replicates, `results/assessment/extended/BOOTSTRAP.md`) gives 95% intervals for every contrast in this file, and none of them includes zero:
+  - SEC-BERT-SHAPE minus BERT: +2.51 [2.16, 2.85] at 2 epochs, +2.58 [2.22, 2.95] at 4 epochs
+  - SEC-BERT-SHAPE + CRF minus SEC-BERT-SHAPE: +0.57 [0.34, 0.80]
+  - 4 minus 2 epochs: +2.90 [2.55, 3.25] for BERT, +2.97 [2.63, 3.32] for SEC-BERT-SHAPE
+  - SEC-BERT-SHAPE minus BiLSTM-CRF (2 epochs): +1.51 [1.08, 1.94]
+  - The intervals cover test-sentence sampling only, not training randomness (one seed per model).
 - **Longer training matters most:** 4 epochs instead of 2 gives +3.0 micro-F1 and +4.0 macro-F1, more than the CRF layer (+0.6 / +0.9). Precision rises the most (66.2 -> 70.1): the longer-trained model separates similar types better. It is better on 118 of 139 types, worse on 19; the largest gains are on types that were hardest before: ShareBasedCompensation (0.07 -> 0.32), StockRepurchasedDuringPeriodShares (0.28 -> 0.49), LineOfCreditFacilityCurrentBorrowingCapacity (0.39 -> 0.60), DebtInstrumentFairValue (0.49 -> 0.65).
 - **Why BERT was below the BiLSTM-CRF:** with 2 epochs the transformers were under-trained compared with the BiLSTM-CRF (up to 12 epochs). With 4 epochs even the BERT baseline is above the BiLSTM-CRF (73.3 vs 71.5), and SEC-BERT-SHAPE is 4.5 points above it.
 - **The two effects add up:** the domain-model gain is the same at 2 and 4 epochs (+2.5 / +2.6), and the longer-training gain is the same for both models (+2.9 / +3.0). So SEC-BERT-SHAPE's advantage does not come from training time.
@@ -116,7 +121,7 @@ The 2-epoch models picked epoch 2 and the 4-epoch model picked epoch 4: validati
 ## 5. Limitations
 
 - One learning rate (3e-5) and at most 4 epochs, because each epoch takes about 27 minutes on a free Colab T4. Scores were still rising at epoch 4, so more epochs may help. SEC-BERT-SHAPE + CRF was not re-run with 4 epochs.
-- One seed per model; the bootstrap intervals cover test-sentence sampling, not training randomness. The CRF gain over SEC-BERT-SHAPE (+0.6 micro-F1) has no interval yet.
+- One seed per model; the bootstrap intervals cover test-sentence sampling, not training randomness. The CRF gain over SEC-BERT-SHAPE is small (+0.57, 95% interval 0.34-0.80), so a different seed could change it.
 - SEC-BERT-SHAPE is an existing pre-trained model (Loukas et al., ACL 2022); its gain over BERT mixes domain pre-training and number shapes.
 - About 1.2% of test sentences are longer than 512 pieces; their tail words are counted as `O`.
 - Epoch selection uses 20,000 of the 101,125 validation sentences to save time.
