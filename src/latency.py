@@ -18,6 +18,7 @@ Run (Colab, so that every model runs on the same hardware):
     python src/latency.py --device cpu
     python src/latency.py --device cuda
     python src/latency.py --device cpu --models baseline_mft hmm      # a subset
+    python src/latency.py --device cuda --models sec-bert-shape sec-bert-shape-crf --tag shape_crf
 Writes/updates results/latency.csv (one row per model x device) and results/LATENCY.md.
 """
 import argparse
@@ -35,10 +36,12 @@ import torch
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from finer import ID2LABEL, LABEL2ID, RESULTS, ROOT, load_splits  # noqa: E402
 
-MODELS = ["baseline_mft", "hmm", "crf", "bilstm_crf", "bert-base-cased", "sec-bert-shape"]
+MODELS = ["baseline_mft", "hmm", "crf", "bilstm_crf", "bert-base-cased", "sec-bert-shape", "sec-bert-shape-crf"]
 NAMES = {"baseline_mft": "Most-frequent tag", "hmm": "HMM + Viterbi", "crf": "CRF",
-         "bilstm_crf": "BiLSTM-CRF", "bert-base-cased": "BERT-base-cased", "sec-bert-shape": "SEC-BERT-SHAPE"}
-HF_IDS = {"bert-base-cased": "bert-base-cased", "sec-bert-shape": "nlpaueb/sec-bert-shape"}
+         "bilstm_crf": "BiLSTM-CRF", "bert-base-cased": "BERT-base-cased", "sec-bert-shape": "SEC-BERT-SHAPE",
+         "sec-bert-shape-crf": "SEC-BERT-SHAPE + CRF"}
+HF_IDS = {"bert-base-cased": "bert-base-cased", "sec-bert-shape": "nlpaueb/sec-bert-shape",
+          "sec-bert-shape-crf": "nlpaueb/sec-bert-shape"}
 
 
 def sync(device):
@@ -118,13 +121,24 @@ def build_bilstm_crf(train, device):
 
 
 def build_transformer(key, device, batch_size=64, max_length=512):
+    """BERT / SEC-BERT-SHAPE with a per-piece arg-max head, or (key ending in "-crf") the same
+    encoder with the team's CRF layer over the first-piece scores, decoded with Viterbi exactly
+    as `Tagger.decode` in train_transformer22.py."""
     from transformers import AutoModelForTokenClassification, AutoTokenizer
     local = os.path.join(ROOT, "models", key)
     src = local if os.path.isdir(local) else HF_IDS[key]
+    use_crf = key.endswith("-crf")
     tok = AutoTokenizer.from_pretrained(src)
     model = AutoModelForTokenClassification.from_pretrained(
         src, num_labels=len(ID2LABEL), id2label=dict(enumerate(ID2LABEL)), label2id=LABEL2ID).to(device).eval()
     weights = f"fine-tuned ({local})" if src == local else "pre-trained encoder + new 279-tag head, same size"
+    crf = None
+    if use_crf:
+        from crf_layer import CRF
+        sys.path.insert(0, ROOT)
+        from train_transformer22 import first_pieces  # same word-level gather as training
+        crf = CRF(list(ID2LABEL), constrain_training=True).to(device).eval()
+        weights += " + untrained CRF layer (same size)"
     shapes = "shape" in key
     vocab = set(tok.get_vocab())
     number = re.compile(r"(\d+[\d,.]*)|([,.]\d+)")  # same rule as train_transformer22.py
@@ -150,7 +164,29 @@ def build_transformer(key, device, batch_size=64, max_length=512):
             enc = tok([prep(sents[i]) for i in idx], is_split_into_words=True, truncation=True,
                       max_length=max_length, padding=True, return_tensors="pt")
             with torch.autocast(device.type, dtype=torch.float16, enabled=device.type == "cuda"):
-                best = model(**{k: v.to(device) for k, v in enc.items()}).logits.argmax(-1).cpu()
+                logits = model(**{k: v.to(device) for k, v in enc.items()}).logits
+            if crf is not None:
+                # labels only mark each word's first piece (value 0); the CRF never reads them
+                first = torch.full(logits.shape[:2], -100, dtype=torch.long)
+                kept = []                      # word index of each first piece, in order
+                for row in range(len(idx)):
+                    prev, words = None, []
+                    for j, w in enumerate(enc.word_ids(row)):
+                        if w is not None and w != prev:
+                            first[row, j] = 0
+                            words.append(w)
+                        prev = w
+                    kept.append(words)
+                emissions, _, mask, counts = first_pieces(logits, first.to(logits.device))
+                with torch.autocast(device.type, enabled=False):   # as in Tagger.decode
+                    paths = crf.decode(emissions.float(), mask)
+                for row, i in enumerate(idx):
+                    tags = ["O"] * len(sents[i])   # words cut by truncation stay O
+                    for w, t in zip(kept[row], paths[row][: len(kept[row])]):
+                        tags[w] = ID2LABEL[int(t)]
+                    out[i] = tags
+                continue
+            best = logits.argmax(-1).cpu()
             for row, i in enumerate(idx):
                 tags, prev = ["O"] * len(sents[i]), None
                 for j, w in enumerate(enc.word_ids(row)):
@@ -159,7 +195,8 @@ def build_transformer(key, device, batch_size=64, max_length=512):
                     prev = w
                 out[i] = tags
         return out
-    return run, sum(p.numel() for p in model.parameters()), weights
+    n_params = sum(p.numel() for p in model.parameters()) + (sum(p.numel() for p in crf.parameters()) if crf else 0)
+    return run, n_params, weights
 
 
 def build(key, train, device):
@@ -188,6 +225,7 @@ def main():
     ap.add_argument("--n", type=int, default=2000, help="test sentences in the timed sample")
     ap.add_argument("--repeats", type=int, default=3)
     ap.add_argument("--seed", type=int, default=42)
+    ap.add_argument("--tag", default="", help="write results/latency_<tag>.csv and LATENCY_<TAG>.md instead")
     args = ap.parse_args()
     device = torch.device(args.device)
 
@@ -228,7 +266,8 @@ def main():
         if device.type == "cuda":
             torch.cuda.empty_cache()
 
-    path = os.path.join(RESULTS, "latency.csv")
+    suffix = f"_{args.tag}" if args.tag else ""
+    path = os.path.join(RESULTS, f"latency{suffix}.csv")
     old = pd.read_csv(path) if os.path.exists(path) else pd.DataFrame()
     new = pd.DataFrame(rows)
     if len(old):
@@ -237,10 +276,10 @@ def main():
     table["order"] = table["key"].map({k: i for i, k in enumerate(MODELS)})
     table = table.sort_values(["device", "order"]).drop(columns="order")
     table.to_csv(path, index=False)
-    write_markdown(table)
+    write_markdown(table, f"LATENCY{suffix.upper()}.md")
 
 
-def write_markdown(table):
+def write_markdown(table, filename="LATENCY.md"):
     scores = {}
     for key in MODELS:
         p = os.path.join(RESULTS, f"{key}_eval.json")
@@ -260,7 +299,7 @@ def write_markdown(table):
             lines.append(f"| {r['model']} | {f1} | {r['sentences_per_s']:,.1f} | {r['ms_per_sentence']:.3f} | "
                          f"{int(r['parameters']):,} | {r['weights']} |")
         lines.append("")
-    with open(os.path.join(RESULTS, "LATENCY.md"), "w") as f:
+    with open(os.path.join(RESULTS, filename), "w") as f:
         f.write("\n".join(lines))
     print("\n".join(lines))
 

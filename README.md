@@ -315,16 +315,20 @@ not measurements of the saved fine-tuned checkpoints. See
 | BERT-base-cased | 70.4 | 679 | 5.7 | 107.9 M |
 | SEC-BERT-SHAPE | 73.0 | 819 | 9.2 | 108.7 M |
 | SEC-BERT-SHAPE + CRF | 73.5 | Not measured | Not measured | — |
-| BERT-base-cased (4 epochs) | 73.3 | Not measured separately | Not measured separately | 107.9 M |
-| SEC-BERT-SHAPE (4 epochs) | 75.9 | Not measured separately | Not measured separately | 108.7 M |
+| BERT-base-cased (4 epochs) | 73.3 | 679† | 5.7† | 107.9 M |
+| SEC-BERT-SHAPE (4 epochs) | 75.9 | 819† | 9.2† | 108.7 M |
 
-The four-epoch runs have the same architectures as their two-epoch counterparts,
-so the existing speed measurements are useful proxies, not additional measured
-results. SHAPE+CRF adds Viterbi decoding and cannot inherit the SHAPE speed.
+† Value of the two-epoch row of the same model. The four-epoch runs have the same
+architecture and parameter count as their two-epoch counterparts and differ only in
+weight values; speed depends on the architecture, not on the weight values (the
+speed script builds the architecture, it does not load trained weights), so the
+two-epoch measurement applies. SHAPE+CRF adds Viterbi decoding and cannot inherit
+the SHAPE speed.
 
 - **Speed versus F1.** The measured BiLSTM-CRF architecture is about 5.7 times
-  faster than SHAPE on the T4 (15 times on this CPU). Its benchmark F1 is 4.5 points
-  below the best four-epoch SHAPE run. Model selection and training budgets differ;
+  faster than the SHAPE architecture on the T4 (15 times on this CPU), the same
+  architecture as the best four-epoch SHAPE run. Its benchmark F1 is 4.5 points
+  below that run. Model selection and training budgets differ;
   this is a practical trade-off, not an equal-compute comparison.
 - In this setup SHAPE is faster than BERT (1.2 times on GPU, 1.6 on CPU).
   Shorter number representations are a possible explanation; their contribution
@@ -332,6 +336,10 @@ results. SHAPE+CRF adds Viterbi decoding and cannot inherit the SHAPE speed.
 - HMM decoding runs on the CPU even in the table labelled T4; it does not use the GPU.
 
 ## Cleaning ablation
+
+**Scope: all results in this section are for the feature CRF only.** The other
+models were not retrained on the alternative training sets, so these effects are
+not claimed for them.
 
 `python src/cleaning_ablation.py` (Colab T4, ~70 min) trains the team's feature CRF
 (selected settings: window 3, weight decay 0) three times, changing only the training
@@ -346,21 +354,22 @@ differences with 10,000 paired sentence-bootstrap replicates. Details:
 | B = A + the dropped no-entity sentences | 562,568 | 76% | 63.9 | 54.9 | **59.0** | 52.5 |
 | C = A + the leaked sentences (also in val/test) | 302,709 | 54% | 60.9 | 61.6 | **61.3** | 56.3 |
 
-- **No-entity downsampling (B vs A): precision for recall, same F1.** Keeping all
+- **No-entity downsampling (B vs A), feature CRF: precision for recall, same F1.** Keeping all
   no-entity sentences raises precision by 6.3 points and lowers recall by 5.7;
   micro-F1 changes by -0.02 (95% interval [-0.47, +0.42]), providing no clear
   evidence of an F1 difference in this feature-CRF experiment. The precision/recall
   shift supports the proposed direction for this model; it was not tested for the
   transformers. The recorded training time falls from 30 to 11 minutes.
   A reproduces the CRF's published score exactly (59.0, validation 0.6317).
-- **Leakage removal (C vs A) prevents an inflated score.** 17,992 of the 92,608
+- **Leakage removal (C vs A), feature CRF: without it the CRF's score would be inflated.** 17,992 of the 92,608
   main-view test sentences (19%) occur word for word among the train sentences that
   the leakage step removed. Training on them raises micro-F1 by 2.2 points
   (95% interval [+1.76, +2.68]); on those 17,992 sentences F1 jumps from 62.0 to 76.5,
   consistent with an advantage from seeing evaluation sentences during training.
   C's validation sample is contaminated too (4,516 of its 20,000 sentences), so
   both training exposure and epoch selection are affected. C is a leakage
-  demonstration, not a valid improved benchmark result.
+  demonstration, not a valid improved benchmark result. The size of the inflation
+  for the BiLSTM-CRF and the transformers was not measured.
 
 ## Additional saved analyses
 

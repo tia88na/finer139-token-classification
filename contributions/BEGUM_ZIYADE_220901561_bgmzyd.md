@@ -8,7 +8,7 @@
 
 My contribution is the **HMM baseline and the shared evaluation** of the project. I wrote one evaluation module that every model in the team is scored with (word-level, full-length sentences, entity-level micro and macro F1 with seqeval), removed the validation–test leakage from the test view, added a most-frequent-tag baseline and a first-order **HMM with Viterbi decoding**, and analysed why a token-only model fails on FiNER-139. I re-scored the team's transformer predictions with the same code and built the final results table (Markdown and LaTeX). The HMM reaches only **3.5 micro-F1**, against **73.0** for SEC-BERT-SHAPE: the tag of a number is decided by its context, not by the number.
 
-In a second step I added two of the team's improvement items: an **inference-speed comparison** of all six models on the same machine (BiLSTM-CRF is 5.7x faster on a T4 GPU than the best model, SEC-BERT-SHAPE trained for 4 epochs, and 4.5 points lower in micro-F1), and a **cleaning ablation** that trains the CRF on three versions of the training data. It shows that the no-entity downsampling trades precision for recall at the same F1, and that the leakage removal prevents a 2.2-point inflation of the test score.
+In a second step I added two of the team's improvement items: an **inference-speed comparison** of all six models on the same machine (BiLSTM-CRF is 5.7x faster on a T4 GPU than the SEC-BERT-SHAPE architecture, which is also the architecture of the best model, SEC-BERT-SHAPE trained for 4 epochs; it is 4.5 points lower in micro-F1), and a **cleaning ablation** that trains the feature CRF on three versions of the training data. For the feature CRF, the no-entity downsampling trades precision for recall at the same F1, and without the leakage removal its test score would be 2.2 points higher (inflated). These ablation results are limited to the feature CRF; the other models were not retrained.
 
 ## Overview of my contributions
 
@@ -81,15 +81,17 @@ The team's improvement list asked for a latency column (the instructor asked abo
 | BiLSTM-CRF | 71.5 | 4,704 | 142 |
 | BERT-base-cased | 70.4 | 679 | 5.7 |
 | SEC-BERT-SHAPE | 73.0 | 819 | 9.2 |
-| SEC-BERT-SHAPE (4 epochs, Zehra) | 75.9 | 819\* | 9.2\* |
+| SEC-BERT-SHAPE (4 epochs, Zehra) | 75.9 | 819† | 9.2† |
 
-\* Same model and size as SEC-BERT-SHAPE, only trained longer, so the same speed; not timed separately.
+† Value of the SEC-BERT-SHAPE row: the 4-epoch run has the same architecture and parameter count and differs only in weight values, which do not affect speed (the speed script builds the architecture and does not load trained weights).
 
-- BiLSTM-CRF is 5.7x faster than SEC-BERT-SHAPE on the GPU (15x on the CPU). It is 4.5 points below the best model (SEC-BERT-SHAPE, 4 epochs, 75.9) and 1.5 points below the 2-epoch run; the 4-epoch comparison is the fairer one, because BiLSTM-CRF was trained for 12 epochs.
+- BiLSTM-CRF is 5.7x faster than the SEC-BERT-SHAPE architecture on the GPU (15x on the CPU); this is also the architecture of the 4-epoch run. It is 4.5 points below the best model (SEC-BERT-SHAPE, 4 epochs, 75.9) and 1.5 points below the 2-epoch run; the 4-epoch comparison is the fairer one, because BiLSTM-CRF was trained for 12 epochs.
 - SEC-BERT-SHAPE is faster than BERT-base (1.2x GPU, 1.6x CPU), most likely because numbers become one shape token instead of several word pieces (not measured separately).
 - The HMM does not use the GPU: its Viterbi runs in NumPy, one sentence at a time.
 
 ## 7. Cleaning ablation (`src/cleaning_ablation.py`)
+
+**Scope:** every result in this section is for the feature CRF only; the BiLSTM-CRF and the transformers were not retrained on the alternative training sets.
 
 Zehra's contribution file left one hypothesis untested: the no-entity downsampling might make the models over-predict entities. I trained the team's feature CRF (its selected settings, same seed and model selection) three times, changing only the training data. The script first rebuilds the cleaning steps of `01_data_preprocessing.ipynb` from `data/raw/` and stops unless the result is identical to `data/cleaned/train.parquet`. Differences use 10,000 paired sentence-bootstrap replicates (the team's `assess_results.paired_bootstrap`).
 
@@ -100,8 +102,8 @@ Zehra's contribution file left one hypothesis untested: the no-entity downsampli
 | C = A + leaked sentences | 302,709 | 60.9 | 61.6 | 61.3 | 56.3 |
 
 - **A reproduces the published CRF exactly** (59.0 test, 0.6317 validation).
-- **B vs A:** precision +6.3, recall -5.7, micro-F1 unchanged (-0.02, 95% interval [-0.47, +0.42]). The hypothesis is right about the direction (downsampling makes the model predict entities more often) but it costs no F1, and it cuts CRF training time from 30 to 11 minutes.
-- **C vs A:** +2.2 micro-F1 (95% interval [+1.76, +2.68]). 17,992 of the 92,608 main-view test sentences (19%) occur word for word among the leaked train sentences; on them F1 rises from 62.0 to 76.5, which is memorisation. The leakage removal therefore prevented an inflated score. C's validation sample is contaminated too (4,516 of 20,000 sentences), which is why it trained for 6 epochs.
+- **B vs A (feature CRF):** precision +6.3, recall -5.7, micro-F1 unchanged (-0.02, 95% interval [-0.47, +0.42]). For this model the hypothesis is right about the direction (downsampling makes it predict entities more often) without a measurable F1 cost, and CRF training time falls from 30 to 11 minutes. Whether the transformers behave the same way was not tested.
+- **C vs A (feature CRF):** +2.2 micro-F1 (95% interval [+1.76, +2.68]). 17,992 of the 92,608 main-view test sentences (19%) occur word for word among the leaked train sentences; on them F1 rises from 62.0 to 76.5, consistent with memorisation. For the feature CRF, the leakage removal therefore prevented an inflated score; the size of the effect for the other models was not measured. C's validation sample is contaminated too (4,516 of 20,000 sentences), which is why it trained for 6 epochs.
 - Limitations: one seed per variant; the bootstrap covers test-sentence sampling only.
 
 ## 8. How to reproduce
