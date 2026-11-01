@@ -28,6 +28,8 @@ NAMES = {
     "bilstm_crf": "BiLSTM-CRF",
     "bert-base-cased": "BERT-base-cased",
     "sec-bert-shape": "SEC-BERT-SHAPE",
+    "sec-bert-shape-crf": "SEC-BERT-SHAPE + CRF",
+    "sec-bert-shape-4ep": "SEC-BERT-SHAPE (4 epochs)",
 }
 
 

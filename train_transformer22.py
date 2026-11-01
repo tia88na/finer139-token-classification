@@ -13,12 +13,23 @@ Models:
     bert-base-cased          baseline
     nlpaueb/sec-bert-shape   new model: BERT pre-trained on SEC filings, numbers are
                              replaced by their shape ("645.1" -> "[XXX.X]")
+    --crf                    adds the team's linear-chain CRF layer (src/crf_layer.py) on top:
+                             the transformer gives one emission score per word (its first
+                             piece), the CRF adds tag transitions, training minimises the CRF
+                             negative log-likelihood and prediction is Viterbi with IOB2 rules.
+
+Every run is saved under a run name (default: model, plus "-crf" and "-<N>ep" when the
+CRF or a non-default number of epochs is used), so earlier results are never overwritten.
+Besides its own files, each run is also scored with the team's shared evaluator
+(src/finer.py: strict IOB2, main test view) -> results/<run>_eval.json, <run>_per_class.csv.
 
 Needs a GPU (Colab: Runtime > Change runtime type > T4 GPU):
     !pip install -q seqeval
     !python train_transformer22.py --model bert-base-cased --limit 2000      # quick check
     !python train_transformer22.py --model bert-base-cased
     !python train_transformer22.py --model nlpaueb/sec-bert-shape
+    !python train_transformer22.py --model nlpaueb/sec-bert-shape --crf          # SEC-BERT-SHAPE + CRF
+    !python train_transformer22.py --model nlpaueb/sec-bert-shape --epochs 4     # longer training
 """
 import argparse
 import csv
@@ -26,6 +37,7 @@ import json
 import platform
 import random
 import re
+import sys
 import time
 from pathlib import Path
 
@@ -35,12 +47,14 @@ import pyarrow.parquet as pq
 import torch
 import transformers
 from seqeval.metrics import classification_report, f1_score, precision_score, recall_score
+from torch import nn
 from torch.utils.data import DataLoader
 from transformers import (AutoModelForTokenClassification, AutoTokenizer,
                           DataCollatorForTokenClassification, get_linear_schedule_with_warmup)
 
 SEED = 42
 ROOT = Path(__file__).resolve().parent
+sys.path.insert(0, str(ROOT / "src"))  # the team's CRF layer and shared evaluator
 NUMBER = re.compile(r"(\d+[\d,.]*)|([,.]\d+)")  # same rule as the SEC-BERT model card
 
 
@@ -106,6 +120,60 @@ def encode(tokenizer, sentences, tags, max_length, shapes):
     return items, word_index
 
 
+def first_pieces(logits, labels):
+    """Word-level view of a batch: the emission scores and gold tags of each word's first piece.
+
+    Returns emissions [B, W, L], tags [B, W], mask [B, W] (True on words; padding at the end)
+    and the number of words per sentence. A sentence with no word gets one dummy O word so
+    the CRF never sees an empty sequence; it is never written back to a prediction.
+    """
+    b, t, k = logits.shape
+    first = labels != -100
+    counts = first.sum(1)
+    w = max(int(counts.max()), 1)
+    position = torch.arange(t, device=logits.device).expand(b, t)
+    index = torch.where(first, position, position + t).argsort(1)[:, :w]
+    mask = torch.arange(w, device=logits.device).unsqueeze(0) < counts.unsqueeze(1)
+    mask[:, 0] = True
+    emissions = logits.gather(1, index.unsqueeze(2).expand(b, w, k))
+    tags = labels.gather(1, index).clamp(min=0) * mask
+    return emissions, tags, mask, counts
+
+
+class Tagger(nn.Module):
+    """Transformer with a per-piece softmax head, or with a CRF over its word-level scores."""
+
+    def __init__(self, encoder, names, crf):
+        super().__init__()
+        self.encoder = encoder
+        if crf:
+            from crf_layer import CRF
+            self.crf = CRF(names, constrain_training=True)
+        else:
+            self.crf = None
+
+    def loss(self, batch):
+        if self.crf is None:
+            return self.encoder(**batch).loss
+        labels = batch.pop("labels")
+        logits = self.encoder(**batch).logits
+        emissions, tags, mask, _ = first_pieces(logits, labels)
+        with torch.autocast(logits.device.type, enabled=False):  # CRF sums in float32/64
+            return self.crf.nll(emissions.float(), tags, mask).mean()
+
+    def decode(self, batch, labels):
+        """Predicted tag ids of each sentence's words that kept a first piece."""
+        logits = self.encoder(**batch).logits
+        emissions, _, mask, counts = first_pieces(logits, labels.to(logits.device))
+        counts = counts.tolist()
+        if self.crf is None:
+            best = emissions.argmax(-1).cpu()
+            return [best[i, :n].numpy() for i, n in enumerate(counts)]
+        with torch.autocast(logits.device.type, enabled=False):
+            paths = self.crf.decode(emissions.float(), mask)
+        return [np.array(path[:n], dtype=np.int64) for path, n in zip(paths, counts)]
+
+
 @torch.inference_mode()
 def predict(model, items, word_index, n_words, collate, batch_size, device, amp):
     """Word-level predicted tag ids for every sentence (O for words cut by truncation)."""
@@ -118,11 +186,10 @@ def predict(model, items, word_index, n_words, collate, batch_size, device, amp)
         labels = batch.pop("labels")
         batch = {key: value.to(device) for key, value in batch.items()}
         with torch.autocast(device.type, dtype=torch.float16, enabled=amp):
-            logits = model(**batch).logits
-        best = logits.argmax(dim=-1).cpu()
+            decoded = model.decode(batch, labels)
         for row, i in enumerate(ids):
             words = np.zeros(n_words[i], dtype=np.int64)  # 0 = O
-            words[word_index[i]] = best[row][labels[row] != -100].numpy()
+            words[word_index[i]] = decoded[row]
             predictions[i] = words
     return predictions
 
@@ -153,6 +220,13 @@ def main():
                         help="validation sentences used to pick the epoch (test is always full)")
     parser.add_argument("--no-amp", dest="amp", action="store_false",
                         help="Disable mixed precision (slower; use if the loss is not finite)")
+    parser.add_argument("--crf", action="store_true",
+                        help="add the CRF layer (src/crf_layer.py) on top of the transformer")
+    parser.add_argument("--crf-lr", type=float, default=5e-3,
+                        help="learning rate of the CRF transition/start/end scores")
+    parser.add_argument("--run-name", help="name of the saved files (default from the settings)")
+    parser.add_argument("--save-model", metavar="FOLDER",
+                        help="also save the selected model (e.g. for src/latency.py)")
     parser.add_argument("--limit", type=int,
                         help="Quick check: this many sentences per split, results not saved")
     args = parser.parse_args()
@@ -185,13 +259,16 @@ def main():
     print(f"Encoded in {time.perf_counter() - start:.0f}s; test sentences still truncated: {cut}",
           flush=True)
 
-    model = AutoModelForTokenClassification.from_pretrained(
+    encoder = AutoModelForTokenClassification.from_pretrained(
         args.model, num_labels=len(names), id2label=dict(enumerate(names)),
         label2id={name: i for i, name in enumerate(names)})
-    model = model.float().to(device)
+    model = Tagger(encoder.float(), names, args.crf).to(device)
     loader = DataLoader(encoded["train"][0], batch_size=args.batch_size, shuffle=True,
                         collate_fn=collate, generator=torch.Generator().manual_seed(SEED))
-    optimizer = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=0.01)
+    groups = [dict(params=list(model.encoder.parameters()), lr=args.lr, weight_decay=0.01)]
+    if args.crf:  # transitions start at 0 and need a larger step than the pre-trained encoder
+        groups.append(dict(params=list(model.crf.parameters()), lr=args.crf_lr, weight_decay=0.0))
+    optimizer = torch.optim.AdamW(groups)
     total_steps = len(loader) * args.epochs
     scheduler = get_linear_schedule_with_warmup(optimizer, int(0.06 * total_steps), total_steps)
     scaler = torch.amp.GradScaler(device.type, enabled=args.amp)
@@ -210,7 +287,7 @@ def main():
         for step, batch in enumerate(loader, start=1):
             batch = {key: value.to(device) for key, value in batch.items()}
             with torch.autocast(device.type, dtype=torch.float16, enabled=args.amp):
-                loss = model(**batch).loss
+                loss = model.loss(batch)
             if not torch.isfinite(loss):
                 raise RuntimeError("Loss is not finite. Run again with --no-amp.")
             optimizer.zero_grad(set_to_none=True)
@@ -237,7 +314,8 @@ def main():
     model.load_state_dict(best_state)  # epoch chosen on validation, never on test
     test, test_predictions = evaluate("test", report=True)
     seconds = time.perf_counter() - start
-    name = args.model.split("/")[-1]
+    name = args.run_name or (args.model.split("/")[-1] + ("-crf" if args.crf else "")
+                             + (f"-{args.epochs}ep" if args.epochs != 2 else ""))
     print(f"{name} test: micro-F1={test['micro_f1']:.4f} macro-F1={test['macro_f1']:.4f} "
           f"P={test['precision']:.4f} R={test['recall']:.4f} ({seconds / 60:.1f} min)", flush=True)
     if args.limit:
@@ -259,7 +337,8 @@ def main():
         writer.writeheader()
         writer.writerows(rows)
     (out / f"{name}_report.txt").write_text(test.pop("report"), encoding="utf-8")
-    details = dict(seed=SEED, model=args.model, shapes=shapes, epochs=args.epochs,
+    details = dict(seed=SEED, run=name, model=args.model, crf=args.crf,
+                   crf_lr=args.crf_lr if args.crf else None, shapes=shapes, epochs=args.epochs,
                    max_length=args.max_length, eval_max_length=args.eval_max_length,
                    batch_size=args.batch_size, learning_rate=args.lr, val_limit=args.val_limit,
                    mixed_precision=args.amp, test_sentences_truncated=cut,
@@ -269,8 +348,21 @@ def main():
     (out / f"{name}_metrics.json").write_text(json.dumps(details, indent=2), encoding="utf-8")
     pd.DataFrame({"predicted_tags": [p.tolist() for p in test_predictions]}).to_parquet(
         out / f"{name}_test_predictions.parquet")
+    if args.save_model:
+        model.encoder.save_pretrained(args.save_model)
+        tokenizer.save_pretrained(args.save_model)
+        if args.crf:
+            torch.save(model.crf.state_dict(), Path(args.save_model) / "crf.pt")
     print(f"Saved results/transformer_benchmark.csv, results/{name}_report.txt, "
           f"results/{name}_metrics.json, results/{name}_test_predictions.parquet")
+
+    # The team's shared evaluator (strict IOB2, main view) -> same format as the other models
+    from finer import evaluate as team_evaluate, load_splits, save_results
+    test_frame = load_splits()["test"]
+    team = team_evaluate(test_frame, [[names[t] for t in p] for p in test_predictions], name)
+    save_results(team, name)
+    print(f"Saved results/{name}_eval.json and results/{name}_per_class.csv "
+          f"(main micro-F1 {team['main']['micro_F1']:.4f})")
 
 
 if __name__ == "__main__":

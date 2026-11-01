@@ -11,3 +11,5 @@ Entity-level, strict IOB2 (seqeval), word level, full-length sentences.
 | BiLSTM-CRF | 66.8 | 76.8 | **71.5** | 67.7 | 71.4 |
 | BERT-base-cased | 63.0 | 79.8 | **70.4** | 66.0 | 70.4 |
 | SEC-BERT-SHAPE | 66.2 | 81.2 | **73.0** | 69.2 | 72.9 |
+| SEC-BERT-SHAPE + CRF | 66.4 | 82.3 | **73.5** | 70.0 | 73.5 |
+| SEC-BERT-SHAPE (4 epochs) | 70.1 | 82.8 | **75.9** | 73.2 | 75.9 |
