@@ -193,6 +193,13 @@ and training-frequency breakdowns, word-level type confusions, and illustrative
 examples with original test row IDs. Analysis uses only the main test view and
 checks its precision/recall/F1 against the saved shared-evaluator results.
 
+For **SEC-BERT-SHAPE (2 epochs)**, precision is 66.23% and recall is 81.19%.
+The analysis counts 8,222 spurious predictions and 1,857 completely missed
+gold entities: about 4.4 times as many spurious as completely missed entities.
+This compares two error categories, not total false positives versus total
+false negatives; wrong-type and boundary errors are counted separately.
+These figures do not describe the best four-epoch SHAPE run.
+
 False negatives and false positives have separate error partitions. Word-level
 confusions are diagnostic counts, not entity-level errors. Length is measured in
 original words, so length buckets do not establish tokenizer truncation effects.
@@ -223,6 +230,12 @@ and both four-epoch transformers on 92,608 main-test sentences.
 It reproduces each model's saved precision, recall and micro-F1 before computing
 10,000 paired sentence-bootstrap replicates. Source hashes, sentence counts and
 replicate scores are retained in `results/assessment/extended/`.
+
+The saved bootstrap reports do not provide model-level confidence intervals
+for MFT, HMM or the feature CRF. Report their benchmark point estimates
+without an interval unless a separate, reproducible bootstrap result is
+available. The feature-CRF cleaning-ablation intervals describe differences
+between cleaning conditions, not confidence intervals for these baseline scores.
 
 | Comparison | Micro-F1 gain (points) | 95% interval | Family-wise 95% interval |
 |---|---:|---|---|
@@ -306,24 +319,30 @@ not measurements of the saved fine-tuned checkpoints. See
 [the full speed report](results/LATENCY.md) for weight provenance and
 `05_latency_and_ablation_colab.ipynb` for the workflow.
 
-| Model | micro-F1 | sentences / s (T4 GPU) | sentences / s (CPU, 1 thread) | parameters |
-|---|---:|---:|---:|---:|
-| Most-frequent tag | 3.1 | 33,046 | 35,751 | 0 |
-| HMM + Viterbi | 3.5 | 223 | 214 | 4.5 M |
-| CRF | 59.0 | 5,344 | 203 | 116.2 M |
-| BiLSTM-CRF | 71.5 | 4,704 | 142 | 3.6 M |
-| BERT-base-cased | 70.4 | 679 | 5.7 | 107.9 M |
-| SEC-BERT-SHAPE | 73.0 | 819 | 9.2 | 108.7 M |
-| SEC-BERT-SHAPE + CRF | 73.5 | Not measured | Not measured | — |
-| BERT-base-cased (4 epochs) | 73.3 | 679† | 5.7† | 107.9 M |
-| SEC-BERT-SHAPE (4 epochs) | 75.9 | 819† | 9.2† | 108.7 M |
+| Model | micro-F1 | sentences / s (T4 setup) | ms / sentence (T4 setup) | sentences / s (CPU, 1 thread) | parameters |
+|---|---:|---:|---:|---:|---:|
+| Most-frequent tag | 3.1 | 33,046 | 0.030 | 35,751 | 0 |
+| HMM + Viterbi | 3.5 | 223 | 4.480 | 214 | 4.5 M |
+| CRF | 59.0 | 5,344 | 0.187 | 203 | 116.2 M |
+| BiLSTM-CRF | 71.5 | 4,704 | 0.213 | 142 | 3.6 M |
+| BERT-base-cased | 70.4 | 679 | 1.472 | 5.7 | 107.9 M |
+| SEC-BERT-SHAPE | 73.0 | 819 | 1.221 | 9.2 | 108.7 M |
+| SEC-BERT-SHAPE + CRF | 73.5 | Not measured | Not measured | Not measured | — |
+| BERT-base-cased (4 epochs) | 73.3 | 679† | 1.472† | 5.7† | 107.9 M |
+| SEC-BERT-SHAPE (4 epochs) | 75.9 | 819† | 1.221† | 9.2† | 108.7 M |
 
-† Value of the two-epoch row of the same model. The four-epoch runs have the same
-architecture and parameter count as their two-epoch counterparts and differ only in
-weight values; speed depends on the architecture, not on the weight values (the
-speed script builds the architecture, it does not load trained weights), so the
-two-epoch measurement applies. SHAPE+CRF adds Viterbi decoding and cannot inherit
-the SHAPE speed.
+`sentences / s` is throughput; `ms / sentence` is amortised batch processing
+time, including input preparation and decoding, copied from
+`results/LATENCY.md`. It is not single-request latency. MFT and HMM run on
+the CPU even in the T4 setup.
+
+† Reused architecture-level measurements from the corresponding two-epoch
+rows, not separate measurements of the four-epoch trained checkpoints.
+Matching architecture and parameter count make these useful speed proxies;
+they do not establish the exact runtime of each final checkpoint.
+SHAPE+CRF adds Viterbi decoding and cannot inherit the SHAPE speed.
+Its measurement code and `06_latency_shape_crf_colab.ipynb` are available,
+but no measured result is included in the current speed report.
 
 - **Speed versus F1.** The measured BiLSTM-CRF architecture is about 5.7 times
   faster than the SHAPE architecture on the T4 (15 times on this CPU), the same
