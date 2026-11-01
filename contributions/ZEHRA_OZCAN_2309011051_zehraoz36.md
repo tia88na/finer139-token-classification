@@ -151,6 +151,6 @@ The 2-epoch models picked epoch 2 and the 4-epoch model picked epoch 4: validati
 Commits are in the repository ([tia88na/finer139-token-classification](https://github.com/tia88na/finer139-token-classification), branch `main`):
 
 - [`4a2e833`](https://github.com/tia88na/finer139-token-classification/commit/4a2e833) (2026-10-31) - added `train_transformer22.py`, all files in `results/` and this contribution file (9 files)
-- - [`7fc7b5a`](https://github.com/tia88na/finer139-token-classification/commit/7fc7b5a) (2026-11-01) - BERT-base-cased 4-epoch results, results table row, updated contribution file (10 files)
 - [`07b6b40`](https://github.com/tia88na/finer139-token-classification/commit/07b6b40) (2026-11-01) - `--crf` option, SEC-BERT-SHAPE + CRF results, results table row, updated contribution file (11 files)
 - [`a24e5b4`](https://github.com/tia88na/finer139-token-classification/commit/a24e5b4) (2026-11-01) - SEC-BERT-SHAPE 4-epoch results, results table row, updated contribution file (10 files)
+- [`7fc7b5a`](https://github.com/tia88na/finer139-token-classification/commit/7fc7b5a) (2026-11-01) - BERT-base-cased 4-epoch results, results table row, updated contribution file (10 files)
