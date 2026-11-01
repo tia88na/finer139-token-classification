@@ -6,7 +6,7 @@
 
 ## Summary
 
-My contribution is the **comparative error analysis of the saved model predictions** and the documentation of the findings. I added a reproducible analysis pipeline for BiLSTM-CRF, BERT-base-cased and SEC-BERT-SHAPE, separating missed entities, spurious predictions, wrong entity types and boundary overlaps. I compared results by training entity frequency and sentence length, extracted real examples and label confusions, and checked that the analysis reproduces the team's shared evaluation results. No new model training was needed.
+My contribution is the **comparative error analysis of the saved model predictions** and the documentation of the findings. I added a reproducible analysis pipeline for BiLSTM-CRF, BERT-base-cased and SEC-BERT-SHAPE, separating missed entities, spurious predictions, wrong entity types and boundary overlaps. I compared results by training entity frequency and sentence length, extracted real examples and label confusions, and checked that the analysis reproduces the team's shared evaluation results. No new model training was needed. I also added paired bootstrap comparisons, a 50-example contextual assessment, and an extended six-model bootstrap covering the CRF and four-epoch transformer variants.
 
 ## Overview of my contributions
 
@@ -19,6 +19,8 @@ My contribution is the **comparative error analysis of the saved model predictio
 | 5 | Exact gold-span recovery comparison between BERT and SEC-BERT-SHAPE | `results/analysis/bert_shape_disagreements.json` |
 | 6 | Tests of strict IOB2 span extraction and error accounting | `tests/test_error_analysis.py` |
 | 7 | Evaluation-protocol clarification, contributor index and notebook documentation fix | `README.md`, `CONTRIBUTORS.md`, `01_data_preprocessing.ipynb` |
+| 8 | Paired bootstrap for the original three models and contextual assessment of 50 predictions | `src/assess_results.py`, `src/render_assessment.py`, `results/assessment/` |
+| 9 | Extended paired bootstrap for six models and eight named comparisons | `src/compare_models_bootstrap.py`, `tests/test_compare_models_bootstrap.py`, `results/assessment/extended/` |
 
 ## 1. Analysis protocol
 
@@ -74,7 +76,7 @@ The three new tests and eight existing evaluator/HMM tests passed: **11 tests in
 - Added README instructions for reproducing the error analysis and locating its outputs.
 - Clarified why original transformer scores and the final strict-IOB2 main-view scores differ.
 - Documented that SEC-BERT-SHAPE is an existing pretrained model, and that the BERT comparison changes both domain pretraining and number representation.
-- Distinguished duplicate/leakage removal from O-only downsampling, whose effect on precision/recall has not been tested with a controlled experiment.
+- Distinguished duplicate/leakage removal from O-only downsampling. Begum subsequently tested the latter with the feature CRF (`results/ablation/ABLATION.md`); this experiment is her contribution and does not establish the effect for transformers.
 - Added `CONTRIBUTORS.md` linking the existing member contribution records.
 - Removed the notebook statement that overwrote the maintained README during preprocessing.
 
@@ -128,11 +130,37 @@ python -m pytest tests/test_assess_results.py tests/test_error_analysis.py tests
 
 ## Commit evidence
 
-The implementation and results are recorded in the following local commits on `main` (not yet pushed):
+The original implementation and results are recorded in the following commits on `main`:
 
 - `380590c` — Add comparative error analysis for saved predictions.
 - `295718b` — Add paired bootstrap confidence intervals and audit sampling.
 - `cecfaa4` — Document assessment of 50 sampled entity predictions.
 - `f0f292f` — Preserve maintained README when preprocessing data.
 
-This contribution record and the README instructions are included in a subsequent documentation commit.
+This contribution record and the README instructions were added in `399d20e` (Document analysis workflows and Ece Mina Orenler's contributions). The extended-bootstrap work below is a subsequent working-tree update; no commit is claimed for it here.
+
+## Extended bootstrap: new transformer results
+
+Added a separate six-model analysis that reuses the original paired-bootstrap implementation. It includes BiLSTM-CRF, BERT and SEC-BERT-SHAPE (2 epochs), SEC-BERT-SHAPE+CRF (2 epochs), and both 4-epoch transformers. The original three-model report, 50 sampled examples and their assessment remain unchanged; the error analysis above still describes the original three models.
+
+- 10,000 paired sentence-bootstrap replicates, seed 42, 92,608 main-test sentences.
+- Eight named comparisons, with marginal 95% and Bonferroni-adjusted family-wise 95% intervals.
+- Checked every prediction row length and tag range, and reproduced all six saved main-view precision, recall and micro-F1 values.
+- Saved source hashes, sentence counts and replicates in `results/assessment/extended/`.
+
+| New comparison | F1 gain (points) | 95% interval | Family-wise 95% interval |
+|---|---:|---|---|
+| CRF head, 2-epoch SHAPE models | +0.57 | [0.34, 0.80] | [0.25, 0.89] |
+| BERT, 4 versus 2 epochs | +2.90 | [2.55, 3.25] | [2.42, 3.37] |
+| SEC-BERT-SHAPE, 4 versus 2 epochs | +2.97 | [2.63, 3.32] | [2.50, 3.45] |
+| SEC-BERT-SHAPE versus BERT, both 4 epochs | +2.58 | [2.22, 2.95] | [2.07, 3.08] |
+| SHAPE 4 epochs versus SHAPE+CRF 2 epochs | +2.40 | [2.06, 2.73] | [1.93, 2.87] |
+
+All eight adjusted intervals are above zero on these saved predictions. This describes test-sentence sampling uncertainty, not training-seed variability, annotation correctness or a guarantee for another dataset. Test scores had already been inspected. BERT versus SHAPE changes both domain pretraining and number representation; equal epoch counts do not mean equal wall-clock time. The last contrast changes both training budget and decoder.
+
+Validation: **18 targeted tests passed**, covering the evaluator/HMM, span extraction, original bootstrap and the two new checks for named-contrast column ordering and eight-comparison Bonferroni quantiles. The full GPU/model test suite was not run.
+
+```bash
+python src/compare_models_bootstrap.py --replicates 10000 --seed 42
+python -m pytest tests/test_compare_models_bootstrap.py tests/test_assess_results.py tests/test_error_analysis.py tests/test_finer.py -q
+```
