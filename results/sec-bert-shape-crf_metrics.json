@@ -1,0 +1,45 @@
+{
+  "seed": 42,
+  "run": "sec-bert-shape-crf",
+  "model": "nlpaueb/sec-bert-shape",
+  "crf": true,
+  "crf_lr": 0.005,
+  "shapes": true,
+  "epochs": 2,
+  "max_length": 128,
+  "eval_max_length": 512,
+  "batch_size": 32,
+  "learning_rate": 3e-05,
+  "val_limit": 20000,
+  "mixed_precision": true,
+  "test_sentences_truncated": 1142,
+  "device": "Tesla T4",
+  "python": "3.13.16",
+  "torch": "2.11.0+cu130",
+  "transformers": "5.21.0",
+  "selected_epoch": 2,
+  "history": [
+    {
+      "epoch": 1,
+      "loss": 3.677028342243102,
+      "micro_f1": 0.7300014158289679,
+      "macro_f1": 0.6621217472027108,
+      "precision": 0.6648613797549968,
+      "recall": 0.8092921048501021
+    },
+    {
+      "epoch": 2,
+      "loss": 0.6110100102940768,
+      "micro_f1": 0.7604439103696896,
+      "macro_f1": 0.709698936364914,
+      "precision": 0.6917438271604939,
+      "recall": 0.8442944592685606
+    }
+  ],
+  "test": {
+    "micro_f1": 0.7351375054814258,
+    "macro_f1": 0.701266206266918,
+    "precision": 0.6638945462774384,
+    "recall": 0.8235087719298245
+  }
+}

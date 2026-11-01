@@ -1,0 +1,17 @@
+{
+  "model": "sec-bert-shape-crf",
+  "main": {
+    "sentences": 92608,
+    "micro_P": 0.6643,
+    "micro_R": 0.8232,
+    "micro_F1": 0.7352,
+    "macro_F1": 0.7003
+  },
+  "reference": {
+    "sentences": 95030,
+    "micro_P": 0.6639,
+    "micro_R": 0.8235,
+    "micro_F1": 0.7351,
+    "macro_F1": 0.7013
+  }
+}

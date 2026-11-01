@@ -8,6 +8,8 @@
 
 I built and ran the transformer part of the benchmark: a single training script for token classification on the cleaned FiNER-139 data, the **BERT-base (cased)** baseline, and the **new model, SEC-BERT-SHAPE**, a BERT model pre-trained on SEC filings that replaces every number with its shape (e.g. `645.1` -> `[XXX.X]`). SEC-BERT-SHAPE beats the BERT baseline by **+2.5 micro-F1** and **+3.1 macro-F1** on the test set and is better on 122 of the 139 entity types.
 
+I then added the team's linear-chain CRF layer (`src/crf_layer.py`) on top of SEC-BERT-SHAPE. **SEC-BERT-SHAPE + CRF is the best single model of the project: 73.5 micro-F1 and 70.0 macro-F1** (shared evaluator, main test view), +0.6 / +0.9 over SEC-BERT-SHAPE. It matches the three-model ensemble on micro-F1 (73.52 vs 73.51) and beats it on macro-F1 (70.03 vs 69.77) while running one model instead of three.
+
 ## Overview of my contributions
 
 | # | Contribution | Evidence |
@@ -17,6 +19,9 @@ I built and ran the transformer part of the benchmark: a single training script 
 | 3 | SEC-BERT-SHAPE new model run, including number-shape preprocessing | `results/sec-bert-shape_*` |
 | 4 | Benchmark table, per-entity reports, saved test predictions for error analysis | `results/transformer_benchmark.csv`, `*_report.txt`, `*_test_predictions.parquet` |
 | 5 | Comparison and analysis of the two models | this file |
+| 6 | CRF option in the training script: transformer emissions + the team's CRF layer, Viterbi decoding with IOB2 constraints | `train_transformer22.py --crf` |
+| 7 | SEC-BERT-SHAPE + CRF run (best single model) | `results/sec-bert-shape-crf_*` |
+| 8 | Added the new model to the shared results table | `src/evaluate_predictions.py`, `results/RESULTS.md`, `results/results_table.tex` |
 
 ## 1. Training script (`train_transformer22.py`)
 
@@ -31,14 +36,34 @@ I built and ran the transformer part of the benchmark: a single training script 
 
 Before the full runs I tested the script with `--limit 2000` (quick check that loading, training, evaluation and saving work end to end).
 
-## 2. Results
+## 2. SEC-BERT-SHAPE + CRF (`--crf`)
+
+- **Emissions:** the transformer's 279 scores on each word's first sub-word piece are gathered into a word-level sequence (one score vector per word).
+- **CRF layer:** the same `CRF` class as the feature CRF and the BiLSTM-CRF (`src/crf_layer.py`): start, end and tag-transition scores, IOB2 constraints (an `I-X` may only follow `B-X` / `I-X`).
+- **Training:** loss = mean negative log-likelihood of the gold tag sequence (forward algorithm), computed in float32/64 outside mixed precision. The CRF scores get their own learning rate (5e-3, no weight decay) because they start at zero; the encoder keeps 3e-5.
+- **Prediction:** Viterbi decoding of the best tag sequence per sentence.
+- **Everything else unchanged:** same data, number shapes, truncation handling, 2 epochs, seed, epoch selection on validation.
+- **Checks:** with gold-label emissions ("oracle"), the word gathering and Viterbi decoding reproduce the gold tags of all 3,000 sampled test sentences exactly; a `--limit 2000` run on Colab trained, decoded and saved end to end.
+- **Run names:** every run is saved under its own name (`sec-bert-shape-crf`, `...-4ep`), so earlier results are never overwritten, and is also scored with the team's shared evaluator (`results/<run>_eval.json`, `<run>_per_class.csv`).
+
+## 3. Results
 
 Test set: 95,030 sentences, 28,500 gold entities, 139 entity types.
 
 | Model | Role | Val micro-F1 | Test micro-F1 | Test macro-F1 | Precision | Recall | Time (T4) |
 |---|---|---:|---:|---:|---:|---:|---:|
 | bert-base-cased | baseline | 72.95 | 70.25 | 66.07 | 62.73 | 79.82 | 60.7 min |
-| **sec-bert-shape** | **new model** | **75.07** | **72.80** | **69.18** | **65.96** | **81.22** | 60.1 min |
+| sec-bert-shape | new model | 75.07 | 72.80 | 69.18 | 65.96 | 81.22 | 60.1 min |
+| **sec-bert-shape + CRF** | **new model + CRF** | **76.04** | **73.51** | **70.13** | **66.39** | **82.35** | 72.5 min |
+
+The table above uses my script's own scoring (default seqeval, all 95,030 test sentences). The team's final table (`results/RESULTS.md`) uses the shared evaluator: strict IOB2 and the main view without the 2,422 test sentences that also occur in validation. On that protocol:
+
+| Model | P | R | micro-F1 | macro-F1 |
+|---|---:|---:|---:|---:|
+| BERT-base-cased | 63.05 | 79.80 | 70.44 | 66.01 |
+| SEC-BERT-SHAPE | 66.23 | 81.19 | 72.95 | 69.15 |
+| Majority-vote ensemble (BiLSTM-CRF + BERT + SEC-BERT-SHAPE, by Yunus) | 67.10 | 81.29 | 73.51 | 69.77 |
+| **SEC-BERT-SHAPE + CRF** | **66.43** | **82.32** | **73.52** | **70.03** |
 
 Validation scores per epoch:
 
@@ -46,10 +71,11 @@ Validation scores per epoch:
 |---|---|---|
 | bert-base-cased | 70.41 / 61.88 | 72.95 / 67.17 |
 | sec-bert-shape | 72.49 / 65.27 | 75.07 / 70.26 |
+| sec-bert-shape + CRF | 73.00 / 66.21 | 76.04 / 70.97 |
 
-Both models picked epoch 2. Scores were still rising, so more epochs may help.
+All three models picked epoch 2. Scores were still rising, so more epochs may help.
 
-## 3. Analysis
+## 4. Analysis
 
 - **SEC-BERT-SHAPE is better overall:** +2.5 micro-F1, +3.1 macro-F1. The larger macro gain means the improvement is not only on frequent labels.
 - **Per entity type:** SEC-BERT-SHAPE is better on **122 of 139** types, worse on 15, equal on 2.
@@ -57,19 +83,25 @@ Both models picked epoch 2. Scores were still rising, so more epochs may help.
   - Largest drop: DebtInstrumentMaturityDate (0.18 -> 0.11). A likely reason is that shape replacement turns the year into `[XXXX]`, so the model loses the actual value.
 - **Recall is much higher than precision for both models** (about 80 vs 63-66). The models find most tagged numbers but often choose a wrong, similar tag (for example StockRepurchasedDuringPeriodShares vs StockRepurchasedAndRetiredDuringPeriodShares). One possible cause is the cleaning step: no-entity sentences are 49% of the cleaned train set but about 80% of the test set, so the models may predict entities too often. This is a hypothesis, not tested.
 - **Hardest types for both models:** ShareBasedCompensation (F1 < 0.08), DebtInstrumentMaturityDate, OperatingLeasesRentExpenseNet, StockRepurchasedDuringPeriodShares.
-- **The benchmark is not saturated:** the best model reaches 72.8 micro-F1 and 69.2 macro-F1.
+- **What the CRF adds:** SEC-BERT-SHAPE + CRF is better than SEC-BERT-SHAPE on 87 of 139 types, worse on 49, equal on 3. The largest gain is DebtInstrumentMaturityDate (0.11 -> 0.26): maturity dates span several words (`December 31 , 2025`), and the CRF's tag transitions keep such multi-word entities together. Other large gains: BusinessCombination...AssumedIntangibles (0.46 -> 0.60), SaleOfStockNumberOfSharesIssuedInTransaction (0.45 -> 0.53).
+- **Precision vs recall, tested:** my hypothesis that the O-only reduction makes the models over-predict entities was tested by Begüm's cleaning ablation with the feature CRF (`results/ablation/ABLATION.md`). Adding the dropped no-entity sentences back raises precision (57.5 -> 63.9) and lowers recall (60.6 -> 54.9), but micro-F1 does not change (59.0 vs 59.0). So the reduction shifts the precision/recall balance as expected, without hurting F1.
+- **Significance:** Ece's paired bootstrap (`results/assessment/BOOTSTRAP.md`) shows SEC-BERT-SHAPE minus BERT = +2.51 (95% interval 2.16-2.85) and SEC-BERT-SHAPE minus BiLSTM-CRF = +1.51 (1.07-1.94), so both differences are not due to test-sentence sampling.
+- **The benchmark is not saturated:** the best model reaches 73.5 micro-F1 and 70.0 macro-F1.
 
-## 4. Limitations
+## 5. Limitations
 
-- Only 2 epochs and one learning rate (3e-5) for both models, because each run takes about one hour on a free Colab T4.
-- One seed per model; the difference between the models was not tested for significance.
+- Only 2 epochs and one learning rate (3e-5), because each run takes about one hour on a free Colab T4. The BiLSTM-CRF was trained for up to 12 epochs, so the comparison is not equal in training time.
+- One seed per model; the bootstrap intervals cover test-sentence sampling, not training randomness. The CRF gain over SEC-BERT-SHAPE (+0.6 micro-F1) has no interval yet.
+- SEC-BERT-SHAPE is an existing pre-trained model (Loukas et al., ACL 2022); its gain over BERT mixes domain pre-training and number shapes.
 - About 1.2% of test sentences are longer than 512 pieces; their tail words are counted as `O`.
 - Epoch selection uses 20,000 of the 101,125 validation sentences to save time.
 
 ## Files I added
 
-- `train_transformer22.py` - training and evaluation script for both models
-- `results/transformer_benchmark.csv` - test scores of both models
+- `train_transformer22.py` - training and evaluation script for all three models (`--crf` added later)
+- `results/transformer_benchmark.csv` - test scores of the three models (script scoring)
+- `results/sec-bert-shape-crf_{report.txt, metrics.json, eval.json, per_class.csv, test_predictions.parquet}` - SEC-BERT-SHAPE + CRF results
+- `src/evaluate_predictions.py` - added the display name of the new model; `results/RESULTS.md` and `results/results_table.tex` regenerated with it
 - `results/bert-base-cased_report.txt`, `results/sec-bert-shape_report.txt` - per-entity precision, recall, F1
 - `results/bert-base-cased_metrics.json`, `results/sec-bert-shape_metrics.json` - settings, versions, per-epoch scores
 - `results/bert-base-cased_test_predictions.parquet`, `results/sec-bert-shape_test_predictions.parquet` - word-level test predictions (row i = row i of `data/cleaned/test.parquet`), for error analysis
@@ -82,6 +114,8 @@ Both models picked epoch 2. Scores were still rising, so more epochs may help.
     !python train_transformer22.py --model bert-base-cased --limit 2000   # quick check
     !python train_transformer22.py --model bert-base-cased
     !python train_transformer22.py --model nlpaueb/sec-bert-shape
+    !python train_transformer22.py --model nlpaueb/sec-bert-shape --crf
+    !python src/evaluate_predictions.py      # rebuilds the shared results table
    
  ## Commit evidence
 
