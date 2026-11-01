@@ -1,0 +1,71 @@
+{
+  "seed": 42,
+  "replicates": 10000,
+  "main_sentences": 92608,
+  "models": [
+    "bilstm_crf",
+    "bert-base-cased",
+    "sec-bert-shape",
+    "sec-bert-shape-crf",
+    "bert-base-cased-4ep",
+    "sec-bert-shape-4ep"
+  ],
+  "comparisons": [
+    [
+      "sec-bert-shape",
+      "bert-base-cased"
+    ],
+    [
+      "sec-bert-shape",
+      "bilstm_crf"
+    ],
+    [
+      "bilstm_crf",
+      "bert-base-cased"
+    ],
+    [
+      "sec-bert-shape-crf",
+      "sec-bert-shape"
+    ],
+    [
+      "bert-base-cased-4ep",
+      "bert-base-cased"
+    ],
+    [
+      "sec-bert-shape-4ep",
+      "sec-bert-shape"
+    ],
+    [
+      "sec-bert-shape-4ep",
+      "bert-base-cased-4ep"
+    ],
+    [
+      "sec-bert-shape-4ep",
+      "sec-bert-shape-crf"
+    ]
+  ],
+  "family_size": 8,
+  "grouped_patterns": 3298,
+  "numpy_version": "2.4.6",
+  "bootstrap_unit": "sentence; paired across six models; multinomial grouped sufficient statistics",
+  "file_sha256": {
+    "data/cleaned/test.parquet": "4a84e7efb72deb33147e134417c7951e1e8ada51cba7e02fd24e10b7edd6e07f",
+    "data/cleaned/validation.parquet": "7403cb4040dad6d87aadaf2e278e652c89137a912377e982d727d0557698d8bd",
+    "src/compare_models_bootstrap.py": "0a76194aabb60ac9c76d4bf0c2aeab48018a5f617db4f5402ff4c7ebcd5b8092",
+    "src/assess_results.py": "5a473333ae4652515dd563e8b9d4bd77bdd3da0070fa09068392def61e13056c",
+    "src/analyze_errors.py": "35ce95e63efd9e29e92ff74ddf6d00515045499d39a732b45c2ba031dade0217",
+    "src/finer.py": "7a1aa4c6c341a8bdaae76f154ccb116d055732e1efced886a106fb8b49d71855",
+    "results/bilstm_crf_test_predictions.parquet": "c152e958cd1c0ec58951b98a55e1bf700ddcef508167fe5e6a4a39af361da865",
+    "results/bilstm_crf_eval.json": "8584e0e1687f0860575a5f1271fef36ca5575cc8a326b38e95858e892a987cde",
+    "results/bert-base-cased_test_predictions.parquet": "d17ce794b1f9c6691e50b309fb548c478c91355cf986e920b339ef4574da336e",
+    "results/bert-base-cased_eval.json": "bbc3957f2864e5e209800ef462976042397dd26b7e9069d6db91f9970553036f",
+    "results/sec-bert-shape_test_predictions.parquet": "1f5f50137d5b30e82d746a7a02b926f4a2393e3938889c6c8b542f82497212dd",
+    "results/sec-bert-shape_eval.json": "226f37a6eb549f39a77f8c2a3748eb4f62b73c6191fce2dd94f2ab33abedb35e",
+    "results/sec-bert-shape-crf_test_predictions.parquet": "dca912d963336a4248ca10c4209635722537f4b6251de278b830351bb41f472f",
+    "results/sec-bert-shape-crf_eval.json": "8da3952b29d3e09b4f77386931b9dd0889c84ce0cd64e47f638c189cd1043a59",
+    "results/bert-base-cased-4ep_test_predictions.parquet": "f9b25807d48a96b1bf10676dc9a0989da8cece6386e5a8e5a2ad82bf0e2d6711",
+    "results/bert-base-cased-4ep_eval.json": "f422d6c2d85e489ef8d167e0ecf12702a636a7b67d5fd270b5437bcc8b6c053a",
+    "results/sec-bert-shape-4ep_test_predictions.parquet": "a97b4d234bc1b0b5fa7168b1cd29cfcf7581f90e36e3955fcedb2d5ac0765b79",
+    "results/sec-bert-shape-4ep_eval.json": "01ef9afa1affab8181e0a10363a0de7f1f17a303386e3c56dae1117537045c21"
+  }
+}
