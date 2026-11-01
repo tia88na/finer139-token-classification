@@ -1,0 +1,14 @@
+{
+  "sample_size": 50,
+  "categories": {
+    "model_error": 5,
+    "possible_annotation_gap": 28,
+    "insufficient_context": 17
+  },
+  "repeated_raw_sentences": 17,
+  "raw_train_matches": 10,
+  "raw_target_conflicts": 0,
+  "review_passes": 1,
+  "independent_second_review": false,
+  "gold_labels_changed": false
+}

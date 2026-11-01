@@ -1,0 +1,27 @@
+{
+  "seed": 42,
+  "replicates": 10000,
+  "sample_size": 50,
+  "main_sentences": 92608,
+  "models": [
+    "bilstm_crf",
+    "bert-base-cased",
+    "sec-bert-shape"
+  ],
+  "sample_population": 8222,
+  "sample_unit": "SEC-BERT-SHAPE predicted entity span with no overlap with any gold entity",
+  "distinct_sample_sentences": 50,
+  "bootstrap_unit": "sentence; paired across models; multinomial grouped sufficient statistics",
+  "grouped_patterns": 1221,
+  "numpy_version": "2.4.6",
+  "file_sha256": {
+    "data/cleaned/test.parquet": "4a84e7efb72deb33147e134417c7951e1e8ada51cba7e02fd24e10b7edd6e07f",
+    "data/cleaned/validation.parquet": "7403cb4040dad6d87aadaf2e278e652c89137a912377e982d727d0557698d8bd",
+    "results/bilstm_crf_test_predictions.parquet": "c152e958cd1c0ec58951b98a55e1bf700ddcef508167fe5e6a4a39af361da865",
+    "results/bert-base-cased_test_predictions.parquet": "d17ce794b1f9c6691e50b309fb548c478c91355cf986e920b339ef4574da336e",
+    "results/sec-bert-shape_test_predictions.parquet": "1f5f50137d5b30e82d746a7a02b926f4a2393e3938889c6c8b542f82497212dd",
+    "data/raw/train.parquet": "88d752c7dc6ef0796c294871b6fb93b0d8c94c95d74cad609989cde626601ca2",
+    "data/raw/validation.parquet": "a23ebe7175b0a177ee5ebfdb972cd7b5d185854d2b0c72b79c1bc841913f3c8f",
+    "data/raw/test.parquet": "39c0d388d960c46fbb8ba681190d6e40466cef98036d06d92102cff2c458dfd3"
+  }
+}

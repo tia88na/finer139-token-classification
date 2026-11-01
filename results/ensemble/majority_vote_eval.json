@@ -1,0 +1,17 @@
+{
+  "model": "Majority-vote ensemble",
+  "main": {
+    "sentences": 92608,
+    "micro_P": 0.671,
+    "micro_R": 0.8129,
+    "micro_F1": 0.7351,
+    "macro_F1": 0.6977
+  },
+  "reference": {
+    "sentences": 95030,
+    "micro_P": 0.6703,
+    "micro_R": 0.8132,
+    "micro_F1": 0.7349,
+    "macro_F1": 0.698
+  }
+}

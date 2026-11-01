@@ -1,0 +1,14 @@
+statistic,value
+sentences,92608
+words,4493708
+repairs,2
+words_differ_from_tie_breaker,3259
+sentences_differ_from_tie_breaker,2558
+entity_words,42024
+agree_3,26408
+agree_2,14617
+agree_1,999
+tp_gained,559
+tp_lost,531
+fp_added,1174
+fp_removed,1605
